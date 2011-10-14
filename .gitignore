@@ -1,0 +1,8 @@
+*.swp
+.rake_tasks~
+.rvmrc
+.bundle
+.DS_Store
+public/tracks
+
+node_modules

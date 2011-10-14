@@ -1,0 +1,7 @@
+{
+  "name": "audiojedi-talk",
+  "version": "0.0.1",
+  "dependencies": {
+    "connect": "1.7.1"
+  }
+}

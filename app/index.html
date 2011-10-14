@@ -71,9 +71,9 @@
       config: {
         codec: (function() {
           var audio = new Audio();
-          if (!!audio.canPlayType && /probably|maybe/.test(audio.canPlayType('audio/mpeg'))) {
+          if (audio.canPlayType && /probably|maybe/.test(audio.canPlayType('audio/mpeg'))) {
             return 'mp3'
-          } else if (!!audio.canPlayType && /probably|maybe/.test(canPlayType('audio/ogg; codecs="vorbis"'))) {
+          } else if (audio.canPlayType && /probably|maybe/.test(audio.canPlayType('audio/ogg; codecs="vorbis"'))) {
             return 'ogg'
           } else {
             return 'wav'
@@ -127,7 +127,8 @@
               isFinished = false;
 
           audio.addEventListener('canplay', function() {
-            var seekTime = audio.buffered.end(0) + 60,
+            var seekTime = (audio.buffered && audio.buffered.length) ?
+                  audio.buffered.end(0) + 60 : (sound.duration / 2) / 1000,
                 seekDuration = 0;
 
             audio.addEventListener('seeking', function() {
@@ -152,9 +153,9 @@
     ]);
 
     AWPY.tests.run(function(result) {
-      var audio = AWPY.audio, sound = AWPY.sounds.huge;
-      document.getElementById('buffered').style.width = ((audio.buffered.end(0) * 100) / (sound.duration / 1000)) + '%';
-      document.getElementById('currentTime').style.left = ((audio.currentTime * 100) / (sound.duration / 1000)) + '%';
+      // var audio = AWPY.audio, sound = AWPY.sounds.huge;
+      // document.getElementById('buffered').style.width = ((audio.buffered.end(0) * 100) / (sound.duration / 1000)) + '%';
+      // document.getElementById('currentTime').style.left = ((audio.currentTime * 100) / (sound.duration / 1000)) + '%';
       console.log(this.description, result);
     });
   </script>

@@ -71,9 +71,9 @@
       config: {
         codec: (function() {
           var audio = new Audio();
-          if (audio.canPlayType && /probably|maybe/.test(audio.canPlayType('audio/mpeg'))) {
+          if (!!audio.canPlayType && /probably|maybe/.test(audio.canPlayType('audio/mpeg'))) {
             return 'mp3'
-          } else if (audio.canPlayType && /probably|maybe/.test(canPlayType('audio/ogg; codecs="vorbis"'))) {
+          } else if (!!audio.canPlayType && /probably|maybe/.test(canPlayType('audio/ogg; codecs="vorbis"'))) {
             return 'ogg'
           } else {
             return 'wav'

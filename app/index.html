@@ -123,7 +123,8 @@
         description: 'Play unbuffered time. aka Seekahead',
         assert: function(finish) {
           var audio = AWPY.audio = new Audio(),
-              sound = AWPY.sounds.huge;
+              sound = AWPY.sounds.huge,
+              isFinished = false;
 
           audio.addEventListener('canplay', function() {
             var seekTime = audio.buffered.end(0) + 60,
@@ -135,7 +136,10 @@
 
             audio.addEventListener('seeked', function() {
               seekDuration = (new Date()) - seekDuration;
-              finish(seekDuration < 100);
+              if(!isFinished) {
+                isFinished = true;
+                finish(seekDuration < 100);
+              }
             });
 
             audio.currentTime = seekTime;

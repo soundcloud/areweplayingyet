@@ -10,7 +10,11 @@ var AWPY = {
       } else {
         return 'wav'
       }
-    }())
+    }()),
+    browserscope: {
+      key: 'agt1YS1wcm9maWxlcnINCxIEVGVzdBijlecJDA',
+      sandboxKey: '4efdd178084165d'
+    }
   }
 };
 
@@ -24,13 +28,26 @@ AWPY.tests = (function() {
   var run = function(callback) {
     list.forEach(function(test) {
       test.assert(function(result) {
-        callback.call(test, result);
+        test.result = result;
+        callback.call(test);
       });
     });
   };
 
-  var save = function(name) {
-    // Post to browser scope
+  var save = function() {
+    var jsonp = document.createElement('script'),
+        firstScript = document.getElementsByTagName('script')[0],
+        data = {};
+
+    jsonp.src = 'http://www.browserscope.org/user/beacon/' + AWPY.config.browserscope.key;
+    jsonp.src += '?sandboxid=' + AWPY.config.browserscope.sandboxKey;
+
+    list.forEach(function(test) {
+      data[test.name] = test.result ? 1 : 0;
+    });
+
+    window._bTestResults = data;
+    firstScript.parentNode.insertBefore(jsonp, firstScript);
   };
 
   var get = function() {
@@ -57,7 +74,8 @@ AWPY.sounds = {
 
 AWPY.tests.init([
   {
-    id: 0,
+    name: 'AWPY0',
+    key: 'agt1YS1wcm9maWxlcnINCxIEVGVzdBixnOcJDA',
     description: 'Play unbuffered position. (Seeking)',
     assert: function(finish) {
       var audio = AWPY.audio = new Audio(),

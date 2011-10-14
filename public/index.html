@@ -70,7 +70,7 @@
   supports more than ogg? -->
 <script>
 AWPY.tests.get().forEach(function(test) {
-  var row = '<tr id="test-' + test.id + '"><td>$description</td><td><span class="label">N/A</span></td></tr>',
+  var row = '<tr id="test-' + test.name + '"><td>$description</td><td><span class="label">N/A</span></td></tr>',
       tbody = document.getElementById('tests')
                       .getElementsByTagName('tbody')[0];
   tbody.innerHTML += row.replace(/\$\w+/g, function(match) {
@@ -86,14 +86,17 @@ document.getElementById('run').addEventListener('click', function(ev) {
   ev.target.innerHTML = 'Running...'
   var numTests = AWPY.tests.get().length, counter = 0;
 
-  AWPY.tests.run(function(result) {
-    var testNode = document.getElementById('test-' + this.id);
-    testNode.lastChild.firstChild.innerHTML = result ? 'WIN' : 'FAIL';
-    testNode.lastChild.firstChild.classList.add(result ? 'success' : 'important');
+  AWPY.tests.run(function() {
+    var testNode = document.getElementById('test-' + this.name);
+    testNode.lastChild.firstChild.innerHTML = this.result ? 'WIN' : 'FAIL';
+    testNode.lastChild.firstChild.classList.add(this.result ? 'success' : 'important');
 
     if (++counter === numTests) {
       ev.target.className = ev.target.className.replace('primary', 'success');
       ev.target.innerHTML = 'Done!'
+
+      // Save results to BrowserScope
+      AWPY.tests.save();
     }
   });
 });

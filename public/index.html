@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>AreWePlayingYet?</title>
+  <meta name="description" content="A pragmatic HTML5 Audio benchmark">
+  <meta name="author" content="Tomás Senart">
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/awpy.css">
+  <!-- <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png" /> -->
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="page-header">
+        <h1>AreWePlayingYet?</h1>
+      </div>
+      <div class="row">
+        <div class="span12">
+          <h2>A pragmatic HTML5 Audio browser benchmark</h2>
+          <p>This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers. We want to build the best HTML5 audio player on the web and we need help from the browser developers for that. As the specifications left room to interpretation, some of the features got implemented not as well they could be.  We don't want to write code for different browsers, and to make this real we need to know that we can rely on them instead. Please join the discussion on <a href="http://twitter.com/areweplayingyet">@areweplayingyet</a>!</p>
+          <p><button id="run" class="btn primary full-width">Run the tests!</button></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span12">
+          <table id="tests" class="zebra-striped">
+            <thead>
+              <tr>
+                <td>Description</td><td>Result</td>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; SoundCloud 2011</p>
+    </footer>
+
+  </div>
+  <script src="/js/awpy.js"></script>
+  <!-- Possible benchmarking
+
+
+  preload attribute
+  paused, played, muted, mute()
+  buffered
+  autoplay
+  all events
+  metadata preload - no preload to play delay
+  redirects in streams (https->http, x-domain)
+  redirects in streams invalidate (s3)
+  the density of timeupdate events
+  switching streams (android)
+
+
+  supports more than ogg? -->
+<script>
+AWPY.tests.get().forEach(function(test) {
+  var row = '<tr id="test-' + test.id + '"><td>$description</td><td><span class="label">N/A</span></td></tr>',
+      tbody = document.getElementById('tests')
+                      .getElementsByTagName('tbody')[0];
+  tbody.innerHTML += row.replace(/\$\w+/g, function(match) {
+    return test[match.substring(1)];
+  });
+});
+
+document.getElementById('run').addEventListener('click', function(ev) {
+  if (ev.target.classList.contains('disabled'))
+    return;
+
+  ev.target.classList.add('disabled');
+  ev.target.innerHTML = 'Running...'
+  var numTests = AWPY.tests.get().length, counter = 0;
+
+  AWPY.tests.run(function(result) {
+    var testNode = document.getElementById('test-' + this.id);
+    testNode.lastChild.firstChild.innerHTML = result ? 'WIN' : 'FAIL';
+    testNode.lastChild.firstChild.classList.add(result ? 'success' : 'important');
+
+    if (++counter === numTests) {
+      ev.target.className = ev.target.className.replace('primary', 'success');
+      ev.target.innerHTML = 'Done!'
+    }
+  });
+});
+</script>
+
+</body>
+</html>

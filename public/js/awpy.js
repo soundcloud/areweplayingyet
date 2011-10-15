@@ -26,28 +26,27 @@ AWPY.tests = (function() {
   };
 
   var run = function(callback) {
-    list.forEach(function(test) {
+    var test, i, len;
+    for (i = 0, len = list.length; i < len; i++) {
+      test = list[i];
       test.assert(function(result) {
         test.result = result;
         callback.call(test);
       });
-    });
+    }
   };
 
   var save = function() {
-    var jsonp = document.createElement('script'),
-        firstScript = document.getElementsByTagName('script')[0],
-        data = {};
-
-    jsonp.src = 'http://www.browserscope.org/user/beacon/' + AWPY.config.browserscope.key;
-    jsonp.src += '?sandboxid=' + AWPY.config.browserscope.sandboxKey;
-
-    list.forEach(function(test) {
-      data[test.name] = test.result ? 1 : 0;
-    });
+    var data = {}, i, len;
+    for (i = 0, len = list.length; i < len; i++) {
+      data[list[i].name] = list[i].result ? 1 : 0;
+    }
 
     window._bTestResults = data;
-    firstScript.parentNode.insertBefore(jsonp, firstScript);
+
+    $.getJSON('http://www.browserscope.org/user/beacon/' + AWPY.config.browserscope.key + '?callback=?', {
+      sandboxid: AWPY.config.browserscope.sandboxKey
+    });
   };
 
   var get = function() {

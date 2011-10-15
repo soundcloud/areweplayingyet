@@ -51,6 +51,7 @@
     </footer>
 
   </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
   <script src="/js/awpy.js"></script>
   <!-- Possible benchmarking
 
@@ -69,37 +70,34 @@
 
   supports more than ogg? -->
 <script>
-AWPY.tests.get().forEach(function(test) {
-  var row = '<tr id="test-' + test.name + '"><td>$description</td><td><span class="label">N/A</span></td></tr>',
-      tbody = document.getElementById('tests')
-                      .getElementsByTagName('tbody')[0];
-  tbody.innerHTML += row.replace(/\$\w+/g, function(match) {
-    return test[match.substring(1)];
+(function() {
+  var i, len, list = AWPY.tests.get();
+
+  for (i = 0, len = list.length; i < len; i++) {
+    var test = list[i];
+    $('#tests tbody').html(
+      '<tr id="test-' + test.name + '"><td>' + test.description + '</td><td><span class="label">N/A</span></td></tr>'
+    );
+  }
+
+  $('#run').one('click', function(ev) {
+    var numTests = AWPY.tests.get().length, counter = 0;
+
+    $(this).addClass('disabled').html('Running...');
+
+    AWPY.tests.run(function() {
+      $('#test-' + this.name).find('td:last span')
+      .addClass(this.result ? 'success' : 'important')
+      .html(this.result ? 'WIN' : 'FAIL');
+
+      if (++counter === numTests) {
+        $(ev.target).removeClass('primary').addClass('success').html('Done!');
+        // Save results to BrowserScope
+        AWPY.tests.save();
+      }
+    });
   });
-});
-
-document.getElementById('run').addEventListener('click', function(ev) {
-  if (ev.target.classList.contains('disabled'))
-    return;
-
-  ev.target.classList.add('disabled');
-  ev.target.innerHTML = 'Running...'
-  var numTests = AWPY.tests.get().length, counter = 0;
-
-  AWPY.tests.run(function() {
-    var testNode = document.getElementById('test-' + this.name);
-    testNode.lastChild.firstChild.innerHTML = this.result ? 'WIN' : 'FAIL';
-    testNode.lastChild.firstChild.classList.add(this.result ? 'success' : 'important');
-
-    if (++counter === numTests) {
-      ev.target.className = ev.target.className.replace('primary', 'success');
-      ev.target.innerHTML = 'Done!'
-
-      // Save results to BrowserScope
-      AWPY.tests.save();
-    }
-  });
-});
+}());
 </script>
 
 </body>

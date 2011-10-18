@@ -21,7 +21,7 @@ var AWPY = {
 AWPY.audio = (function() {
   var audio;
   return function() {
-    return audio = audio || new Audio();
+    return audio = new Audio();
   };
 }());
 
@@ -55,9 +55,7 @@ AWPY.tests = (function() {
           AWPY.config.browserscope.key +
           '?sandboxid=' + AWPY.config.browserscope.sandboxKey +
           '&callback=?';
-    $.getJSON(url, function() {
-      console.log(this, arguments);
-    });
+    $.getJSON(url, function() {});
   };
 
   var get = function() {
@@ -78,7 +76,7 @@ AWPY.sounds = {
     title: 'Mick Wills (Nation Records) - Demo Mix CD16 - June 2011',
     artwork_url: 'http://i1.sndcdn.com/artworks-000008609310-c0begl-large.jpg?3588dee',
     waveform_url: 'http://w1.sndcdn.com/7Rp8J1cZ8RQE_m.png',
-    stream_url: '/sounds/huge.' + AWPY.config.codec,
+    stream_url: 'http://areweplayingyet.herokuapp.com/sounds/huge.' + AWPY.config.codec,
   }
 };
 
@@ -90,40 +88,41 @@ AWPY.tests.init([
       var audio = AWPY.audio(),
           sound = AWPY.sounds.huge,
           timeout, finished = false,
-          nseeks = 0, seekPoints = [0.7, 0.1, 0.9, 0.5, 0.3],
           seekedTime;
 
-      var doSeek = function(seekPoint) {
-        audio.currentTime = (sound.duration * seekPoint) / 1000;
-        timeout = setTimeout(function() {
-          if (finished) return;
-          finished = true;
-          finish(false);
-        }, 500);
+      var finishWrapper = function(result) {
+        finished = true;
+        audio.pause();
+        audio.currentSrc = audio.src = '';
+        audio.load();
+        finish(result);
       };
 
-      audio.volume = 0;
+      // 1. Load metadata only.
+      // 2. On loadedmetadata, seek to the middle of the sound.
+      // 3. If seek takes more than 500ms => fail
+      // 4. If playback is not seamless after seek (audio stops for buffering) => fail
+      // 5. Pass
 
+      audio.volume = 0;
       audio.addEventListener('seeked', function() {
         if (finished) return;
-
         clearTimeout(timeout);
 
-        if (++nseeks === seekPoints.length) {
-          seekedTime = audio.currentTime;
-          audio.play();
-          setTimeout(function() {
-            // Assert that audio canplaythrough after seek
-            finish(audio.currentTime > seekedTime);
-            audio.pause();
-          }, 5000);
-        } else {
-          doSeek(seekPoints[nseeks]);
-        }
+        seekedTime = audio.currentTime;
+        audio.play();
+
+        setTimeout(function() {
+          finishWrapper(audio.currentTime >= (seekedTime + 2));
+        }, 2000);
       });
 
       audio.addEventListener('loadedmetadata', function() {
-        doSeek(seekPoints[nseeks]);
+        audio.currentTime = (sound.duration * 0.5) / 1000;
+        timeout = setTimeout(function() {
+          if (finished) return;
+          finishWrapper(false);
+        }, 500);
       });
 
       audio.setAttribute('preload', 'metadata');
@@ -131,40 +130,6 @@ AWPY.tests.init([
     }
   }
 ]);
-
-AWPY.player = function() {
-  var $container = $('#player'),
-  $prop = $('#prop'),
-  sound = AWPY.sounds.huge,
-  active = -1, anim,
-  props = {
-    timeupdate: function(audio) {
-      return audio.currentTime;
-    },
-    progress: function(audio) {
-      return (audio.buffered && audio.buffered.length) ? audio.buffered.end(0) : 0;
-    },
-    seekable: function(audio) {
-      return (audio.seekable && audio.seekable.length) ? audio.seekable.end(0) : 0;
-    }
-  },
-  intervals = {};
-
-  $container.prepend($('<img src="' + sound.waveform_url + '">')).css('background', '#ccc');
-
-  anim = function(prop) {
-    var progressX = (props[prop](AWPY.audio()) * $container.width()) / (AWPY.sounds.huge.duration / 1e3) | 0;
-    console.log(prop, progressX)
-    $container.find('#' + prop).width(progressX);
-  };
-
-  for (var k in props) {
-    intervals[k] && clearInterval(intervals[k]);
-    intervals[k] = setInterval(function() { anim(k); }, 50)
-  }
-};
-
-
 
 //
 // Possible benchmarking

@@ -79,7 +79,6 @@
 
       $(this).addClass('disabled').html('Running...');
 
-      // AWPY.player();
       AWPY.tests.run(function() {
         $('#test-' + this.name).children().last().find('span')
         .addClass(this.result ? 'success' : 'important')

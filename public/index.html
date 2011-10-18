@@ -32,6 +32,16 @@
           <p><button id="run" class="btn primary full-width">Run the tests!</button></p>
         </div>
       </div>
+      <!-- <div class="row">
+        <div class="span12">
+          <p id="prop"></p>
+          <div id="player">
+            <div id="timeupdate"></div>
+            <div id="progress"></div>
+            <div id="seekable"></div>
+          </div>
+        </div>
+      </div> -->
       <div class="row">
         <div class="span12">
           <table id="tests" class="zebra-striped">
@@ -51,54 +61,38 @@
     </footer>
 
   </div>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script src="/js/zepto.min.js"></script>
   <script src="/js/awpy.js"></script>
-  <!-- Possible benchmarking
+  <script>
+  (function() {
+    var i, len, list = AWPY.tests.get();
 
+    for (i = 0, len = list.length; i < len; i++) {
+      var test = list[i];
+      $('#tests tbody').append(
+        $('<tr id="test-' + test.name + '"><td>' + test.description + '</td><td><span class="label">N/A</span></td></tr>')
+      );
+    }
 
-  preload attribute
-  paused, played, muted, mute()
-  buffered
-  autoplay
-  all events
-  metadata preload - no preload to play delay
-  redirects in streams (https->http, x-domain)
-  redirects in streams invalidate (s3)
-  the density of timeupdate events
-  switching streams (android)
+    $('#run').one('click', function(ev) {
+      var numTests = AWPY.tests.get().length, counter = 0;
 
+      $(this).addClass('disabled').html('Running...');
 
-  supports more than ogg? -->
-<script>
-(function() {
-  var i, len, list = AWPY.tests.get();
+      // AWPY.player();
+      AWPY.tests.run(function() {
+        $('#test-' + this.name).children().last().find('span')
+        .addClass(this.result ? 'success' : 'important')
+        .html(this.result ? 'WIN' : 'FAIL');
 
-  for (i = 0, len = list.length; i < len; i++) {
-    var test = list[i];
-    $('#tests tbody').html(
-      '<tr id="test-' + test.name + '"><td>' + test.description + '</td><td><span class="label">N/A</span></td></tr>'
-    );
-  }
-
-  $('#run').one('click', function(ev) {
-    var numTests = AWPY.tests.get().length, counter = 0;
-
-    $(this).addClass('disabled').html('Running...');
-
-    AWPY.tests.run(function() {
-      $('#test-' + this.name).find('td:last span')
-      .addClass(this.result ? 'success' : 'important')
-      .html(this.result ? 'WIN' : 'FAIL');
-
-      if (++counter === numTests) {
-        $(ev.target).removeClass('primary').addClass('success').html('Done!');
-        // Save results to BrowserScope
-        AWPY.tests.save();
-      }
+        if (++counter === numTests) {
+          $(ev.target).removeClass('primary').addClass('success').html('Done!');
+          // Save results to BrowserScope
+          AWPY.tests.save();
+        }
+      });
     });
-  });
-}());
-</script>
-
+  }());
+  </script>
 </body>
 </html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AreWePlayingYet? - Experiences Page</title>
+  </head>
+  <body>
+    <button>Play</button>
+    <script>
+      var a;
+      document.querySelector('body > button').addEventListener('click', function(ev) {
+        a = new Audio();
+        a.addEventListener('canplay', function(ev) {
+          alert('CANPLAY MUDAFACA!')
+        });
+        a.setAttribute('src', '/sounds/huge.mp3');
+        a.load();
+      });
+    </script>
+  </body>
+</html>

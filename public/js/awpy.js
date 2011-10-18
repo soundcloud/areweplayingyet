@@ -18,13 +18,6 @@ var AWPY = {
   }
 };
 
-AWPY.audio = (function() {
-  var audio;
-  return function() {
-    return audio = new Audio();
-  };
-}());
-
 AWPY.tests = (function() {
   var list = [];
 
@@ -33,14 +26,12 @@ AWPY.tests = (function() {
   };
 
   var run = function(callback) {
-    var test, i, len;
-    for (i = 0, len = list.length; i < len; i++) {
-      test = list[i];
+    list.forEach(function(test) {
       test.assert(function(result) {
         test.result = result;
         callback.call(test);
       });
-    }
+    });
   };
 
   var save = function() {
@@ -85,7 +76,7 @@ AWPY.tests.init([
     name: 'AWPY0',
     description: 'Seeking to unbuffered position with seamless playback.',
     assert: function(finish) {
-      var audio = AWPY.audio(),
+      var audio = this.audio = new Audio(),
           sound = AWPY.sounds.huge,
           timeout, finished = false,
           seekedTime;
@@ -117,7 +108,7 @@ AWPY.tests.init([
         }, 2000);
       }, false);
 
-      audio.addEventListener('loadedmetadata', function() {
+      audio.addEventListener('canplay', function() {
         audio.currentTime = (sound.duration * 0.5) / 1000;
         timeout = setTimeout(function() {
           if (finished) return;
@@ -125,8 +116,36 @@ AWPY.tests.init([
         }, 500);
       }, false);
 
+      audio.setAttribute('src', sound.stream_url + '?' + (Math.random() * 1e9 | 0));
+      audio.load();
+    }
+  },
+  {
+    name: 'AWPY1',
+    description: 'Supports preload="metadata"',
+    assert: function(finish) {
+      var audio = this.audio = new Audio(),
+          sound = AWPY.sounds.huge,
+          finished = false;
+
+
+      audio.addEventListener('loadedmetadata', function() {
+        setTimeout(function() {
+          audio.addEventListener('progress', function() {
+            if (finished) return;
+            finished = true;
+            finish(false);
+          }, false);
+
+          setTimeout(function() {
+            if (finished) return;
+            finished = true;
+            finish(true);
+          }, 500);
+        }, 2000);
+      }, false);
       audio.setAttribute('preload', 'metadata');
-      audio.setAttribute('src', AWPY.sounds.huge.stream_url);
+      audio.setAttribute('src', sound.stream_url + '?' + (Math.random() * 1e9 | 0));
     }
   }
 ]);

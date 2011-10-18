@@ -93,7 +93,7 @@ AWPY.tests.init([
       var finishWrapper = function(result) {
         finished = true;
         audio.pause();
-        audio.currentSrc = audio.src = '';
+        audio.src = '';
         audio.load();
         finish(result);
       };
@@ -115,7 +115,7 @@ AWPY.tests.init([
         setTimeout(function() {
           finishWrapper(audio.currentTime >= (seekedTime + 2));
         }, 2000);
-      });
+      }, false);
 
       audio.addEventListener('loadedmetadata', function() {
         audio.currentTime = (sound.duration * 0.5) / 1000;
@@ -123,7 +123,7 @@ AWPY.tests.init([
           if (finished) return;
           finishWrapper(false);
         }, 500);
-      });
+      }, false);
 
       audio.setAttribute('preload', 'metadata');
       audio.setAttribute('src', AWPY.sounds.huge.stream_url);

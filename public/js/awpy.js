@@ -78,7 +78,7 @@ AWPY.sound = {
   artwork_url: 'http://i1.sndcdn.com/artworks-000008609310-c0begl-large.jpg?3588dee',
   waveform_url: 'http://w1.sndcdn.com/7Rp8J1cZ8RQE_m.png',
   stream_url: function() {
-   return 'http://areweplayingyet.herokuapp.com/sounds/huge.' + AWPY.config.codec + '?' + (Math.random() * 1e9 | 0);
+    return 'http://areweplayingyet.herokuapp.com/sound.' + AWPY.config.codec + '?' + (Math.random() * 1e9 | 0);
   }
 };
 
@@ -218,28 +218,41 @@ AWPY.tests.init([
     description: 'Supports autoplay',
     assert: function(finish) {
       var audio = this.audio = new Audio(),
-          that = this, counter = 0;
+          that = this;
 
       that.timeouts = [];
 
       audio.addEventListener('timeupdate', function() {
-        if (++counter < 100 && !audio.paused && audio.currentTime > 0) {
+        if (!audio.paused && audio.currentTime > 0) {
           finish(true);
-        } else if (counter >= 100) {
-          finish(false);
         }
       }, false);
       audio.setAttribute('autoplay', true);
       audio.volume = 0;
       audio.setAttribute('src', AWPY.sound.stream_url());
     }
+  },
+  {
+    description: 'Follows 30x responses on src (http-->https, cross-domain)',
+    assert: function(finish) {
+      var audio = this.audio = new Audio(),
+          that = this;
+
+      that.timeouts = [];
+      audio.addEventListener('canplay', function() {
+        finish(true);
+      }, false);
+
+      audio.setAttribute('src', '/sound.' + AWPY.config.codec + '/redirect');
+    }
   }
 ]);
 
 //
 // Possible benchmarking
+
 // all events
-// metadata preload - no preload to play delay
+
 // redirects in streams (https->http, x-domain)
 // redirects in streams invalidate (s3)
 // the density of timeupdate events

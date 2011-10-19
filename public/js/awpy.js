@@ -124,7 +124,7 @@ AWPY.tests.init([
     }
   },
   {
-    description: 'Supports preload="metadata"',
+    description: 'Supports preload="metadata" (does not keep on buffering)',
 /*
     1. Set preload to metadata before setting src
     2. Set src
@@ -157,26 +157,24 @@ AWPY.tests.init([
     description: 'Buffered, seekable and played attributes (TimeRanges)',
     assert: function(finish) {
       var audio = this.audio = new Audio(),
-          that = this, counter = 0;
+          that = this;
 
       that.timeouts = [];
-
-      audio.addEventListener('timeupdate', function() {
-        try {
-          if (++counter < 100 && audio.buffered.length && audio.seekable.length && audio.played.length) {
-            finish(true);
-          } else if (counter >= 100) {
-            finish(false);
-          }
-        } catch (e) {
-          finish(false);
-        }
-      }, false);
 
       audio.addEventListener('canplay', function canPlay() {
         audio.removeEventListener('canplay', canPlay);
         audio.volume = 0;
         audio.play();
+        that.timeouts.push(setTimeout(function() {
+          audio.addEventListener('timeupdate', function timeUpdate() {
+            audio.removeEventListener('timeupdate', timeUpdate);
+            try {
+              finish(audio.buffered.length && audio.seekable.length && audio.played.length);
+            } catch (e) {
+              finish(false);
+            }
+          }, false);
+        }, 3000));
       }, false);
 
       audio.setAttribute('src', AWPY.sound.stream_url());

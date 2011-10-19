@@ -45,8 +45,8 @@ AWPY.tests = (function() {
         test.assert(function(result) {
           clearTimeout(globalTimeout);
           if (test.result === undefined || test.result === null) {
-            globalCleanup();
             test.result = result;
+            globalCleanup();
             callback.call(test);
           }
         });
@@ -93,25 +93,30 @@ AWPY.tests.init([
     5. Pass
 */
     assert: function(finish) {
-      var audio = this.audio = new Audio(), seekedTime,
-          that = this;
+      var audio = this.audio = new Audio(),
+          that = this, seekedTime;
 
       that.timeouts = []
-      audio.volume = 0;
+
       audio.addEventListener('seeked', function() {
         clearTimeout(that.timeouts.pop());
         seekedTime = audio.currentTime;
         audio.play();
         that.timeouts.push(setTimeout(function() {
-          finish(audio.currentTime >= (seekedTime + 2));
-        }, 2000));
+          audio.addEventListener('timeupdate', function timeUpdate() {
+            audio.removeEventListener('timeupdate', timeUpdate);
+            finish(!audio.paused && audio.currentTime > seekedTime);
+          }, false);
+        }, 3000));
       }, false);
 
-      audio.addEventListener('canplay', function() {
+      audio.addEventListener('canplay', function canPlay() {
+        audio.removeEventListener('canplay', canPlay);
+        audio.volume = 0;
         audio.currentTime = (AWPY.sound.duration * 0.5) / 1000;
         that.timeouts.push(setTimeout(function() {
           finish(false);
-        }, 500));
+        }, 1000));
       }, false);
 
       audio.setAttribute('src', AWPY.sound.stream_url());
@@ -168,7 +173,8 @@ AWPY.tests.init([
         }
       }, false);
 
-      audio.addEventListener('canplay', function() {
+      audio.addEventListener('canplay', function canPlay() {
+        audio.removeEventListener('canplay', canPlay);
         audio.volume = 0;
         audio.play();
       }, false);
@@ -184,7 +190,9 @@ AWPY.tests.init([
           that = this;
 
       that.timeouts = [];
-      audio.addEventListener('canplay', function() {
+      audio.addEventListener('canplay', function canPlay() {
+        audio.removeEventListener('canplay', canPlay);
+
         var properties = 'duration currentTime paused defaultPlaybackRate playbackRate volume muted'.split(/\s/),
             result = true;
 
@@ -239,11 +247,12 @@ AWPY.tests.init([
           that = this;
 
       that.timeouts = [];
-      audio.addEventListener('canplay', function() {
+      audio.addEventListener('canplay', function canPlay() {
+        audio.removeEventListener('canplay', canPlay);
         finish(true);
       }, false);
 
-      audio.setAttribute('src', '/sound.' + AWPY.config.codec + '/redirect');
+      audio.setAttribute('src', 'http://areweplayingyet.herokuapp.com/sound.' + AWPY.config.codec + '/redirect');
     }
   }
 ]);

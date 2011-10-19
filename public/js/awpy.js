@@ -56,18 +56,19 @@ AWPY.tests = (function() {
       return list;
     },
     save: function() {
-      var data = {}, i, len, url;
-      for (i = 0, len = list.length; i < len; i++) {
-        data['AWPY' + i] = list[i].result ? 1 : 0;
-      }
+      var data = {}, newScript, firstScript;
+
+      list.forEach(function(test, i) {
+        data['AWPY' + i] = test.result ? 1 : 0;
+      })
 
       window._bTestResults = data;
-
-      url = 'http://www.browserscope.org/user/beacon/' +
-            AWPY.config.browserscope.key +
-            '?sandboxid=' + AWPY.config.browserscope.sandboxKey +
-            '&callback=?';
-      $.getJSON(url, function() {});
+      newScript = document.createElement('script');
+      firstScript = document.getElementsByTagName('script')[0];
+      newScript.src = 'http://www.browserscope.org/user/beacon/' +
+        AWPY.config.browserscope.key +
+        '?sandboxid=' + AWPY.config.browserscope.sandboxKey;
+      firstScript.parentNode.insertBefore(newScript, firstScript);
     }
   };
 }());

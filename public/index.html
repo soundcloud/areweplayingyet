@@ -47,7 +47,7 @@
           <table id="tests" class="zebra-striped">
             <thead>
               <tr>
-                <td>Description</td><td>Result</td>
+                <td>Test</td><td>Result</td>
               </tr>
             </thead>
             <tbody></tbody>
@@ -61,36 +61,34 @@
     </footer>
 
   </div>
-  <script src="/js/zepto.min.js"></script>
   <script src="/js/awpy.js"></script>
   <script>
   (function() {
-    var i, len, list = AWPY.tests.get();
+    var list = AWPY.tests.get(), runBtn;
 
-    for (i = 0, len = list.length; i < len; i++) {
-      var test = list[i];
-      $('#tests tbody').append(
-        $('<tr><td>' + test.description + '</td><td><span class="label result">N/A</span></td></tr>')
-      );
-    }
+    document.getElementsByTagName('tbody')[0].innerHTML = list.map(function(test) {
+      return '<tr><td>' + test.description + '</td><td><span class="label result">N/A</span></td></tr>';
+    }).join('');
 
-    $('#run').one('click', function(ev) {
-      var numTests = list.length, counter = 0;
+    (runBtn = document.getElementById('run')).addEventListener('click', function runTests(ev) {
+      runBtn.removeEventListener('click', runTests);
 
-      $(this).addClass('disabled').html('Running...');
+      var counter = 0, results = document.getElementsByClassName('result');
+      runBtn.className += ' disabled';
+      runBtn.innerHTML = 'Running...';
 
       AWPY.tests.run(function() {
-        $($('#tests tbody .result')[list.indexOf(this)])
-        .addClass(this.result ? 'success' : 'important')
-        .html(this.result ? 'WIN' : 'FAIL');
-
-        if (++counter === numTests) {
-          $(ev.target).removeClass('primary').addClass('success').html('Done!');
+        var resultNode = results[list.indexOf(this)];
+        resultNode.className += this.result ? ' success' : ' important';
+        resultNode.innerHTML =  this.result ? 'WIN' : 'FAIL';
+        if (++counter === list.length) {
+          runBtn.className = runBtn.className.replace('primary', 'success');
+          runBtn.innerHTML = 'Done!';
           // Save results to BrowserScope
-          // AWPY.tests.save();
+          AWPY.tests.save();
         }
       });
-    });
+    }, false);
   }());
   </script>
 </body>

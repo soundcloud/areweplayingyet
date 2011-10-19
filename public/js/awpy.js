@@ -70,6 +70,30 @@ AWPY.tests = (function() {
         AWPY.config.browserscope.key +
         '?sandboxid=' + AWPY.config.browserscope.sandboxKey;
       firstScript.parentNode.insertBefore(newScript, firstScript);
+    },
+    display: function(response) {
+      if (!response) {
+        var newScript, firstScript;
+        newScript = document.createElement('script');
+        firstScript = document.getElementsByTagName('script')[0];
+        newScript.src = 'http://www.browserscope.org/user/tests/table/' + AWPY.config.browserscope.key + '?o=json&callback=AWPY.tests.display';
+        firstScript.parentNode.insertBefore(newScript, firstScript);
+      } else if (/^AWPY/.test(response)) {
+        eval(response);
+      } else {
+        var browserScopeNode = document.getElementById('browserscope'), nBrowsers = 1;
+        browserScopeNode.getElementsByTagName('tbody')[0].innerHTML = Object.keys(response.results).filter(function(browser) {
+          return Number(response.results[browser].count) > 0;
+        }).map(function(browser) {
+          var score = Number(response.results[browser].summary_score),
+              ranking = score < 50 ? 'important' : score < 80 ? 'warning' : 'notice',
+              count = response.results[browser].count;
+          nBrowsers++;
+
+          return '<tr><td>' + browser + '</td><td>' + count + '</td><td><span class="label ' + ranking + '">' + score + '%</span></td></tr>';
+        }).join('');
+        browserScopeNode.style.height = (45 * nBrowsers) + 'px';
+      }
     }
   };
 }());

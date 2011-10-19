@@ -36,6 +36,19 @@
           </table>
         </div>
       </div>
+      <div id="browserscope" class="row">
+        <div class="span10">
+          <h3>BrowserScope results</h3>
+          <table class="zebra-striped">
+            <thead>
+              <tr>
+                <td>Browser</td><td>Count</td><td>Score</td>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <footer>
@@ -49,7 +62,7 @@
   (function() {
     var list = AWPY.tests.get(), runBtn;
 
-    document.getElementsByTagName('tbody')[0].innerHTML = list.map(function(test) {
+    document.getElementById('tests').firstElementChild.innerHTML = list.map(function(test, i) {
       return '<tr><td>' + test.description + '</td><td><span class="label result">N/A</span></td></tr>';
     }).join('');
 
@@ -70,7 +83,9 @@
           runBtn.className = runBtn.className.replace(/primary|disabled/g, '');
           runBtn.innerHTML = 'Score: ' + score + '/' + list.length;
           // Save results to BrowserScope
-          // AWPY.tests.save();
+          AWPY.tests.save();
+          // Show BrowserScope widget
+          AWPY.tests.display();
         }
       });
     }, false);

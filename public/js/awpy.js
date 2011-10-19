@@ -26,27 +26,28 @@ AWPY.tests = (function() {
       list = tests;
     },
     run: function(callback) {
-      list.forEach(function(test) {
-        var globalCleanup = function() {
-          test.timeouts.forEach(clearTimeout);
-          delete test.timeouts;
-          test.audio.pause();
-          test.audio.src = '';
-          test.audio.load();
-          delete test.audio;
-        };
+      var globalCleanup = function(test) {
+        test.timeouts.forEach(clearTimeout);
+        delete test.timeouts;
+        test.audio.pause();
+        test.audio.src = '';
+        test.audio.load();
+        delete test.audio;
+      };
 
+      list.forEach(function(test) {
         var globalTimeout = setTimeout(function() {
-          globalCleanup();
-          test.result = false;
+          globalCleanup(test);
+          test.finished = true;
           callback.call(test);
         }, 30000);
 
         test.assert(function(result) {
           clearTimeout(globalTimeout);
-          if (test.result === undefined || test.result === null) {
+          if (!test.finished) {
+            test.finished = true;
             test.result = result;
-            globalCleanup();
+            globalCleanup(test);
             callback.call(test);
           }
         });
@@ -95,20 +96,25 @@ AWPY.tests.init([
 */
     assert: function(finish) {
       var audio = this.audio = new Audio(),
-          that = this, seekedTime;
+          that = this, seekedTime,
+          counter = 0, result = true;
 
       that.timeouts = []
 
       audio.addEventListener('seeked', function() {
         clearTimeout(that.timeouts.pop());
         seekedTime = audio.currentTime;
-        audio.play();
-        that.timeouts.push(setTimeout(function() {
-          audio.addEventListener('timeupdate', function timeUpdate() {
+        audio.addEventListener('timeupdate', function timeUpdate() {
+          if (++counter > 20) {
             audio.removeEventListener('timeupdate', timeUpdate);
-            finish(!audio.paused && audio.currentTime > seekedTime);
-          }, false);
-        }, 3000));
+            finish(result);
+          } else if (!audio.paused && audio.currentTime > seekedTime) {
+            result = true;
+          } else {
+            result = false;
+          }
+        }, false);
+        audio.play();
       }, false);
 
       audio.addEventListener('canplay', function canPlay() {
@@ -140,14 +146,15 @@ AWPY.tests.init([
       that.timeouts = [];
       audio.addEventListener('loadedmetadata', function() {
         that.timeouts.push(setTimeout(function() {
-          audio.addEventListener('progress', function() {
+          audio.addEventListener('progress', function progress() {
+            audio.removeEventListener('progress', progress);
             finish(false);
           }, false);
 
           that.timeouts.push(setTimeout(function() {
             finish(true);
           }, 500));
-        }, 2000));
+        }, 5000));
       }, false);
 
       audio.setAttribute('preload', 'metadata');
@@ -158,24 +165,29 @@ AWPY.tests.init([
     description: 'Buffered, seekable and played attributes (TimeRanges)',
     assert: function(finish) {
       var audio = this.audio = new Audio(),
-          that = this;
+          that = this,
+          counter = 0,
+          result = true;
 
       that.timeouts = [];
+
+      audio.addEventListener('timeupdate', function timeUpdate() {
+        if (++counter > 20) {
+          audio.removeEventListener('timeupdate', timeUpdate);
+          finish(result);
+        } else {
+          try {
+            result = audio.buffered.length && audio.seekable.length && audio.played.length;
+          } catch (e) {
+            finish(false);
+          }
+        }
+      }, false);
 
       audio.addEventListener('canplay', function canPlay() {
         audio.removeEventListener('canplay', canPlay);
         audio.volume = 0;
         audio.play();
-        that.timeouts.push(setTimeout(function() {
-          audio.addEventListener('timeupdate', function timeUpdate() {
-            audio.removeEventListener('timeupdate', timeUpdate);
-            try {
-              finish(audio.buffered.length && audio.seekable.length && audio.played.length);
-            } catch (e) {
-              finish(false);
-            }
-          }, false);
-        }, 3000));
       }, false);
 
       audio.setAttribute('src', AWPY.sound.stream_url());

@@ -62,15 +62,15 @@
 
       AWPY.tests.run(function() {
         var resultNode = results[list.indexOf(this)];
-        resultNode.className += this.result ? ' success' : ' important';
-        resultNode.innerHTML =  this.result ? 'WIN' : 'FAIL';
+        resultNode.className += this.result === undefined ? ' warning' : this.result ? ' success' : ' important';
+        resultNode.innerHTML =  this.result === undefined ? 'TIMEOUT' : this.result ? 'WIN' : 'FAIL';
         if (this.result) score++;
 
         if (++counter === list.length) {
           runBtn.className = runBtn.className.replace(/primary|disabled/g, '');
           runBtn.innerHTML = 'Score: ' + score + '/' + list.length;
           // Save results to BrowserScope
-          AWPY.tests.save();
+          // AWPY.tests.save();
         }
       });
     }, false);

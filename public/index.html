@@ -29,24 +29,9 @@
           <p><button id="run" class="btn primary full-width">Run the tests!</button></p>
         </div>
       </div>
-      <!-- <div class="row">
-        <div class="span12">
-          <p id="prop"></p>
-          <div id="player">
-            <div id="timeupdate"></div>
-            <div id="progress"></div>
-            <div id="seekable"></div>
-          </div>
-        </div>
-      </div> -->
       <div class="row">
         <div class="span10">
           <table id="tests" class="zebra-striped">
-            <thead>
-              <tr>
-                <td>Test</td><td>Result</td>
-              </tr>
-            </thead>
             <tbody></tbody>
           </table>
         </div>
@@ -71,7 +56,7 @@
     (runBtn = document.getElementById('run')).addEventListener('click', function runTests(ev) {
       runBtn.removeEventListener('click', runTests);
 
-      var counter = 0, results = document.getElementsByClassName('result');
+      var counter = 0, results = document.getElementsByClassName('result'), score = 0;
       runBtn.className += ' disabled';
       runBtn.innerHTML = 'Running...';
 
@@ -79,9 +64,11 @@
         var resultNode = results[list.indexOf(this)];
         resultNode.className += this.result ? ' success' : ' important';
         resultNode.innerHTML =  this.result ? 'WIN' : 'FAIL';
+        if (this.result) score++;
+
         if (++counter === list.length) {
-          runBtn.className = runBtn.className.replace('primary', 'success');
-          runBtn.innerHTML = 'Done!';
+          runBtn.className = runBtn.className.replace(/primary|disabled/g, '');
+          runBtn.innerHTML = 'Score: ' + score + '/' + list.length;
           // Save results to BrowserScope
           AWPY.tests.save();
         }

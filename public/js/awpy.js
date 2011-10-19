@@ -253,17 +253,38 @@ AWPY.tests.init([
 
       audio.setAttribute('src', 'http://areweplayingyet.herokuapp.com/sound.' + AWPY.config.codec + '/redirect');
     }
+  },
+  {
+    description: 'Consistent timeupdate interval (15ms - 250ms)',
+    assert: function(finish) {
+      var audio = this.audio = new Audio(),
+          that = this,
+          lastTime, count = 0
+
+      that.timeouts = [];
+      audio.addEventListener('timeupdate', function() {
+        if (!lastTime) {
+          lastTime = new Date();
+        } else {
+          var now = new Date();
+          if ((now - lastTime) < 15 || (now - lastTime) > 250) {
+            finish(false);
+          } else if (++count === 20){
+            finish(true);
+          }
+        }
+        lastTime = new Date();
+      }, false);
+      audio.setAttribute('src', AWPY.sound.stream_url());
+      audio.load();
+      audio.volume = 0;
+      audio.play();
+    }
   }
 ]);
 
-//
-// Possible benchmarking
-
 // all events
-
-// redirects in streams (https->http, x-domain)
 // redirects in streams invalidate (s3)
-// the density of timeupdate events
 // switching streams (android)
 //
 //

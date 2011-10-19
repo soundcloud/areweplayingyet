@@ -27,20 +27,28 @@ AWPY.tests = (function() {
     },
     run: function(callback) {
       list.forEach(function(test) {
-        var globalTimeout = setTimeout(function() {
-          test.result = false;
-          callback.call(test);
-        }, 10000);
-        test.assert(function(result) {
-          clearTimeout(globalTimeout);
+        var globalCleanup = function() {
           test.timeouts.forEach(clearTimeout);
           delete test.timeouts;
           test.audio.pause();
           test.audio.src = '';
           test.audio.load();
           delete test.audio;
-          test.result = result;
+        };
+
+        var globalTimeout = setTimeout(function() {
+          globalCleanup();
+          test.result = false;
           callback.call(test);
+        }, 30000);
+
+        test.assert(function(result) {
+          clearTimeout(globalTimeout);
+          if (test.result === undefined || test.result === null) {
+            globalCleanup();
+            test.result = result;
+            callback.call(test);
+          }
         });
       });
     },
@@ -141,39 +149,95 @@ AWPY.tests.init([
     }
   },
   {
-    description: 'Has buffered, seekable and played attributes',
+    description: 'Buffered, seekable and played attributes (TimeRanges)',
+    assert: function(finish) {
+      var audio = this.audio = new Audio(),
+          that = this, counter = 0;
+
+      that.timeouts = [];
+
+      audio.addEventListener('timeupdate', function() {
+        try {
+          if (++counter < 100 && audio.buffered.length && audio.seekable.length && audio.played.length) {
+            finish(true);
+          } else if (counter >= 100) {
+            finish(false);
+          }
+        } catch (e) {
+          finish(false);
+        }
+      }, false);
+
+      audio.addEventListener('canplay', function() {
+        audio.volume = 0;
+        audio.play();
+      }, false);
+
+      audio.setAttribute('src', AWPY.sound.stream_url());
+      audio.load();
+    }
+  },
+  {
+    description: 'Duration, currentTime, paused, defaultPlaybackRate, playbackRate, volume and muted attributes',
     assert: function(finish) {
       var audio = this.audio = new Audio(),
           that = this;
 
       that.timeouts = [];
       audio.addEventListener('canplay', function() {
-        audio.play();
-        that.timeouts.push(setTimeout(function() {
-          var result;
-          try {
-            result = audio.buffered.length && audio.seekable.length && audio.played.length;
-          } catch(e) {
-            result = false;
-          }
-          finish(result);
-        }, 2000));
+        var properties = 'duration currentTime paused defaultPlaybackRate playbackRate volume muted'.split(/\s/),
+            result = true;
+
+        properties.forEach(function(prop) {
+          result = result && (prop in audio)
+        });
+
+        audio.currentTime = 50;
+        result = (audio.currentTime === 50) && result;
+
+        audio.defaultPlaybackRate = 0.5;
+        result = (audio.defaultPlaybackRate === 0.5) && result;
+
+        audio.playbackRate = 0.5;
+        result = (audio.playbackRate === 0.5) && result;
+
+        audio.volume = 0.5;
+        result = (audio.volume === 0.5) && result;
+
+        audio.muted = true;
+        result = audio.muted && result;
+
+        finish(result);
       }, false);
 
       audio.setAttribute('src', AWPY.sound.stream_url());
       audio.load();
+    }
+  },
+  {
+    description: 'Supports autoplay',
+    assert: function(finish) {
+      var audio = this.audio = new Audio(),
+          that = this, counter = 0;
+
+      that.timeouts = [];
+
+      audio.addEventListener('timeupdate', function() {
+        if (++counter < 100 && !audio.paused && audio.currentTime > 0) {
+          finish(true);
+        } else if (counter >= 100) {
+          finish(false);
+        }
+      }, false);
+      audio.setAttribute('autoplay', true);
+      audio.volume = 0;
+      audio.setAttribute('src', AWPY.sound.stream_url());
     }
   }
 ]);
 
 //
 // Possible benchmarking
-//
-//
-// preload attribute
-// paused, played, muted, mute()
-// buffered
-// autoplay
 // all events
 // metadata preload - no preload to play delay
 // redirects in streams (https->http, x-domain)

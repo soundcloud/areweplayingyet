@@ -27,7 +27,18 @@ AWPY.tests = (function() {
     },
     run: function(callback) {
       list.forEach(function(test) {
+        var globalTimeout = setTimeout(function() {
+          test.result = false;
+          callback.call(test);
+        }, 10000);
         test.assert(function(result) {
+          clearTimeout(globalTimeout);
+          test.timeouts.forEach(clearTimeout);
+          delete test.timeouts;
+          test.audio.pause();
+          test.audio.src = '';
+          test.audio.load();
+          delete test.audio;
           test.result = result;
           callback.call(test);
         });
@@ -74,38 +85,25 @@ AWPY.tests.init([
     5. Pass
 */
     assert: function(finish) {
-      var audio = this.audio = new Audio(),
-          timeout, finished = false,
-          seekedTime;
+      var audio = this.audio = new Audio(), seekedTime,
+          that = this;
 
-      var finishWrapper = function(result) {
-        if (finished) return;
-        finished = true;
-        audio.pause();
-        audio.src = '';
-        audio.load();
-        finish(result);
-      };
-
-      setTimeout(function() {
-        finishWrapper(false);
-      }, 10000);
-
+      that.timeouts = []
       audio.volume = 0;
       audio.addEventListener('seeked', function() {
-        clearTimeout(timeout);
+        clearTimeout(that.timeouts.pop());
         seekedTime = audio.currentTime;
         audio.play();
-        setTimeout(function() {
-          finishWrapper(audio.currentTime >= (seekedTime + 2));
-        }, 2000);
+        that.timeouts.push(setTimeout(function() {
+          finish(audio.currentTime >= (seekedTime + 2));
+        }, 2000));
       }, false);
 
       audio.addEventListener('canplay', function() {
         audio.currentTime = (AWPY.sound.duration * 0.5) / 1000;
-        timeout = setTimeout(function() {
-          finishWrapper(false);
-        }, 500);
+        that.timeouts.push(setTimeout(function() {
+          finish(false);
+        }, 500));
       }, false);
 
       audio.setAttribute('src', AWPY.sound.stream_url());
@@ -123,28 +121,19 @@ AWPY.tests.init([
 */
     assert: function(finish) {
       var audio = this.audio = new Audio(),
-          finished = false;
+          that = this;
 
-      var finishWrapper = function(result) {
-        if (finished) return;
-        finished = true;
-        finish(result);
-      };
-
-      setTimeout(function() {
-        finishWrapper(false);
-      }, 10000);
-
+      that.timeouts = [];
       audio.addEventListener('loadedmetadata', function() {
-        setTimeout(function() {
+        that.timeouts.push(setTimeout(function() {
           audio.addEventListener('progress', function() {
-            finishWrapper(false);
+            finish(false);
           }, false);
 
-          setTimeout(function() {
-            finishWrapper(true);
-          }, 500);
-        }, 2000);
+          that.timeouts.push(setTimeout(function() {
+            finish(true);
+          }, 500));
+        }, 2000));
       }, false);
 
       audio.setAttribute('preload', 'metadata');
@@ -153,23 +142,26 @@ AWPY.tests.init([
   },
   {
     description: 'Has buffered, seekable and played attributes',
-    assert: function() {
+    assert: function(finish) {
       var audio = this.audio = new Audio(),
-          finished = false;
+          that = this;
 
-      var finishWrapper = function(result) {
-        if (finished) return;
-        finished = true;
-        finish(result);
-      };
+      that.timeouts = [];
+      audio.addEventListener('canplay', function() {
+        audio.play();
+        that.timeouts.push(setTimeout(function() {
+          var result;
+          try {
+            result = audio.buffered.length && audio.seekable.length && audio.played.length;
+          } catch(e) {
+            result = false;
+          }
+          finish(result);
+        }, 2000));
+      }, false);
 
-      setTimeout(function() {
-        finishWrapper(false);
-      }, 10000);
-      
-      audio.setAttribute('preload', 'metadata');
-      audio.setAttribute('src', AWPY.sound.stream_url());      
-      
+      audio.setAttribute('src', AWPY.sound.stream_url());
+      audio.load();
     }
   }
 ]);

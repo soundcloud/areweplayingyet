@@ -150,6 +150,27 @@ AWPY.tests.init([
       audio.setAttribute('preload', 'metadata');
       audio.setAttribute('src', AWPY.sound.stream_url());
     }
+  },
+  {
+    description: 'Has buffered, seekable and played attributes',
+    assert: function() {
+      var audio = this.audio = new Audio(),
+          finished = false;
+
+      var finishWrapper = function(result) {
+        if (finished) return;
+        finished = true;
+        finish(result);
+      };
+
+      setTimeout(function() {
+        finishWrapper(false);
+      }, 10000);
+      
+      audio.setAttribute('preload', 'metadata');
+      audio.setAttribute('src', AWPY.sound.stream_url());      
+      
+    }
   }
 ]);
 

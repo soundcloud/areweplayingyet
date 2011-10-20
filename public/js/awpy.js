@@ -103,9 +103,15 @@ AWPY.sound = {
   title: 'Mick Wills (Nation Records) - Demo Mix CD16 - June 2011',
   artwork_url: 'http://i1.sndcdn.com/artworks-000008609310-c0begl-large.jpg?3588dee',
   waveform_url: 'http://w1.sndcdn.com/7Rp8J1cZ8RQE_m.png',
-  stream_url: function() {
-    return 'http://areweplayingyet.herokuapp.com/sound.' + AWPY.config.codec + '?' + (Math.random() * 1e9 | 0);
-  }
+  stream_url: (function() {
+    var runs = 0;
+    return function(cached) {
+      var url = 'http://areweplayingyet.herokuapp.com/sound.' + AWPY.config.codec;
+      if (runs++)
+        return url;
+      return url + (cached ? '' : '?' + (Math.random() * 1e9 | 0));
+    }
+  }())
 };
 
 AWPY.tests.init([
@@ -214,12 +220,12 @@ AWPY.tests.init([
         audio.play();
       }, false);
 
-      audio.setAttribute('src', AWPY.sound.stream_url());
+      audio.setAttribute('src', AWPY.sound.stream_url(true));
       audio.load();
     }
   },
   {
-    description: 'Duration, currentTime, paused, defaultPlaybackRate, playbackRate, volume and muted attributes',
+    description: 'duration, currentTime, paused, defaultPlaybackRate, playbackRate, volume and muted attributes',
     assert: function(finish) {
       var audio = this.audio = new Audio(),
           that = this;
@@ -232,7 +238,7 @@ AWPY.tests.init([
             result = true;
 
         properties.forEach(function(prop) {
-          result = result && (prop in audio)
+          result = result && (prop in audio);
         });
 
         audio.currentTime = 50;
@@ -253,7 +259,7 @@ AWPY.tests.init([
         finish(result);
       }, false);
 
-      audio.setAttribute('src', AWPY.sound.stream_url());
+      audio.setAttribute('src', AWPY.sound.stream_url(true));
       audio.load();
     }
   },
@@ -272,7 +278,7 @@ AWPY.tests.init([
       }, false);
       audio.setAttribute('autoplay', true);
       audio.volume = 0;
-      audio.setAttribute('src', AWPY.sound.stream_url());
+      audio.setAttribute('src', AWPY.sound.stream_url(true));
     }
   },
   {
@@ -287,7 +293,7 @@ AWPY.tests.init([
         finish(true);
       }, false);
 
-      audio.setAttribute('src', 'http://areweplayingyet.herokuapp.com/sound.' + AWPY.config.codec + '/redirect');
+      audio.setAttribute('src', AWPY.sound.stream_url(true) + '/redirect');
     }
   },
   {
@@ -311,7 +317,7 @@ AWPY.tests.init([
         }
         lastTime = new Date();
       }, false);
-      audio.setAttribute('src', AWPY.sound.stream_url());
+      audio.setAttribute('src', AWPY.sound.stream_url(true));
       audio.load();
       audio.volume = 0;
       audio.play();

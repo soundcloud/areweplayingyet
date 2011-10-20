@@ -107,7 +107,7 @@ AWPY.sound = {
     var runs = 0;
     return function(cached) {
       var url = 'http://areweplayingyet.herokuapp.com/sound.' + AWPY.config.codec;
-      if (runs++)
+      if (!runs++)
         return url;
       return url + (cached ? '' : '?' + (Math.random() * 1e9 | 0));
     }
@@ -117,13 +117,6 @@ AWPY.sound = {
 AWPY.tests.init([
   {
     description: 'Seeking to unbuffered position with seamless playback.',
-/*
-    1. Start  loading.
-    2. On canplay, seek to the middle of the sound.
-    3. If seek takes more than 500ms => fail
-    4. If playback is not seamless after seek (audio stops for buffering) => fail
-    5. Pass
-*/
     assert: function(finish) {
       var audio = this.audio = new Audio(),
           that = this, seekedTime,
@@ -162,13 +155,6 @@ AWPY.tests.init([
   },
   {
     description: 'Supports preload="metadata" (does not keep on buffering)',
-/*
-    1. Set preload to metadata before setting src
-    2. Set src
-    3. If loadedmetadata event is not triggered in less than 3 seconds => fail
-    4. If 2 seconds after loadedmetadata the audio is still buffering (triggering progress) => fail
-    5. Pass
-*/
     assert: function(finish) {
       var audio = this.audio = new Audio(),
           that = this;
@@ -322,12 +308,46 @@ AWPY.tests.init([
       audio.volume = 0;
       audio.play();
     }
+  },
+  {
+    description: 'Hot swapping audio src',
+    assert: function(finish) {
+      var audio = this.audio = new Audio(),
+          that = this;
+
+      that.timeouts = [];
+      audio.addEventListener('canplay', function canPlay() {
+        audio.removeEventListener('canplay', canPlay);
+        audio.volume = 0;
+        audio.play();
+        setTimeout(function() {
+          audio.pause();
+          audio.setAttribute('src', AWPY.sound.stream_url(false));
+          audio.addEventListener('canplay', function canPlay() {
+            audio.removeEventListener('canplay', canPlay);
+            audio.addEventListener('playing', function playing() {
+              audio.removeEventListener('playing', playing);
+              finish(true);
+            }, false);
+            audio.volume = 0;
+            audio.play();
+          }, false);
+
+          if (audio.readyState) {
+            finish(false);
+          } else {
+            audio.load();
+          }
+        }, 1000);
+      }, false);
+      audio.setAttribute('src', AWPY.sound.stream_url(true));
+      audio.load();
+    }
   }
 ]);
 
 // all events
 // redirects in streams invalidate (s3)
-// switching streams (android)
 //
 //
 // supports more than ogg?

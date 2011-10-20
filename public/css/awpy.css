@@ -1,5 +1,5 @@
 html, body {
-  background-color: #fefefe;
+  background-color: #eee;
 }
 body {
   padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
@@ -38,8 +38,8 @@ body {
 }
 
 .page-header h1 {
-  color: #222;
-  text-shadow: -1px 2px #f60;
+  color: #f60;
+/*  text-shadow: -1px 2px #f60;*/
   text-align: left;
   font-size: 40px;
 }

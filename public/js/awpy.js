@@ -1,5 +1,4 @@
 var AWPY = {
-  about: { version: 0.1 },
   config: {
     codec: (function() {
       var audio = new Audio();

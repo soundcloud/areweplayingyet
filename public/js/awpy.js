@@ -4,7 +4,7 @@ var AWPY = {
       var audio = new Audio();
       if (audio.canPlayType && /probably|maybe/.test(audio.canPlayType('audio/mpeg'))) {
         return 'mp3'
-      } else if (audio.canPlayType && /probably|maybe/.test(audio.canPlayType('audio/ogg; codecs="vorbis"'))) {
+      } else if (audio.canPlayType && /probably|maybe/.test(audio.canPlayType('audio/ogg'))) {
         return 'ogg'
       } else {
         return 'wav'
@@ -26,27 +26,28 @@ AWPY.tests = (function() {
     },
     run: function(callback) {
       var globalCleanup = function(test) {
-        test.timeouts.forEach(clearTimeout);
-        delete test.timeouts;
+        if (!test.audio) {
+          return;
+        }
         test.audio.pause();
-        test.audio.src = '';
+        test.audio.setAttribute('src', '');
         test.audio.load();
         delete test.audio;
       };
 
       list.forEach(function(test) {
         var globalTimeout = setTimeout(function() {
-          globalCleanup(test);
           test.finished = true;
+          globalCleanup(test);
           callback.call(test);
-        }, 30000);
+        }, 15000);
 
         test.assert(function(result) {
           clearTimeout(globalTimeout);
           if (!test.finished) {
             test.finished = true;
-            test.result = result;
             globalCleanup(test);
+            test.result = result;
             callback.call(test);
           }
         });
@@ -60,7 +61,7 @@ AWPY.tests = (function() {
 
       list.forEach(function(test, i) {
         data['AWPY' + i] = test.result ? 1 : 0;
-      })
+      });
 
       window._bTestResults = data;
       newScript = document.createElement('script');
@@ -106,70 +107,130 @@ AWPY.sound = {
     var runs = 0;
     return function(cached) {
       var url = 'http://areweplayingyet.herokuapp.com/sound.' + AWPY.config.codec;
-      if (!runs++)
+      if (!runs++) {
         return url;
+      }
       return url + (cached ? '' : '?' + (Math.random() * 1e9 | 0));
     }
   }())
 };
 
 AWPY.tests.init([
-  {
-    description: 'Seeking to unbuffered position with seamless playback.',
+/*  {
+    description: 'Triggers all events (loadstart, progress, suspend, abort, error, emptied, stalled, loadedmetadata, ' +
+                 'loadeddata, canplay, canplaythrough, playing, waiting, seeking, seeked, ended, durationchange, timeupdate' +
+                 'play, pause, ratechange, volumechange',
     assert: function(finish) {
       var audio = this.audio = new Audio(),
-          that = this, seekedTime,
-          counter = 0, result = true;
+          events = 'loadstart progress suspend abort error emptied stalled loadedmetadata ' +
+                   'loadeddata canplay canplaythrough playing waiting seeking seeked ended ' +
+                   'durationchange timeupdate play pause ratechange volumechange',
+          present = [];
 
-      that.timeouts = []
-
-      audio.addEventListener('seeked', function() {
-        clearTimeout(that.timeouts.pop());
-        seekedTime = audio.currentTime;
-        audio.addEventListener('timeupdate', function timeUpdate() {
-          if (++counter > 20) {
-            audio.removeEventListener('timeupdate', timeUpdate);
-            finish(result);
-          } else if (!audio.paused && audio.currentTime > seekedTime) {
-            result = true;
-          } else {
-            result = false;
-          }
+      events.split(' ').forEach(function(ev) {
+        audio.addEventListener(ev, function() {
+          audio.removeEventListener(ev, arguments.callee, false);
+          present.push(ev);
         }, false);
+      });
+
+      audio.addEventListener('loadedmetadata', function() {
         audio.play();
+        setTimeout(function() {
+          audio.currentTime = 1;
+          audio.currentTime = 0;
+          audio.pause();
+          audio.volume = 0.1;
+          audio.volume = 0;
+          audio.playbackRate = 0.5;
+          // audio.duration = 0;
+          audio.setAttribute('src', '');
+          audio.load();
+        }, 100);
       }, false);
 
-      audio.addEventListener('canplay', function canPlay() {
-        audio.removeEventListener('canplay', canPlay);
-        audio.volume = 0;
-        audio.currentTime = (AWPY.sound.duration * 0.5) / 1000;
-        that.timeouts.push(setTimeout(function() {
-          finish(false);
-        }, 1000));
-      }, false);
-
+      audio.setAttribute('preload', 'metadata');
       audio.setAttribute('src', AWPY.sound.stream_url());
       audio.load();
+      setTimeout(function() {
+        console.log('NOT TRIGGERED: ', events.split(' ').filter(function(ev) {
+          return present.indexOf(ev) < 0;
+        }));
+        finish(present.length === events.split(' ').length);
+      }.bind(this), 10000);
+    }
+  },*/
+  {
+    description: 'Seeks while paused',
+    assert: function(finish) {
+      var audio = this.audio = new Audio();
+
+      audio.addEventListener('loadedmetadata', function() {
+        var seekTo = (AWPY.sound.duration * 0.5) / 1000;
+        audio.currentTime = seekTo;
+        finish(Math.abs(audio.currentTime - seekTo) < 100);
+      }, false);
+
+      audio.setAttribute('preload', 'metadata');
+      audio.setAttribute('src', AWPY.sound.stream_url());
     }
   },
   {
     description: 'Supports preload="metadata" (does not keep on buffering)',
     assert: function(finish) {
-      var audio = this.audio = new Audio(),
-          that = this;
+      var audio = this.audio = new Audio();
 
-      that.timeouts = [];
       audio.addEventListener('loadedmetadata', function() {
-        that.timeouts.push(setTimeout(function() {
+        setTimeout(function() {
           audio.addEventListener('progress', function progress() {
-            audio.removeEventListener('progress', progress);
+            audio.removeEventListener('progress', progress, false);
             finish(false);
           }, false);
 
-          that.timeouts.push(setTimeout(function() {
+          setTimeout(function() {
             finish(true);
-          }, 500));
-        }, 5000));
+          }, 500);
+        }, 5000);
+      }, false);
+
+      audio.setAttribute('preload', 'metadata');
+      audio.setAttribute('src', AWPY.sound.stream_url());
+    }
+  },
+  {
+    description: 'Seeking to unbuffered position with seamless playback',
+    assert: function(finish) {
+      var audio = this.audio = new Audio(),
+          seekedTime,
+          counter = 0,
+          result = true;
+
+      audio.addEventListener('loadedmetadata', function() {
+        audio.volume = 0;
+        audio.play();
+        audio.currentTime = seekedTime = (AWPY.sound.duration * 0.5) / 1000;
+        setTimeout(function() {
+          if (audio.paused || Math.abs(audio.currentTime - seekedTime) > 100) {
+            finish(false);
+          }
+
+          audio.addEventListener('timeupdate', function timeUpdate() {
+            if (++counter > 20) {
+              audio.removeEventListener('timeupdate', timeUpdate, false);
+              finish(result);
+            } else if (!audio.paused && audio.currentTime > seekedTime) {
+              result = true;
+            } else {
+              result = false;
+            }
+          }, false);
+
+          setTimeout(function() {
+            if (!counter) {
+              finish(false);
+            }
+          }, 1500);
+        }, 1000);
       }, false);
 
       audio.setAttribute('preload', 'metadata');
@@ -180,45 +241,33 @@ AWPY.tests.init([
     description: 'Buffered, seekable and played attributes (TimeRanges)',
     assert: function(finish) {
       var audio = this.audio = new Audio(),
-          that = this,
-          counter = 0,
-          result = true;
+          counter = 0;
 
-      that.timeouts = [];
-
-      audio.addEventListener('timeupdate', function timeUpdate() {
-        if (++counter > 20) {
-          audio.removeEventListener('timeupdate', timeUpdate);
-          finish(result);
-        } else {
+      audio.addEventListener('timeupdate', function() {
+        if (++counter >= 5 && audio.currentTime > 0) {
           try {
-            result = audio.buffered.length && audio.seekable.length && audio.played.length;
+            finish(audio.buffered.length && audio.seekable.length && audio.played.length);
           } catch (e) {
             finish(false);
           }
         }
       }, false);
 
-      audio.addEventListener('canplay', function canPlay() {
-        audio.removeEventListener('canplay', canPlay);
+      audio.addEventListener('loadedmetadata', function() {
         audio.volume = 0;
         audio.play();
       }, false);
 
+      audio.setAttribute('preload', 'metadata');
       audio.setAttribute('src', AWPY.sound.stream_url(true));
-      audio.load();
     }
   },
   {
     description: 'duration, currentTime, paused, defaultPlaybackRate, playbackRate, volume and muted attributes',
     assert: function(finish) {
-      var audio = this.audio = new Audio(),
-          that = this;
+      var audio = this.audio = new Audio();
 
-      that.timeouts = [];
-      audio.addEventListener('canplay', function canPlay() {
-        audio.removeEventListener('canplay', canPlay);
-
+      audio.addEventListener('loadedmetadata', function() {
         var properties = 'duration currentTime paused defaultPlaybackRate playbackRate volume muted'.split(/\s/),
             result = true;
 
@@ -244,22 +293,23 @@ AWPY.tests.init([
         finish(result);
       }, false);
 
+      audio.setAttribute('preload', 'metadata');
       audio.setAttribute('src', AWPY.sound.stream_url(true));
-      audio.load();
     }
   },
   {
     description: 'Supports autoplay',
     assert: function(finish) {
-      var audio = this.audio = new Audio(),
-          that = this;
+      var audio = this.audio = new Audio();
 
-      that.timeouts = [];
-
-      audio.addEventListener('timeupdate', function() {
-        if (!audio.paused && audio.currentTime > 0) {
+      audio.addEventListener('loadedmetadata', function() {
+        audio.addEventListener('timeupdate', function timeUpdate() {
+          audio.removeEventListener('timeupdate', timeUpdate, false);
           finish(true);
-        }
+        }, false);
+        setTimeout(function() {
+          finish(false);
+        }, 5000);
       }, false);
       audio.setAttribute('autoplay', true);
       audio.volume = 0;
@@ -269,26 +319,25 @@ AWPY.tests.init([
   {
     description: 'Follows 30x responses on src (http-->https, cross-domain)',
     assert: function(finish) {
-      var audio = this.audio = new Audio(),
-          that = this;
+      var audio = this.audio = new Audio();
 
-      that.timeouts = [];
-      audio.addEventListener('canplay', function canPlay() {
-        audio.removeEventListener('canplay', canPlay);
+      audio.addEventListener('loadedmetadata', function() {
         finish(true);
       }, false);
 
+      audio.setAttribute('preload', 'metadata');
       audio.setAttribute('src', AWPY.sound.stream_url(true) + '/redirect');
+      setTimeout(function() {
+        finish(false);
+      }, 10000);
     }
   },
   {
     description: 'Consistent timeupdate interval (15ms - 250ms)',
     assert: function(finish) {
       var audio = this.audio = new Audio(),
-          that = this,
           lastTime, count = 0
 
-      that.timeouts = [];
       audio.addEventListener('timeupdate', function() {
         if (!lastTime) {
           lastTime = new Date();
@@ -296,58 +345,64 @@ AWPY.tests.init([
           var now = new Date();
           if ((now - lastTime) < 15 || (now - lastTime) > 250) {
             finish(false);
-          } else if (++count === 20){
+          } else if (++count === 50){
             finish(true);
           }
         }
         lastTime = new Date();
       }, false);
+
+      audio.addEventListener('loadedmetadata', function() {
+        audio.volume = 0;
+        audio.play();
+      }, false);
+
+      audio.setAttribute('preload', 'metadata');
       audio.setAttribute('src', AWPY.sound.stream_url(true));
-      audio.load();
-      audio.volume = 0;
-      audio.play();
     }
   },
   {
     description: 'Hot swapping audio src',
     assert: function(finish) {
-      var audio = this.audio = new Audio(),
-          that = this;
+      var audio = this.audio = new Audio();
 
-      that.timeouts = [];
-      audio.addEventListener('canplay', function canPlay() {
-        audio.removeEventListener('canplay', canPlay);
+      audio.addEventListener('loadedmetadata', function loadedMetaData1() {
+        audio.removeEventListener('loadedmetadata', loadedMetaData1, false);
         audio.volume = 0;
         audio.play();
         setTimeout(function() {
-          audio.pause();
-          audio.setAttribute('src', AWPY.sound.stream_url(false));
-          audio.addEventListener('canplay', function canPlay() {
-            audio.removeEventListener('canplay', canPlay);
-            audio.addEventListener('playing', function playing() {
-              audio.removeEventListener('playing', playing);
+          audio.addEventListener('loadedmetadata', function() {
+            audio.addEventListener('timeupdate', function timeUpdate() {
+              audio.removeEventListener('timeupdate', timeUpdate, false);
               finish(true);
             }, false);
-            audio.volume = 0;
             audio.play();
           }, false);
 
+          audio.setAttribute('src', AWPY.sound.stream_url());
+
           if (audio.readyState) {
             finish(false);
-          } else {
-            audio.load();
           }
         }, 1000);
       }, false);
+
+      audio.setAttribute('preload', 'metadata');
       audio.setAttribute('src', AWPY.sound.stream_url(true));
-      audio.load();
+    }
+  },
+  {
+    description: 'Supports MP3 format',
+    assert: function(finish) {
+      var audio = this.audio = new Audio();
+      finish(audio.canPlayType && /probably|maybe/.test(audio.canPlayType('audio/mpeg')));
+    }
+  },
+  {
+    description: 'Supports OGG format',
+    assert: function(finish) {
+      var audio = this.audio = new Audio();
+      finish(audio.canPlayType && /probably|maybe/.test(audio.canPlayType('audio/ogg')));
     }
   }
 ]);
-
-// all events
-// redirects in streams invalidate (s3)
-//
-//
-// supports more than ogg?
-//

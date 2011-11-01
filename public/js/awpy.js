@@ -40,7 +40,7 @@ AWPY.tests = (function() {
           test.finished = true;
           globalCleanup(test);
           callback.call(test);
-        }, 15000);
+        }, 30000);
 
         test.assert(function(result) {
           clearTimeout(globalTimeout);
@@ -151,9 +151,12 @@ AWPY.tests.init([
         audio.removeEventListener('loadedmetadata', loadedMetaData, false);
         audio.volume = 0; audio.muted = true;
         audio.play();
-        setTimeout(function() {
-          audio.currentTime = (AWPY.sound.short.duration / 6);
-          setTimeout(function() {
+        audio.currentTime = (AWPY.sound.short.duration / 6);
+        var interval = setInterval(function() {
+          if (audio.seeking) {
+            return;
+          } else {
+            clearInterval(interval);
             audio.pause();
             setTimeout(function() {
               audio.addEventListener('loadedmetadata', function loadedMetaData2() {
@@ -168,12 +171,10 @@ AWPY.tests.init([
                   }, 100);
                 }, 4000);
               }, false);
-
               audio.setAttribute('src', AWPY.sound.mini.stream_url());
-
             }, 100);
-          }, 3000);
-        }, 100);
+          }
+        });
       }, false);
 
       audio.setAttribute('preload', 'metadata');

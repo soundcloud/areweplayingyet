@@ -98,33 +98,35 @@ AWPY.tests = (function() {
   };
 }());
 
-AWPY.sound = {
-  duration: 4046210,
-  title: 'Mick Wills (Nation Records) - Demo Mix CD16 - June 2011',
-  artwork_url: 'http://i1.sndcdn.com/artworks-000008609310-c0begl-large.jpg?3588dee',
-  waveform_url: 'http://w1.sndcdn.com/7Rp8J1cZ8RQE_m.png',
-  stream_url: (function() {
-    var runs = 0;
-    return function(cached) {
-      var url = 'http://areweplayingyet.herokuapp.com/sound.' + AWPY.config.codec;
+AWPY.sound = (function() {
+  var runs = 0;
+
+  return {
+    duration: function(short) {
+      return short ? 227325 : 4046210;
+    },
+    stream_url: function(short, cached) {
+      var filename = (short ? 'sound-short' : 'sound') + '.' + AWPY.config.codec;
+          url = 'http://areweplayingyet.herokuapp.com/' + filename;
+
       if (!runs++) {
         return url;
       }
       return url + (cached ? '' : '?' + (Math.random() * 1e9 | 0));
     }
-  }())
-};
+  };
+}());
 
 AWPY.tests.init([
-/*  {
-    description: 'Triggers all events (loadstart, progress, suspend, abort, error, emptied, stalled, loadedmetadata, ' +
-                 'loadeddata, canplay, canplaythrough, playing, waiting, seeking, seeked, ended, durationchange, timeupdate' +
+  {
+    description: 'Triggers essential events (loadstart, progress, abort, error, loadedmetadata, ' +
+                 'loadeddata, canplay, canplaythrough, playing, seeking, seeked, ended, timeupdate' +
                  'play, pause, ratechange, volumechange',
     assert: function(finish) {
       var audio = this.audio = new Audio(),
-          events = 'loadstart progress suspend abort error emptied stalled loadedmetadata ' +
-                   'loadeddata canplay canplaythrough playing waiting seeking seeked ended ' +
-                   'durationchange timeupdate play pause ratechange volumechange',
+          events = 'loadstart progress abort error loadedmetadata ' +
+                   'loadeddata canplay canplaythrough playing seeking seeked ended ' +
+                   'timeupdate play pause ratechange volumechange',
           present = [];
 
       events.split(' ').forEach(function(ev) {
@@ -137,36 +139,43 @@ AWPY.tests.init([
       audio.addEventListener('loadedmetadata', function() {
         audio.play();
         setTimeout(function() {
-          audio.currentTime = 1;
-          audio.currentTime = 0;
-          audio.pause();
+          audio.currentTime = (AWPY.sound.duration(true) / 1000) - 5;
           audio.volume = 0.1;
           audio.volume = 0;
           audio.playbackRate = 0.5;
-          // audio.duration = 0;
-          audio.setAttribute('src', '');
-          audio.load();
+          setTimeout(function() {
+            audio.pause();
+            setTimeout(function() {
+              audio.play();
+              setTimeout(function() {
+                audio.setAttribute('src', '');
+                audio.load();
+              }, 4000);
+            }, 500);
+          }, 1000);
         }, 100);
       }, false);
 
       audio.setAttribute('preload', 'metadata');
-      audio.setAttribute('src', AWPY.sound.stream_url());
-      audio.load();
+      audio.setAttribute('src', AWPY.sound.stream_url(true, false));
+      console.log(audio);
+      // audio.load();
+
       setTimeout(function() {
         console.log('NOT TRIGGERED: ', events.split(' ').filter(function(ev) {
           return present.indexOf(ev) < 0;
         }));
         finish(present.length === events.split(' ').length);
-      }.bind(this), 10000);
+      }, 10000);
     }
-  },*/
+  },
   {
     description: 'Seeks while paused',
     assert: function(finish) {
       var audio = this.audio = new Audio();
 
       audio.addEventListener('loadedmetadata', function() {
-        var seekTo = (AWPY.sound.duration * 0.5) / 1000;
+        var seekTo = (AWPY.sound.duration() * 0.5) / 1000;
         audio.currentTime = seekTo;
         finish(Math.abs(audio.currentTime - seekTo) < 100);
       }, false);
@@ -208,7 +217,7 @@ AWPY.tests.init([
       audio.addEventListener('loadedmetadata', function() {
         audio.volume = 0;
         audio.play();
-        audio.currentTime = seekedTime = (AWPY.sound.duration * 0.5) / 1000;
+        audio.currentTime = seekedTime = (AWPY.sound.duration() * 0.5) / 1000;
         setTimeout(function() {
           if (audio.paused || Math.abs(audio.currentTime - seekedTime) > 100) {
             finish(false);
@@ -294,7 +303,7 @@ AWPY.tests.init([
       }, false);
 
       audio.setAttribute('preload', 'metadata');
-      audio.setAttribute('src', AWPY.sound.stream_url(true));
+      audio.setAttribute('src', AWPY.sound.stream_url(false, true));
     }
   },
   {
@@ -313,7 +322,7 @@ AWPY.tests.init([
       }, false);
       audio.setAttribute('autoplay', true);
       audio.volume = 0;
-      audio.setAttribute('src', AWPY.sound.stream_url(true));
+      audio.setAttribute('src', AWPY.sound.stream_url(false, true));
     }
   },
   {
@@ -326,7 +335,7 @@ AWPY.tests.init([
       }, false);
 
       audio.setAttribute('preload', 'metadata');
-      audio.setAttribute('src', AWPY.sound.stream_url(true) + '/redirect');
+      audio.setAttribute('src', AWPY.sound.stream_url(false, true) + '/redirect');
       setTimeout(function() {
         finish(false);
       }, 10000);
@@ -358,7 +367,7 @@ AWPY.tests.init([
       }, false);
 
       audio.setAttribute('preload', 'metadata');
-      audio.setAttribute('src', AWPY.sound.stream_url(true));
+      audio.setAttribute('src', AWPY.sound.stream_url(false, true));
     }
   },
   {
@@ -388,7 +397,7 @@ AWPY.tests.init([
       }, false);
 
       audio.setAttribute('preload', 'metadata');
-      audio.setAttribute('src', AWPY.sound.stream_url(true));
+      audio.setAttribute('src', AWPY.sound.stream_url(false, true));
     }
   },
   {

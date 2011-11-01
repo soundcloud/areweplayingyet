@@ -130,44 +130,47 @@ AWPY.sound = (function() {
 AWPY.tests.init([
   {
     description: 'Triggers essential events (loadstart, progress, abort, error, loadedmetadata, ' +
-                 'loadeddata, canplay, canplaythrough, playing, seeking, seeked, ended, timeupdate' +
-                 'play, pause, ratechange, volumechange',
+                 'loadeddata, canplay, canplaythrough, playing, seeking, seeked, ended, timeupdate ' +
+                 'play, pause, volumechange',
     assert: function(finish) {
       var audio = this.audio = new Audio(),
           events = 'loadstart progress abort error loadedmetadata ' +
                    'loadeddata canplay canplaythrough playing seeking seeked ended ' +
-                   'timeupdate play pause ratechange volumechange',
+                   'timeupdate play pause volumechange',
           present = [];
 
       events = events.split(' ');
       events.forEach(function(ev) {
-        audio.addEventListener(ev, function() {
-          audio.removeEventListener(ev, arguments.callee, false);
+        audio.addEventListener(ev, function pusher() {
+          audio.removeEventListener(ev, pusher, false);
           present.push(ev);
         }, false);
       });
 
-      audio.addEventListener('loadedmetadata', function() {
+      audio.addEventListener('loadedmetadata', function loadedMetaData() {
+        audio.removeEventListener('loadedmetadata', loadedMetaData, false);
+        audio.volume = 0; audio.muted = true;
         audio.play();
         setTimeout(function() {
           audio.currentTime = (AWPY.sound.short.duration / 6);
-          audio.volume = 0.1;
-          audio.volume = 0;
-          audio.playbackRate = 0.5;
-          audio.playbackRate = 1;
           setTimeout(function() {
             audio.pause();
             setTimeout(function() {
-              audio.setAttribute('src', AWPY.sound.mini.stream_url());
-              audio.load();
-              audio.play();
-              setTimeout(function() {
-                audio.setAttribute('src', '');
-                audio.load();
+              audio.addEventListener('loadedmetadata', function loadedMetaData2() {
+                audio.removeEventListener('loadedmetadata', loadedMetaData2, false);
+                audio.volume = 0; audio.muted = true;
+                audio.play();
                 setTimeout(function() {
-                  finish(present.length === events.length);
-                }, 100);
-              }, 4000);
+                  audio.setAttribute('src', '');
+                  audio.load();
+                  setTimeout(function() {
+                    finish(present.length === events.length);
+                  }, 100);
+                }, 4000);
+              }, false);
+
+              audio.setAttribute('src', AWPY.sound.mini.stream_url());
+
             }, 100);
           }, 3000);
         }, 100);
@@ -184,6 +187,7 @@ AWPY.tests.init([
 
       audio.addEventListener('loadedmetadata', function() {
         var seekTo = AWPY.sound.short.duration * 0.5;
+        audio.volume = 0;
         audio.currentTime = seekTo;
         finish(Math.abs(audio.currentTime - seekTo) < 100);
       }, false);

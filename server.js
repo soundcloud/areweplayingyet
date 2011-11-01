@@ -12,7 +12,7 @@ var sound = {
 connect.createServer(
   connect.logger(),
   connect.router(function(app) {
-    app.get('/sound.:format/redirect', function(req, res, next) {
+    app.get('/sound-long.:format/redirect', function(req, res, next) {
       res.statusCode = 303;
       res.setHeader('Location', req.params.format === 'mp3' ? sound.stream_url : sound.download_url);
       res.end();

@@ -24,7 +24,7 @@ AWPY.tests = (function() {
     init: function(tests) {
       list = tests;
     },
-    run: function(callback) {
+    run: function(index, callback) {
       var globalCleanup = function(test) {
         if (!test.audio) {
           return;
@@ -35,7 +35,13 @@ AWPY.tests = (function() {
         delete test.audio;
       };
 
-      list.forEach(function(test) {
+      var toRun;
+      if (index < 0) {
+        toRun = list;
+      } else {
+        toRun = [ list[index] ];
+      }
+      toRun.forEach(function(test) {
         var globalTimeout = setTimeout(function() {
           test.finished = true;
           globalCleanup(test);
@@ -126,6 +132,19 @@ AWPY.sound = (function() {
 
   return sounds;
 }());
+
+AWPY.logEvents = function(audio){
+  var events = 'loadstart progress suspend abort error emptied stalled loadedmetadata ' +
+      'loadeddata canplay canplaythrough playing waiting seeking seeked ended durationchange ' +
+      'timeupdate play pause ratechange volumechange';
+
+  events = events.split(' ');
+  events.forEach(function(ev) {
+    audio.addEventListener(ev, function() {
+      console.log(ev + ':' + Date.now());
+    }, false);
+  });
+};
 
 AWPY.tests.init([
   {
@@ -284,7 +303,39 @@ AWPY.tests.init([
     }
   },
   {
-    description: 'duration, currentTime, paused, defaultPlaybackRate, playbackRate, volume and muted attributes',
+    description: 'Property duration',
+    assert: function(finish) {
+      var audio = this.audio = new Audio();
+      finish( 'duration' in audio );
+    }
+  },
+  {
+    description: 'Property paused',
+    assert: function(finish) {
+      var audio = this.audio = new Audio();
+      finish( 'paused' in audio );
+    }
+  },
+  {
+    description: 'Property currentTime',
+    assert: function(finish) {
+      /* TODO: Fix Safari */
+      var audio = this.audio = new Audio();
+      audio.addEventListener('loadedmetadata', function() {
+        audio.currentTime = 1;
+        audio.addEventListener('timeupdate', function() {
+          finish( audio.currentTime === 1 );
+        }, false);
+      }, false);
+
+      audio.setAttribute('preload', 'metadata');
+      audio.setAttribute('src', AWPY.sound.mini.stream_url());
+      AWPY.logEvents(audio);
+      console.log(audio);
+    }
+  },
+  {
+    description: 'defaultPlaybackRate, playbackRate, volume and muted attributes',
     assert: function(finish) {
       var audio = this.audio = new Audio();
 
@@ -295,9 +346,6 @@ AWPY.tests.init([
         properties.forEach(function(prop) {
           result = result && (prop in audio);
         });
-
-        audio.currentTime = 50;
-        result = (audio.currentTime === 50) && result;
 
         audio.defaultPlaybackRate = 0.5;
         result = (audio.defaultPlaybackRate === 0.5) && result;

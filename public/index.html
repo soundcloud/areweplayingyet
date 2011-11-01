@@ -26,7 +26,7 @@
         <div class="span10">
           <h2>A pragmatic HTML5 Audio browser benchmark</h2>
           <p>This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers. We want to build the best HTML5 audio player on the web and we need help from the browser developers for that. As the specifications left room to interpretation, some of the features got implemented not as well they could be.  We don't want to write code for different browsers, and to make this real we need to know that we can rely on them instead. Please join the discussion on <a href="http://twitter.com/areweplayingyet">@areweplayingyet</a>!</p>
-          <p><button id="run" class="btn full-width">Run the tests!</button></p>
+          <p><button id="run" class="btn full-width">Run all the tests!</button></p>
         </div>
       </div>
       <div class="row">
@@ -60,38 +60,60 @@
   <script src="/js/awpy.js"></script>
   <script>
   (function() {
-    var list = AWPY.tests.get(), runBtn;
+    var list = AWPY.tests.get();
+    var bigBtn = document.getElementById('run');
+    var singleBtns = document.getElementsByClassName('run-single');
+    var arr = function(foo) { return Array.prototype.slice.call(foo); };
 
     document.getElementById('tests').firstElementChild.innerHTML = list.map(function(test, i) {
-      return '<tr><td>' + test.description + '</td><td><span class="label result">N/A</span></td></tr>';
+      return '<tr class="test"><td><button class="btn run-single">Run</button></td><td>' + test.description + '</td><td><span class="label result">N/A</span></td></tr>';
     }).join('');
 
-    (runBtn = document.getElementById('run')).addEventListener('click', function runTests(ev) {
-      runBtn.removeEventListener('click', runTests);
+    var finalize = (function(){
+      var counter = 0, tests = document.getElementsByClassName('test'), score = 0;
+      return function() {
+        var testNode = tests[list.indexOf(this)],
+            resultNode = testNode.getElementsByClassName('result')[0],
+            runBtnSingle = testNode.getElementsByClassName('run-single')[0];
 
-      var counter = 0, results = document.getElementsByClassName('result'), score = 0;
-      runBtn.className += ' disabled';
-      runBtn.innerHTML = 'Running...';
+        resultNode.className += (this.result === null ? ' warning' : this.result ? ' success' : ' important');
+        resultNode.innerHTML =  (this.result === null ? 'TIMEOUT' : this.result ? 'WIN' : 'FAIL');
 
-      AWPY.tests.run(function() {
-        var resultNode = results[list.indexOf(this)];
-        resultNode.className += this.result === undefined ? ' warning' : this.result ? ' success' : ' important';
-        resultNode.innerHTML =  this.result === undefined ? 'TIMEOUT' : this.result ? 'WIN' : 'FAIL';
+        runBtnSingle.innerHTML = 'Done!';
 
         if (this.result) {
           score++;
         }
 
         if (++counter === list.length) {
-          runBtn.className = runBtn.className.replace(/primary|disabled/g, '');
-          runBtn.innerHTML = 'Score: ' + score + '/' + list.length;
+          arr(singleBtns).concat(bigBtn).forEach(function(btn, i) {
+            btn.innerHTML = 'Done!';
+          });
+
+          bigBtn.innerHTML = 'Score: ' + score + '/' + list.length;
           // Save results to BrowserScope
-          AWPY.tests.save();
-          // Show BrowserScope widget
-          AWPY.tests.display();
+          // AWPY.tests.save();
+          // // Show BrowserScope widget
+          // AWPY.tests.display();
         }
-      });
-    }, false);
+      };
+    }());
+
+    [bigBtn].concat(arr(singleBtns)).forEach(function(btn, i, all) {
+      btn.addEventListener('click', function runTest() {
+        btn.removeEventListener('click', runTest, false);
+        btn.className += ' disabled';
+        btn.innerHTML = 'Running…';
+        if (!i) {
+          all.forEach(function(btn) {
+            btn.className += ' disabled';
+            btn.innerHTML = 'Running…';
+          });
+        }
+        AWPY.tests.run(i ? (i - 1) : -1, finalize);
+      }, false)
+    });
+
   }());
   </script>
 </body>

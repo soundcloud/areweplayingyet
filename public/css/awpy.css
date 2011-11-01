@@ -57,6 +57,10 @@ body {
   width: 100%;
   font-size: 18px;
 }
+.run-single {
+  outline: 0;
+  width: 80px;
+}
 
 #browserscope {
   height: 0;

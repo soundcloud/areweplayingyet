@@ -150,12 +150,11 @@ AWPY.tests.init([
       audio.addEventListener('loadedmetadata', function() {
         audio.play();
         setTimeout(function() {
-          audio.currentTime = AWPY.sound.short.duration / 5;
+          audio.currentTime = (AWPY.sound.short.duration / 6);
           audio.volume = 0.1;
           audio.volume = 0;
           audio.playbackRate = 0.5;
           audio.playbackRate = 1;
-          while (audio.seeking);
           setTimeout(function() {
             audio.pause();
             setTimeout(function() {
@@ -170,7 +169,7 @@ AWPY.tests.init([
                 }, 100);
               }, 4000);
             }, 100);
-          }, 100);
+          }, 3000);
         }, 100);
       }, false);
 

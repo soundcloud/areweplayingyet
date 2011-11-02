@@ -13,6 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="/css/bootstrap.css">
   <link rel="stylesheet" href="/css/awpy.css">
+  <link rel="stylesheet" href="/css/prettify.css">
   <link rel="shortcut icon" href="/favicon.ico">
 </head>
 <body>
@@ -23,7 +24,7 @@
       </div>
       <div class="row">
         <div class="span10">
-          <p id="breadcrumb"><a href="/" title="AreWePlayingYet?">All tests</a> &gt; {{description}}</p>
+          <p id="breadcrumb"><a href="/" title="AreWePlayingYet?">Home</a> &gt; {{description}}</p>
           <p style="display: none"><button id="run" class="btn full-width">Run all the tests!</button></p>
         </div>
       </div>
@@ -33,9 +34,9 @@
             <tbody></tbody>
           </table>
           <h4>Test code:</h4>
-          <pre>{{code}}</pre>
-          <h4>Expectation:</h4>
-          <p>Should be implemented as defined in the specification</p>
+          <pre class="prettyprint">{{code}}</pre>
+          <h4>Spec:</h4>
+          <p>{{spec}}</p>
         </div>
       </div>
       <div id="browserscope" class="row">
@@ -60,13 +61,12 @@
   </div>
   <div id="scripts">
   <script src="/js/augment-0.3.1.min.js"></script>
+  <script src="/js/prettify.js"></script>
   <script src="/js/awpy.js"></script>
   <script src="/js/runner.js"></script>
-  <script id="test_code">
-    {{code}}
-  </script>
   <script>
-    // insert code of assert in page
+    prettyPrint();
+    AWPY.tests.init([{{test}}]);
     AWPY.runner();
   </script>
   </div>

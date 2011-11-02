@@ -18,4 +18,4 @@
     audio.volume = 0;
     audio.setAttribute('src', AWPY.sound.short.stream_url(true));
   }
-});
+})

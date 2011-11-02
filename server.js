@@ -8,8 +8,7 @@ var sound = {
   download_url: 'https://api.soundcloud.com/tracks/25906673/download?oauth_token=1f267b9842b777a99eb79588d80294b8'
 };
 
-var testTmpl = fs.readFileSync('./tmpl/test.ejs', 'utf8');
-// var homeTmpl= fs.readFileSync('./tmpl/home.ejs');
+var testTmpl = fs.readFileSync('./tmpl/test.html', 'utf8');
 
 connect.createServer(
   connect.logger(),
@@ -28,11 +27,11 @@ connect.createServer(
           res.end();
         } else {
           var test = eval(data);
-          console.log(test);
           res.statusCode = 200;
           res.write(mustache.to_html(testTmpl, {
             description: test.description,
-            code: test.assert.toString()
+            code: test.assert.toString().split('\n').slice(1).slice(0, -1).join('\n'),
+            test: data
           }));
           res.end();
         }

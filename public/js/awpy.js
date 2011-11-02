@@ -277,6 +277,7 @@ AWPY.logEvents = function(audio){
 //       audio.setAttribute('src', AWPY.sound.long.stream_url());
 //     }
 //   },
+//    DONE +++++++++++++++++++++++
 //   {
 //     description: 'Buffered, seekable and played attributes (TimeRanges)',
 //     assert: function(finish) {
@@ -302,6 +303,7 @@ AWPY.logEvents = function(audio){
 //       audio.setAttribute('src', AWPY.sound.long.stream_url(true));
 //     }
 //   },
+//    DONE +++++++++++++++++++++++
 //   {
 //     description: 'Property duration',
 //     assert: function(finish) {
@@ -309,6 +311,7 @@ AWPY.logEvents = function(audio){
 //       finish( 'duration' in audio );
 //     }
 //   },
+//    DONE +++++++++++++++++++++++
 //   {
 //     description: 'Property paused',
 //     assert: function(finish) {
@@ -316,6 +319,7 @@ AWPY.logEvents = function(audio){
 //       finish( 'paused' in audio );
 //     }
 //   },
+//    DONE +++++++++++++++++++++++
 //   {
 //     description: 'Property currentTime',
 //     assert: function(finish) {
@@ -334,6 +338,7 @@ AWPY.logEvents = function(audio){
 //       console.log(audio);
 //     }
 //   },
+//    DONE +++++++++++++++++++++++
 //   {
 //     description: 'defaultPlaybackRate, playbackRate, volume and muted attributes',
 //     assert: function(finish) {
@@ -366,6 +371,7 @@ AWPY.logEvents = function(audio){
 //       audio.setAttribute('src', AWPY.sound.long.stream_url(true));
 //     }
 //   },
+//    DONE +++++++++++++++++++++++
 //   {
 //     description: 'Supports autoplay',
 //     assert: function(finish) {
@@ -385,6 +391,7 @@ AWPY.logEvents = function(audio){
 //       audio.setAttribute('src', AWPY.sound.short.stream_url(true));
 //     }
 //   },
+//    DONE +++++++++++++++++++++++
 //   {
 //     description: 'Follows 30x responses on src (http-->https, cross-domain)',
 //     assert: function(finish) {
@@ -401,6 +408,7 @@ AWPY.logEvents = function(audio){
 //       }, 10000);
 //     }
 //   },
+//    DONE +++++++++++++++++++++++
 //   {
 //     description: 'Consistent timeupdate interval (15ms - 250ms)',
 //     assert: function(finish) {
@@ -430,6 +438,7 @@ AWPY.logEvents = function(audio){
 //       audio.setAttribute('src', AWPY.sound.short.stream_url(true));
 //     }
 //   },
+//    DONE +++++++++++++++++++++++
 //   {
 //     description: 'Hot swapping audio src',
 //     assert: function(finish) {
@@ -460,6 +469,7 @@ AWPY.logEvents = function(audio){
 //       audio.setAttribute('src', AWPY.sound.long.stream_url(true));
 //     }
 //   },
+//    DONE +++++++++++++++++++++++
 //   {
 //     description: 'Supports MP3 format',
 //     assert: function(finish) {

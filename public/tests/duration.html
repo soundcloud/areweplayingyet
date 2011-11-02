@@ -65,6 +65,7 @@
   <script src="/js/runner.js"></script>
   <script src="duration.js"></script>
   <script>
+    // run on back-end
     // insert code of assert in page
     var code = AWPYTest.exec[0].assert.toString().split('\n').slice(1).slice(0,-1).join('\n');
     document.getElementsByTagName('pre')[0].innerHTML = code;

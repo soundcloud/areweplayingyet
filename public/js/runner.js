@@ -1,3 +1,4 @@
+// run on back-end
 AWPY.runner = function() {
   var list = AWPY.tests.get();
   var bigBtn = document.getElementById('run');
@@ -52,5 +53,5 @@ AWPY.runner = function() {
       AWPY.tests.run(i ? (i - 1) : -1, finalize);
     }, false)
   });
-  
+
 };

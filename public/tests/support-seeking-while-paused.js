@@ -1,4 +1,5 @@
 ({
+  name: 'support-seeking-while-paused',
   description: 'Seeks while paused',
   spec: '#',
   longdesc: '',

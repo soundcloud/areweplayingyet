@@ -1,4 +1,5 @@
 ({
+  name: 'prop-muted',
   description: 'Property "muted"',
   spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-mediacontroller-muted',
   longdesc: '',

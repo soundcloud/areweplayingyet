@@ -9,6 +9,13 @@ var sound = {
 };
 
 var testTmpl = fs.readFileSync('./tmpl/test.html', 'utf8');
+var homeTmpl = fs.readFileSync('./tmpl/home.html', 'utf8');
+var tests    = {};
+var testsDir = fs.readdir('./public/tests/', function(err, list) {
+  list.forEach(function(file) {
+    tests[file.replace(/\.js/, '')] = fs.readFileSync('./public/tests/' + file, 'utf8');
+  });
+});
 
 connect.createServer(
   connect.logger(),
@@ -20,22 +27,24 @@ connect.createServer(
     });
 
     app.get('/tests/:name', function(req, res, name) {
-      fs.readFile('./public/tests/' + req.params.name + '.js', 'utf8', function(err, data) {
-        if (err) {
-          console.log(err);
-          res.statusCode = 404;
-          res.end();
-        } else {
-          var test = eval(data);
-          res.statusCode = 200;
-          res.write(mustache.to_html(testTmpl, {
-            description: test.description,
-            code: test.assert.toString().split('\n').slice(1).slice(0, -1).join('\n'),
-            test: data
-          }));
-          res.end();
-        }
-      });
+      var data = tests[req.params.name];
+      var test = eval(data);
+      res.statusCode = 200;
+      res.write(mustache.to_html(testTmpl, {
+        description: test.description,
+        longdesc: test.longdesc,
+        spec: test.spec,
+        code: test.assert.toString().split('\n').slice(1).slice(0, -1).join('\n'),
+        test: data
+      }));
+      res.end();
+    });
+    app.get('/', function(req, res, name) {
+      res.statusCode = 200;
+      res.write(mustache.to_html(homeTmpl, {
+        tests: Object.keys(tests).map(function(name) { return tests[name]; }).join(',')
+      }));
+      res.end();
     });
   }),
   connect.static(__dirname + '/public')

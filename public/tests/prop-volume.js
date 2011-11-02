@@ -1,4 +1,5 @@
 ({
+  name: 'prop-volume',
   description: 'Property "volume"',
   spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-mediacontroller-volume',
   longdesc: '',

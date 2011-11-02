@@ -1,4 +1,5 @@
 ({
+  name: 'support-seeking-unbuffered-position',
   description: 'Seeking to unbuffered position with seamless playback',
   spec: '#',
   longdesc: '',

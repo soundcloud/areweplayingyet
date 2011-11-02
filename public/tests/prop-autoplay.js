@@ -1,4 +1,5 @@
 ({
+  name: 'prop-autoplay',
   description: 'Property "autoplay"',
   spec: 'http://dev.w3.org/html5/spec/Overview.html#attr-media-autoplay',
   longdesc: '',

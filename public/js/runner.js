@@ -1,12 +1,13 @@
 // run on back-end
 AWPY.runner = function() {
   var list = AWPY.tests.get();
+  console.log(list)
   var bigBtn = document.getElementById('run');
   var singleBtns = document.getElementsByClassName('run-single');
   var arr = function(foo) { return Array.prototype.slice.call(foo); };
 
   document.getElementById('tests').firstElementChild.innerHTML = list.map(function(test, i) {
-    return '<tr class="test"><td><button class="btn run-single">Run</button></td><td>' + test.description + '</td><td><span class="label result">N/A</span></td></tr>';
+    return '<tr class="test"><td><button class="btn run-single">Run</button></td><td><a href="/tests/' + test.name + '">' + test.description + '</a></td><td><span class="label result">N/A</span></td></tr>';
   }).join('');
 
   var finalize = (function(){

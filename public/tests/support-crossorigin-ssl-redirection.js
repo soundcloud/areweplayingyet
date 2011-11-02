@@ -1,4 +1,5 @@
 ({
+  name: 'support-crossorigin-ssl-redirection',
   description: 'Follows 30x responses on src (cross domain ssl redirection)',
   spec: '#',
   longdesc: 'Audio should follow cross-domain redirections from http to https, this bug was found in Android, IEMobile,…',

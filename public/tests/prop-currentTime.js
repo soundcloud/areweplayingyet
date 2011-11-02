@@ -1,4 +1,5 @@
 ({
+  name: 'prop-currentTime',
   description: 'Property "currentTime"',
   spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-media-currenttime',
   longdesc: '',

@@ -4,17 +4,16 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
   <meta charset="utf-8">
-  <title>AreWePlayingYet?</title>
+  <title>AreWePlayingYet?</title>.
   <meta name="description" content="A pragmatic HTML5 Audio benchmark">
-  <meta name="author" content="Tomás Senart">
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="/css/bootstrap.css">
   <link rel="stylesheet" href="/css/awpy.css">
+  <link rel="stylesheet" href="/css/prettify.css">
   <link rel="shortcut icon" href="/favicon.ico">
 </head>
 <body>
@@ -61,13 +60,9 @@
   <script src="/js/awpy.js"></script>
   <script src="/js/runner.js"></script>
   <script>
-  $.getScript('/tests/duration.js', function(data) {
+    console.log('ejllfg')
+    AWPY.tests.init([{{{tests}}}]);
     AWPY.runner();
-  });
-  // need to automatize this
-  // $.getScript…
-  // $.getScript…
-  // $.getScript…
   </script>
 </body>
 </html>

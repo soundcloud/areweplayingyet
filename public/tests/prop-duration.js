@@ -1,4 +1,5 @@
 ({
+  name: 'prop-duration',
   description: 'Property "duration"',
   spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-media-duration',
   longdesc: '',

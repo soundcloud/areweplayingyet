@@ -35,8 +35,9 @@
           </table>
           <h4>Test code:</h4>
           <pre class="prettyprint">{{code}}</pre>
-          <h4>Spec:</h4>
-          <p>{{spec}}</p>
+          <h4>Description:</h4>
+          <p>{{longdesc}}</p>
+          <p><a href="{{spec}}">Specification</a></p>
         </div>
       </div>
       <div id="browserscope" class="row">
@@ -66,7 +67,7 @@
   <script src="/js/runner.js"></script>
   <script>
     prettyPrint();
-    AWPY.tests.init([{{test}}]);
+    AWPY.tests.init([{{{test}}}]);
     AWPY.runner();
   </script>
   </div>

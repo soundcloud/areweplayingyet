@@ -1,4 +1,5 @@
 ({
+  name: 'prop-preload-metadata',
   description: 'Property "preload" with value "metadata"',
   spec: 'http://dev.w3.org/html5/spec/Overview.html#attr-media-preload',
   longdesc: '',

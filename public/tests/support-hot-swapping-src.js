@@ -1,4 +1,5 @@
 ({
+  name: 'support-hot-swapping',
   description: 'Hot swapping audio src',
   spec: '#',
   longdesc: 'Audio should allow src changes without re-initializing the object.',

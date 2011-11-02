@@ -1,4 +1,5 @@
 ({
+  name: 'support-mp3-format',
   description: 'Supports MP3 format',
   spec: '#',
   assert: function(finish) {

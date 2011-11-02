@@ -1,4 +1,5 @@
 ({
+  name: 'support-events',
   description: 'Triggers essential events (loadstart, progress, abort, error, loadedmetadata, ' +
                'loadeddata, canplay, canplaythrough, playing, seeking, seeked, ended, timeupdate ' +
                'play, pause, volumechange',

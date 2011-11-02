@@ -1,4 +1,5 @@
 ({
+  name: 'prop-seekable',
   description: 'Property "seekable"',
   spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-media-seekable',
   longdesc: '',

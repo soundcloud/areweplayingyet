@@ -1,4 +1,5 @@
 ({
+  name: 'support-consistent-timeupdate-interval',
   description: 'Consistent timeupdate interval (15ms - 250ms)',
   spec: '#',
   longdesc: '',

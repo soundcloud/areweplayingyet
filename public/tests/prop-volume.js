@@ -1,5 +1,7 @@
 ({
   description: 'Property "volume"',
+  spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-mediacontroller-volume',
+  longdesc: '',
   assert: function(finish) {
     var audio = this.audio = new Audio();
     audio.addEventListener('loadedmetadata', function() {

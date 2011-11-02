@@ -1,5 +1,7 @@
 ({
-  description: 'Buffered, seekable and played attributes (TimeRanges)',
+  description: 'Property "played"',
+  spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-mediacontroller-played',
+  longdesc: '',
   assert: function(finish) {
     var audio = this.audio = new Audio(),
         counter = 0;

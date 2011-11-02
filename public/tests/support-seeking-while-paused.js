@@ -1,5 +1,7 @@
 ({
   description: 'Seeks while paused',
+  spec: '#',
+  longdesc: '',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

@@ -1,5 +1,7 @@
 ({
   description: 'Hot swapping audio src',
+  spec: '#',
+  longdesc: 'Audio should allow src changes without re-initializing the object.',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

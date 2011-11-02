@@ -1,5 +1,7 @@
 ({
   description: 'Seeking to unbuffered position with seamless playback',
+  spec: '#',
+  longdesc: '',
   assert: function(finish) {
     var audio = this.audio = new Audio(),
         seekedTime,

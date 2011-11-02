@@ -6,4 +6,4 @@
     var audio = this.audio = new Audio();
     finish( 'paused' in audio );
   }
-});
+})

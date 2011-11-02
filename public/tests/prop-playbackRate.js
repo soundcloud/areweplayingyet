@@ -14,4 +14,4 @@
     audio.setAttribute('preload', 'metadata');
     audio.setAttribute('src', AWPY.sound.mini.stream_url());
   }
-});
+})

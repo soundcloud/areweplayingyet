@@ -4,9 +4,8 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
   <meta charset="utf-8">
-  <title>AreWePlayingYet?</title>
+  <title>Property duration | AreWePlayingYet?</title>.
   <meta name="description" content="A pragmatic HTML5 Audio benchmark">
   <meta name="author" content="Tomás Senart">
   <!--[if lt IE 9]>
@@ -25,9 +24,8 @@
       </div>
       <div class="row">
         <div class="span10">
-          <h2>A pragmatic HTML5 Audio browser benchmark</h2>
-          <p>This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers. We want to build the best HTML5 audio player on the web and we need help from the browser developers for that. As the specifications left room to interpretation, some of the features got implemented not as well they could be.  We don't want to write code for different browsers, and to make this real we need to know that we can rely on them instead. Please join the discussion on <a href="http://twitter.com/areweplayingyet">@areweplayingyet</a>!</p>
-          <p><button id="run" class="btn full-width">Run all the tests!</button></p>
+          <p id="breadcrumb"><a href="/" title="AreWePlayingYet?">All tests</a> &gt; Property duration</p>
+          <p style="display: none"><button id="run" class="btn full-width">Run all the tests!</button></p>
         </div>
       </div>
       <div class="row">
@@ -35,6 +33,10 @@
           <table id="tests" class="zebra-striped">
             <tbody></tbody>
           </table>
+          <h4>Test code:</h4>
+          <pre></pre>
+          <h4>Expectation:</h4>
+          <p>Should be implemented as defined in the specification</p>
         </div>
       </div>
       <div id="browserscope" class="row">
@@ -57,17 +59,17 @@
     </footer>
 
   </div>
+  <div id="scripts">
   <script src="/js/augment-0.3.1.min.js"></script>
   <script src="/js/awpy.js"></script>
   <script src="/js/runner.js"></script>
+  <script src="duration.js"></script>
   <script>
-  $.getScript('/tests/duration.js', function(data) {
+    // insert code of assert in page
+    var code = AWPYTest.exec[0].assert.toString().split('\n').slice(1).slice(0,-1).join('\n');
+    document.getElementsByTagName('pre')[0].innerHTML = code;
     AWPY.runner();
-  });
-  // need to automatize this
-  // $.getScript…
-  // $.getScript…
-  // $.getScript…
   </script>
+  </div>
 </body>
 </html>

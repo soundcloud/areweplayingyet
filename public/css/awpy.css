@@ -61,7 +61,9 @@ body {
   outline: 0;
   width: 80px;
 }
-
+td:first-child {
+  width: 80px;
+}
 #browserscope {
   height: 0;
   overflow: hidden;

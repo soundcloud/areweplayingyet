@@ -1,3 +1,4 @@
+// run on back-end
 AWPY.runner = function() {
   var list = AWPY.tests.get();
   var bigBtn = document.getElementById('run');

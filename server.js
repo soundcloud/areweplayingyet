@@ -1,13 +1,15 @@
-var connect = require('connect');
+var connect  = require('connect'),
+    mustache = require('mustache'),
+    fs       = require('fs');
 
 var sound = {
   duration: 4046210,
-  title: 'Mick Wills (Nation Records) - Demo Mix CD16 - June 2011',
-  artwork_url: 'http://i1.sndcdn.com/artworks-000008609310-c0begl-large.jpg?3588dee',
-  waveform_url: 'http://w1.sndcdn.com/7Rp8J1cZ8RQE_m.png',
   stream_url: 'https://api.soundcloud.com/tracks/25906673/stream?oauth_token=1f267b9842b777a99eb79588d80294b8',
   download_url: 'https://api.soundcloud.com/tracks/25906673/download?oauth_token=1f267b9842b777a99eb79588d80294b8'
 };
+
+var testTmpl = fs.readFileSync('./tmpl/test.ejs', 'utf8');
+// var homeTmpl= fs.readFileSync('./tmpl/home.ejs');
 
 connect.createServer(
   connect.logger(),
@@ -16,6 +18,25 @@ connect.createServer(
       res.statusCode = 303;
       res.setHeader('Location', req.params.format === 'mp3' ? sound.stream_url : sound.download_url);
       res.end();
+    });
+
+    app.get('/tests/:name', function(req, res, name) {
+      fs.readFile('./public/tests/' + req.params.name + '.js', 'utf8', function(err, data) {
+        if (err) {
+          console.log(err);
+          res.statusCode = 404;
+          res.end();
+        } else {
+          var test = eval(data);
+          console.log(test);
+          res.statusCode = 200;
+          res.write(mustache.to_html(testTmpl, {
+            description: test.description,
+            code: test.assert.toString()
+          }));
+          res.end();
+        }
+      });
     });
   }),
   connect.static(__dirname + '/public')

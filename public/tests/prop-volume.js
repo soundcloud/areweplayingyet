@@ -6,8 +6,9 @@
   assert: function(finish) {
     var audio = this.audio = new Audio();
 
-    audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.short.stream_url());
+    if (!('volume' in audio)) {
+      finish(false);
+    }
 
     audio.volume = 0.5;
     finish( audio.volume === 0.5 );

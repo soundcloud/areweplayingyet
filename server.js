@@ -1,7 +1,7 @@
-var connect  = require('connect'),
-    mu       = require('mu'),
-    fs       = require('fs'),
-    path     = require('path');
+var connect  = require('connect');
+var mu       = require('mu');
+var fs       = require('fs');
+var path     = require('path');
 
 mu.root = path.join(__dirname, 'templates');
 ['single', 'multi'].forEach(function(template) {
@@ -19,7 +19,7 @@ var sound = {
 var rawTests = {};
 
 fs.readdir('./public/tests/', function(err, list) {
-  list.forEach(function(file) {
+  list.sort().reverse().forEach(function(file) {
     rawTests[file.replace(/\.js/, '')] = fs.readFileSync('./public/tests/' + file, 'utf8');
   });
 });

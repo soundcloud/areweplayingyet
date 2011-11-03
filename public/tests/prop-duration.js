@@ -5,6 +5,7 @@
   longdesc: '',
   assert: function(finish) {
     var audio = this.audio = new Audio();
-    finish( 'paused' in audio );
+
+    finish( 'duration' in audio );
   }
 })

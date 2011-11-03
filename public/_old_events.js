@@ -6,8 +6,8 @@
   assert: function(finish) {
     var audio = this.audio = new Audio(),
         events = 'suspend abort error emptied stalled ' +
-      'loadeddata canplay playing waiting seeking seeked ended durationchange ' +
-      ' play pause ratechange',
+      'waiting seeking seeked ended durationchange ' +
+      'ratechange',
         present = [];
 
     events = events.split(' ');

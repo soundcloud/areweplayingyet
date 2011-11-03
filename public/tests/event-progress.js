@@ -1,6 +1,6 @@
 ({
   name: 'event-progress',
-  description: 'Trigger event "progress"',
+  description: 'Event "progress"',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

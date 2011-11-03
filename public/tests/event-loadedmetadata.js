@@ -1,6 +1,6 @@
 ({
   name: 'event-loadedmetadata',
-  description: 'Trigger event "loadedmetadata"',
+  description: 'Event "loadedmetadata"',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

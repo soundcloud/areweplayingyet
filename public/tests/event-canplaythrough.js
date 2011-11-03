@@ -1,6 +1,6 @@
 ({
   name: 'event-canplaythrough',
-  description: 'Trigger event "canplaythrough"',
+  description: 'Event "canplaythrough"',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

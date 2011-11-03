@@ -7,7 +7,7 @@
     var audio = this.audio = new Audio();
     audio.addEventListener('loadedmetadata', function() {
       audio.volume = 0.5;
-      audio.addEventListener('timeupdate', function() {
+      audio.addEventListener('volumechange', function() {
         finish( audio.volume === 0.5 );
       }, false);
     }, false);

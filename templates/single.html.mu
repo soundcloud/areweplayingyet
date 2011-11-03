@@ -20,7 +20,7 @@
   <div class="container">
     <div class="content">
       <div class="page-header">
-        <h1>Are We Playing Yet?</h1>
+        <h1><a href="/">Are We Playing Yet?</a></h1>
       </div>
       <div class="row">
         <div class="span10">

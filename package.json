@@ -12,7 +12,6 @@
     "node": "~v0.4.11"
   },
   "dependencies": {
-    "connect": "=1.7.1",
-    "mustache": "=0.3.1-dev"
+    "connect": "=1.7.1"
   }
 }

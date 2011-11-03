@@ -1,6 +1,6 @@
 ({
-  name: 'event-loadstart',
-  description: 'Trigger event loadstart',
+  name: 'event-loadedmetadata',
+  description: 'Trigger event "loadedmetadata"',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

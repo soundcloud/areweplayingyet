@@ -39,6 +39,8 @@
           <h4>Description:</h4>
           <p class="longdesc">{{longdesc}}</p>
           <p><a class="spec" href="{{spec}}">Specification</a></p>
+          <h4>Wanna help us?</h4>
+          <p>Submit issues, suggestions, etc… on <a href="https://github.com/soundcloud/areweplayingyet/issues">github</a>.</p>
         </div>
       </div>
       <div id="browserscope" class="row">

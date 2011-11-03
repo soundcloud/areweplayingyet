@@ -5,7 +5,7 @@
   //              'play, pause, volumechange',
   assert: function(finish) {
     var audio = this.audio = new Audio(),
-        events = 'suspend abort error emptied stalled ' +
+        events = 'suspend emptied stalled ' +
       'waiting seeking seeked ' +
       'ratechange',
         present = [];

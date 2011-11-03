@@ -1,10 +1,10 @@
 ({
-  name: 'event-playing',
-  description: 'Event "playing"',
+  name: 'event-ended',
+  description: 'Event "ended"',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 
-    audio.addEventListener('playing', function() {
+    audio.addEventListener('ended', function() {
       finish(true);
     }, false);
 
@@ -13,7 +13,7 @@
     });
 
     audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.short.stream_url(true));
+    audio.setAttribute('src', AWPY.sound.mini.stream_url(true));
     audio.volume = 0;
   }
 })

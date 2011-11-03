@@ -4,11 +4,10 @@
   spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-mediacontroller-played',
   longdesc: '',
   assert: function(finish) {
-    var audio = this.audio = new Audio(),
-        counter = 0;
+    var audio = this.audio = new Audio();
 
     audio.addEventListener('timeupdate', function() {
-      if (++counter >= 5 && audio.currentTime > 0) {
+      if (audio.currentTime > 0) {
         try {
           finish(audio.played.length);
         } catch (e) {
@@ -23,6 +22,6 @@
     }, false);
 
     audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.long.stream_url(true));
+    audio.setAttribute('src', AWPY.sound.short.stream_url(true));
   }
 })

@@ -3,7 +3,6 @@ AWPY.router = {
     var tests = AWPY.tests.get(testName);
 
     if (tests.length === 1) {
-      this.page = 'single';
       $('.multi').hide();
       document.title = tests[0].description + ' | AreWePlayingYet?';
       $('meta[name="description"]').attr('content', document.title);
@@ -15,7 +14,6 @@ AWPY.router = {
       prettyPrint();
       $('.single').show();
     } else {
-      this.page = 'multi';
       $('.single').hide();
       $('#tests tbody').html(tests.map(function(test, i) {
         var testRow = $('#test-row-tmpl').html();
@@ -30,10 +28,10 @@ AWPY.router = {
   },
   init: function() {
     $(window).bind('hashchange', function(ev) {
-      AWPY.runner.teardown();
-      AWPY.router.route(document.location.hash.substring(1));
-      AWPY.runner.init();
+      document.location.reload();
     });
-    $(window).trigger('hashchange');
+    AWPY.router.route(document.location.hash.substring(1));
+    AWPY.runner.init();
   }
 };
+

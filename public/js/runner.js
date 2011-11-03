@@ -1,12 +1,10 @@
 AWPY.runner = {
   end: function(test, single) {
-    var btnClass = {
+    $('.run[data-test-name="' + test.name + '"]').html(test.result).addClass({
       'TIMEOUT': 'default',
       'WIN': 'success',
       'FAIL': 'danger'
-    }[test.result];
-    console.log('end');
-    $('.run[data-test-name="' + test.name + '"]').html(test.result).addClass(btnClass);
+    }[test.result]).unbind();
 
     if (!single) {
       var tests = AWPY.tests.get();
@@ -27,8 +25,5 @@ AWPY.runner = {
         AWPY.runner.end(test, testName);
       });
     });
-  },
-  teardown: function() {
-    $('.run').unbind();
   }
 };

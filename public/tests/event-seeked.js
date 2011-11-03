@@ -1,11 +1,11 @@
 ({
-  name: 'event-seeking',
-  description: 'Event "seeking"',
+  name: 'event-seeked',
+  description: 'Event "seeked"',
   longdesc: 'Should fire even when seeking to unbuffered position.',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 
-    audio.addEventListener('seeking', function() {
+    audio.addEventListener('seeked', function() {
       finish( true );
     }, false);
 
@@ -19,7 +19,7 @@
       setTimeout(function() {
         finish( false );
       }, 10000);
-    },false);
+    }, false);
 
     audio.setAttribute('preload', 'metadata');
     audio.setAttribute('src', AWPY.sound.long.stream_url());

@@ -5,14 +5,12 @@
   longdesc: '',
   assert: function(finish) {
     var audio = this.audio = new Audio();
-    audio.addEventListener('loadedmetadata', function() {
-      audio.defaultPlaybackRate = 0.5;
-      audio.addEventListener('timeupdate', function() {
-        finish( audio.defaultPlaybackRate === 0.5 );
-      }, false);
-    }, false);
 
-    audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.mini.stream_url());
+    if (!('defaultPlaybackRate' in audio)) {
+      finish( false );
+    }
+
+    audio.defaultPlaybackRate = 0.5;
+    finish( audio.defaultPlaybackRate === 0.5 );
   }
 })

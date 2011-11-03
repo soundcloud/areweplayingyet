@@ -52,20 +52,37 @@ body {
           transition: all .6s ease;
 }
 
-#run {
+.run {
   outline: none;
   width: 100%;
+}
+
+.run.big {
   font-size: 18px;
 }
-.run-single {
-  outline: 0;
-  width: 80px;
+
+.run.small {
+  font-size: 15px;
 }
+
+td {
+  font-size: 14px;
+}
+
 td:first-child {
-  width: 80px;
+  width: 50%;
 }
+
+#breadcrumb {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
 #browserscope {
   height: 0;
   overflow: hidden;
 }
 
+.single, .multi {
+  display: none;
+}

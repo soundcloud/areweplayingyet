@@ -3,7 +3,7 @@
   description: 'Event "ended"',
   assert: function(finish) {
     var audio = this.audio = new Audio();
-
+    AWPY.logEvents(audio);
     audio.addEventListener('ended', function() {
       finish(true);
     }, false);

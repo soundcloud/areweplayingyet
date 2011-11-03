@@ -7,7 +7,7 @@
     var audio = this.audio = new Audio(),
         events = 'suspend abort error emptied stalled ' +
       'loadeddata canplay playing waiting seeking seeked ended durationchange ' +
-      ' play pause ratechange volumechange',
+      ' play pause ratechange',
         present = [];
 
     events = events.split(' ');

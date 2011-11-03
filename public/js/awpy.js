@@ -140,7 +140,7 @@ AWPY.sound = (function() {
 AWPY.logEvents = function(audio){
   var events = 'loadstart progress suspend abort error emptied stalled loadedmetadata ' +
       'loadeddata canplay canplaythrough playing waiting seeking seeked ended durationchange ' +
-      'timeupdate play pause ratechange volumechange';
+      'timeupdate ratechange volumechange';
 
   events = events.split(' ');
   events.forEach(function(ev) {

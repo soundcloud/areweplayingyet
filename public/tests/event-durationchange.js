@@ -1,10 +1,10 @@
 ({
-  name: 'event-ended',
-  description: 'Event "ended"',
+  name: 'event-durationchange',
+  description: 'Event "durationchange"',
   assert: function(finish) {
     var audio = this.audio = new Audio();
     AWPY.logEvents(audio);
-    audio.addEventListener('ended', function() {
+    audio.addEventListener('durationchange', function() {
       finish(true);
     }, false);
 

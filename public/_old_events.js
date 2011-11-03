@@ -1,13 +1,13 @@
 ({
-  name: 'support-events',
-  description: 'Triggers essential events (loadstart, progress, abort, error, loadedmetadata, ' +
-               'loadeddata, canplay, canplaythrough, playing, seeking, seeked, ended, timeupdate ' +
-               'play, pause, volumechange',
+  // name: 'support-events',
+  // description: 'Triggers essential events (loadstart, progress, abort, error, loadedmetadata, ' +
+  //              'loadeddata, canplay, canplaythrough, playing, seeking, seeked, ended, timeupdate ' +
+  //              'play, pause, volumechange',
   assert: function(finish) {
     var audio = this.audio = new Audio(),
-        events = 'loadstart progress suspend abort error emptied stalled loadedmetadata ' +
-      'loadeddata canplay canplaythrough playing waiting seeking seeked ended durationchange ' +
-      'timeupdate play pause ratechange volumechange',
+        events = 'suspend abort error emptied stalled ' +
+      'loadeddata canplay playing waiting seeking seeked ended durationchange ' +
+      ' play pause ratechange volumechange',
         present = [];
 
     events = events.split(' ');

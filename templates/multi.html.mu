@@ -7,32 +7,45 @@
   <meta charset="utf-8">
   <title>AreWePlayingYet?</title>
   <meta name="description" content="A pragmatic HTML5 Audio benchmark">
-  <meta name="author" content="Tomás Senart">
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="/css/bootstrap.css">
   <link rel="stylesheet" href="/css/awpy.css">
+  <link rel="stylesheet" href="/css/prettify.css">
   <link rel="shortcut icon" href="/favicon.ico">
 </head>
 <body>
   <div class="container">
     <div class="content">
       <div class="page-header">
-        <h1>Are We Playing Yet?</h1>
+        <h1><a href="/">Are We Playing Yet?</a></h1>
       </div>
       <div class="row">
         <div class="span10">
           <h2>A pragmatic HTML5 Audio browser benchmark</h2>
           <p>This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers. We want to build the best HTML5 audio player on the web and we need help from the browser developers for that. As the specifications left room to interpretation, some of the features got implemented not as well they could be.  We don't want to write code for different browsers, and to make this real we need to know that we can rely on them instead. Please join the discussion on <a href="http://twitter.com/areweplayingyet">@areweplayingyet</a>!</p>
-          <p><button id="run" class="btn full-width">Run the tests!</button></p>
+          <p>
+            <button class="run big btn full-width">Run all tests!</button>
+          </p>
         </div>
       </div>
       <div class="row">
         <div class="span10">
           <table id="tests" class="zebra-striped">
-            <tbody></tbody>
+            <tbody>
+              {{#tests}}
+                <tr class="test">
+                  <td>
+                    <button class="btn run small" data-test-name="{{name}}">Run</button>
+                  </td>
+                  <td>
+                    <a href="/tests/{{name}}">{{description}}</a>
+                  </td>
+                </tr>
+              {{/tests}}
+            </tbody>
           </table>
         </div>
       </div>
@@ -50,49 +63,19 @@
         </div>
       </div>
     </div>
-
     <footer>
       <p>&copy; SoundCloud 2011</p>
     </footer>
-
   </div>
+
   <script src="/js/augment-0.3.1.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script src="/js/prettify.js"></script>
   <script src="/js/awpy.js"></script>
+  <script src="/js/runner.js"></script>
   <script>
-  (function() {
-    var list = AWPY.tests.get(), runBtn;
-
-    document.getElementById('tests').firstElementChild.innerHTML = list.map(function(test, i) {
-      return '<tr><td>' + test.description + '</td><td><span class="label result">N/A</span></td></tr>';
-    }).join('');
-
-    (runBtn = document.getElementById('run')).addEventListener('click', function runTests(ev) {
-      runBtn.removeEventListener('click', runTests);
-
-      var counter = 0, results = document.getElementsByClassName('result'), score = 0;
-      runBtn.className += ' disabled';
-      runBtn.innerHTML = 'Running...';
-
-      AWPY.tests.run(function() {
-        var resultNode = results[list.indexOf(this)];
-        resultNode.className += this.result === undefined ? ' warning' : this.result ? ' success' : ' important';
-        resultNode.innerHTML =  this.result === undefined ? 'TIMEOUT' : this.result ? 'WIN' : 'FAIL';
-
-        if (this.result) {
-          score++;
-        }
-
-        if (++counter === list.length) {
-          runBtn.className = runBtn.className.replace(/primary|disabled/g, '');
-          runBtn.innerHTML = 'Score: ' + score + '/' + list.length;
-          // Save results to BrowserScope
-          AWPY.tests.save();
-          // Show BrowserScope widget
-          AWPY.tests.display();
-        }
-      });
-    }, false);
-  }());
+    AWPY.tests.init([{{{js}}}]);
+    AWPY.runner.init();
   </script>
 </body>
 </html>

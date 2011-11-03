@@ -37,12 +37,17 @@ body {
   margin: -20px -20px 20px;
 }
 
-.page-header h1 {
+.page-header h1 a:visited,
+.page-header h1 a:active,
+.page-header h1 a:link,
+.page-header h1 a:hover,
+.page-header h1 a {
   color: #f60;
-/*  text-shadow: -1px 2px #f60;*/
   text-align: left;
   font-size: 40px;
+  text-decoration: none;
 }
+
 
 #browserscope, .label, .btn {
   -webkit-transition: all .6s ease;
@@ -52,10 +57,30 @@ body {
           transition: all .6s ease;
 }
 
-#run {
+.run {
   outline: none;
   width: 100%;
+}
+
+.run.big {
   font-size: 18px;
+}
+
+.run.small {
+  font-size: 15px;
+}
+
+td {
+  font-size: 14px;
+}
+
+td:first-child {
+  width: 50%;
+}
+
+#breadcrumb {
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 #browserscope {

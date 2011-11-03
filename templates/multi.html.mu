@@ -73,6 +73,7 @@
   <script src="/js/prettify.js"></script>
   <script src="/js/awpy.js"></script>
   <script src="/js/runner.js"></script>
+  <script src="/js/ga.js"></script>
   <script>
     AWPY.tests.init([{{{js}}}]);
     AWPY.runner.init();

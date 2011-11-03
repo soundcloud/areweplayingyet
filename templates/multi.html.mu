@@ -24,30 +24,29 @@
       </div>
       <div class="row">
         <div class="span10">
-          <p id="breadcrumb" class="single">
-            <a href="/" title="AreWePlayingYet?">Tests</a> &gt; <span class="description"></span>
-          </p>
-          <div class="multi">
-            <h2>A pragmatic HTML5 Audio browser benchmark</h2>
-            <p>This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers. We want to build the best HTML5 audio player on the web and we need help from the browser developers for that. As the specifications left room to interpretation, some of the features got implemented not as well they could be.  We don't want to write code for different browsers, and to make this real we need to know that we can rely on them instead. Please join the discussion on <a href="http://twitter.com/areweplayingyet">@areweplayingyet</a>!</p>
-          </div>
+          <h2>A pragmatic HTML5 Audio browser benchmark</h2>
+          <p>This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers. We want to build the best HTML5 audio player on the web and we need help from the browser developers for that. As the specifications left room to interpretation, some of the features got implemented not as well they could be.  We don't want to write code for different browsers, and to make this real we need to know that we can rely on them instead. Please join the discussion on <a href="http://twitter.com/areweplayingyet">@areweplayingyet</a>!</p>
           <p>
-            <button class="run big btn full-width">Run it!</button>
+            <button class="run big btn full-width">Run all tests!</button>
           </p>
         </div>
       </div>
       <div class="row">
         <div class="span10">
-          <table id="tests" class="multi zebra-striped">
-            <tbody></tbody>
+          <table id="tests" class="zebra-striped">
+            <tbody>
+              {{#tests}}
+                <tr class="test">
+                  <td>
+                    <button class="btn run small" data-test-name="{{name}}">Run</button>
+                  </td>
+                  <td>
+                    <a href="/tests/{{name}}">{{description}}</a>
+                  </td>
+                </tr>
+              {{/tests}}
+            </tbody>
           </table>
-          <div class="single">
-            <h4>Test code:</h4>
-            <pre id="code" class="prettyprint"></pre>
-            <h4>Description:</h4>
-            <p class="longdesc">{{longdesc}}</p>
-            <p><a class="spec" href="#">Specification</a></p>
-          </div>
         </div>
       </div>
       <div id="browserscope" class="row">
@@ -69,25 +68,14 @@
     </footer>
   </div>
 
-  <script id="test-row-tmpl" type="text/html">
-    <tr class="test">
-      <td>
-        <button class="btn run small" data-test-name="{{name}}">Run</button>
-      </td>
-      <td>
-        <a href="/#{{name}}">{{description}}</a>
-      </td>
-    </tr>
-  </script>
-
   <script src="/js/augment-0.3.1.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
   <script src="/js/prettify.js"></script>
   <script src="/js/awpy.js"></script>
-  <script src="/js/router.js"></script>
   <script src="/js/runner.js"></script>
   <script>
-    AWPY.router.init();
+    AWPY.tests.init([{{{js}}}]);
+    AWPY.runner.init();
   </script>
 </body>
 </html>

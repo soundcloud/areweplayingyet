@@ -19,7 +19,7 @@ AWPY.runner = {
     $('.run').one('click', function(ev) {
       ev.preventDefault();
       var testName = $(this).data('test-name');
-      var elements = testName ? $(this) : $('.run');
+      var elements = testName ? $(this) : $('.run:not(.disabled)');
       elements.addClass('disabled').html('Running');
       AWPY.tests.run(testName, function(test) {
         AWPY.runner.end(test, testName);

@@ -49,6 +49,12 @@
           </table>
         </div>
       </div>
+      <div class="row">
+        <div class="span10">
+          <h4>Wanna help us?</h4>
+          <p>Submit issues, suggestions, etc… on <a href="https://github.com/soundcloud/areweplayingyet/issues">github</a>.</p>
+        </div>
+      </div>
       <div id="browserscope" class="row">
         <div class="span10">
           <h3>BrowserScope results</h3>

@@ -6,6 +6,8 @@ AWPY.runner = {
       'FAIL': 'danger'
     }[test.result]).unbind();
 
+    _gaq.push(['_trackEvent', 'Tests', test.result, test.name]);
+
     if (!single) {
       var tests = AWPY.tests.get();
       var score = tests.filter(function(test) {

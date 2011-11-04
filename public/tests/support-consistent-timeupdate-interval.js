@@ -1,8 +1,6 @@
 ({
   name: 'support-consistent-timeupdate-interval',
   description: 'Consistent timeupdate interval (15ms - 250ms)',
-  spec: '#',
-  longdesc: '',
   assert: function(finish) {
     var audio = this.audio = new Audio(),
         lastTime, count = 0;

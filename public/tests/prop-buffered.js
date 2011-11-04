@@ -2,7 +2,6 @@
   name: 'prop-buffered',
   description: 'Property "buffered"',
   spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-media-buffered',
-  longdesc: '',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

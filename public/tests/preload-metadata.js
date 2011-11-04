@@ -2,7 +2,6 @@
   name: 'preload-metadata',
   description: 'Attribute "preload" with value "metadata"',
   spec: 'http://dev.w3.org/html5/spec/Overview.html#attr-media-preload',
-  longdesc: '',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

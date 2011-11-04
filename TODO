@@ -1,6 +1,8 @@
 Tests:
   event-suspend event-emptied event-stalled event-waiting
 
+Get some art directions from Kasper & define a graphic identity.
+Implement logo, graphic changes
 Move audio assets to CDN
 Review all tests
 Add descriptions where needed

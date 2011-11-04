@@ -2,7 +2,6 @@
   name: 'prop-autoplay',
   description: 'Property "autoplay"',
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#attr-media-autoplay',
-  longdesc: '',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

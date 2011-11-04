@@ -2,7 +2,6 @@
   name: 'prop-defaultPlaybackRate',
   description: 'Property "defaultPlaybackRate"',
   spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-media-defaultplaybackrate',
-  longdesc: '',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

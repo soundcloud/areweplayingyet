@@ -2,7 +2,6 @@
   name: 'prop-currentTime',
   description: 'Property "currentTime"',
   spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-media-currenttime',
-  longdesc: '',
   assert: function(finish) {
     var audio = this.audio = new Audio();
     audio.addEventListener('loadedmetadata', function() {

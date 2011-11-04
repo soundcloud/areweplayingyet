@@ -34,13 +34,17 @@ connect.createServer(
     });
 
     app.get('/tests/:name', function(req, res, name) {
-      var js = rawTests[req.params.name];
-      var test = eval(js);
-      test.code = test.assert.toString().split('\n').slice(1).slice(0, -1).join('\n');
-      test.js = js;
+      if (!rawTests[req.params.name]) {
+        res.statusCode = 404;
+        res.end();
+      } else {
+        var test = eval(rawTests[req.params.name]);
+        test.code = test.assert.toString().split('\n').slice(1).slice(0, -1).join('\n');
+        test.js = rawTests[req.params.name];
 
-      res.statusCode = 200;
-      mu.render('single.html.mu', test).pipe(res);
+        res.statusCode = 200;
+        mu.render('single.html.mu', test).pipe(res);
+      }
     });
 
     app.get('/', function(req, res, name) {

@@ -6,8 +6,6 @@ AWPY.runner = {
       'FAIL': 'danger'
     }[test.result]).unbind();
 
-    _gaq.push(['_trackEvent', 'Tests', test.result, test.name]);
-
     if (!single) {
       var tests = AWPY.tests.get();
       var score = tests.filter(function(test) {
@@ -15,6 +13,12 @@ AWPY.runner = {
       }).length;
 
       $('.run.big').html('Score: ' + score + '/' + tests.length);
+
+      if (AWPY.tests.finished().length == tests.length) {
+        AWPY.tests.save();
+      }
+    } else {
+      AWPY.tests.save();
     }
   },
   init: function() {

@@ -1,9 +1,8 @@
 var connect  = require('connect');
 var mu       = require('mu');
 var fs       = require('fs');
-var path     = require('path');
 
-mu.root = path.join(__dirname, 'templates');
+mu.root = __dirname + '/templates';
 ['single', 'multi'].forEach(function(template) {
   mu.compile(template + '.html.mu', function(err, data) {
     if (err) { throw err; }
@@ -55,5 +54,6 @@ connect.createServer(
       mu.render('multi.html.mu', { tests: tests, js: js }).pipe(res);
     });
   }),
-  connect.static(__dirname + '/public')
+  connect.static(__dirname + '/public'),
+  connect.favicon(__dirname + '/public/favicon.ico')
 ).listen(process.env.PORT || 3000);

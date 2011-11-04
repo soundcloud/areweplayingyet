@@ -49,12 +49,12 @@ body {
 }
 
 
-#browserscope, .label, .btn {
-  -webkit-transition: all .6s ease;
-     -moz-transition: all .6s ease;
-      -ms-transition: all .6s ease;
-       -o-transition: all .6s ease;
-          transition: all .6s ease;
+.label, .btn {
+  -webkit-transition: background-color .6s ease;
+     -moz-transition: background-color .6s ease;
+      -ms-transition: background-color .6s ease;
+       -o-transition: background-color .6s ease;
+          transition: background-color .6s ease;
 }
 
 .run {

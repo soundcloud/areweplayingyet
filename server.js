@@ -47,7 +47,9 @@ connect.createServer(
     });
 
     app.get('/', function(req, res, name) {
-      var js = Object.keys(rawTests).map(function(testName) { return rawTests[testName]; }).join(',');
+      var js = Object.keys(rawTests).map(function(testName) {
+        return rawTests[testName];
+      }).join(',');
       var tests = eval('[' + js + ']');
 
       res.statusCode = 200;

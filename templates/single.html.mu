@@ -11,9 +11,9 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <link rel="stylesheet" href="/css/bootstrap.css">
-  <link rel="stylesheet" href="/css/awpy.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prettify.css">
+  <link rel="stylesheet" href="/css/awpy.css">
   <link rel="shortcut icon" href="/favicon.ico">
 </head>
 <body>
@@ -63,7 +63,7 @@
   </div>
 
   <script src="/js/augment-0.3.1.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
   <script src="/js/prettify.js"></script>
   <script src="/js/awpy.js"></script>
   <script src="/js/runner.js"></script>

@@ -24,7 +24,7 @@ fs.readdir('./public/tests/', function(err, list) {
 });
 
 connect.createServer(
-  connect.logger(),
+  connect.logger('dev'),
   connect.router(function(app) {
     app.get('/sound-long.:format/redirect', function(req, res, next) {
       res.statusCode = 303;
@@ -55,5 +55,6 @@ connect.createServer(
     });
   }),
   connect.static(__dirname + '/public'),
+  connect.staticCache(),
   connect.favicon(__dirname + '/public/favicon.ico')
 ).listen(process.env.PORT || 3000);

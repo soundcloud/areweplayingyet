@@ -33,16 +33,26 @@ connect.createServer(
     });
 
     app.get('/:name', function(req, res, name) {
-      if (!rawTests[req.params.name]) {
+      var extension = (req.params.name.match(/\.(\w+)$/) || [,])[1];
+      var testName  = req.params.name.replace(/\.\w+$/, '');
+
+      if (!rawTests[testName]) {
         res.statusCode = 404;
         res.end();
-      } else {
-        var test = eval(rawTests[req.params.name]);
+      } else if (!extension) {
+        var test = eval(rawTests[testName]);
         test.code = test.assert.toString().split('\n').slice(1).slice(0, -1).join('\n');
-        test.js = rawTests[req.params.name];
+        test.js = rawTests[testName];
 
         res.statusCode = 200;
         mu.render('single.html.mu', test).pipe(res);
+      } else if (extension === 'js') {
+        res.statusCode = 303;
+        res.setHeader('Location', '/tests/' + req.params.name);
+        res.end();
+      } else {
+        res.statusCode = 404;
+        res.end();
       }
     });
 

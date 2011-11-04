@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="stylesheet" href="/css/awpy.css">
-  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/images/favicon.ico">
 </head>
 <body>
   <div class="container">

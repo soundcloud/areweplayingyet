@@ -31,7 +31,7 @@ body {
 
 /* Page header tweaks */
 .page-header {
-  background: url('../logo.png') no-repeat 535px 2px;
+  background: url('../images/logo.png') no-repeat 535px 2px;
   background-size: 75px 75px;
   padding: 20px 20px 10px;
   margin: -20px -20px 20px;

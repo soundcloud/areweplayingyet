@@ -26,13 +26,13 @@ fs.readdir('./public/tests/', function(err, list) {
 connect.createServer(
   connect.logger('dev'),
   connect.router(function(app) {
-    app.get('/sound-long.:format/redirect', function(req, res, next) {
+    app.get('/sounds/long.:format/redirect', function(req, res, next) {
       res.statusCode = 303;
       res.setHeader('Location', req.params.format === 'mp3' ? sound.stream_url : sound.download_url);
       res.end();
     });
 
-    app.get('/tests/:name', function(req, res, name) {
+    app.get('/:name', function(req, res, name) {
       if (!rawTests[req.params.name]) {
         res.statusCode = 404;
         res.end();
@@ -58,5 +58,5 @@ connect.createServer(
   }),
   connect.static(__dirname + '/public'),
   connect.staticCache(),
-  connect.favicon(__dirname + '/public/favicon.ico')
+  connect.favicon(__dirname + '/public/images/favicon.ico')
 ).listen(process.env.PORT || 3000);

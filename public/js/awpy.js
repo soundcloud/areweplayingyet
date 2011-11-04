@@ -124,7 +124,7 @@ AWPY.sound = (function() {
   Object.keys(sounds).forEach(function(type) {
     var runs = 0;
     sounds[type].stream_url = function(cached) {
-      var url = 'http://areweplayingyet.herokuapp.com/sound-' + type + '.' + AWPY.config.codec;
+      var url = 'http://areweplayingyet.herokuapp.com/sounds/' + type + '.' + AWPY.config.codec;
 
       if (cached || runs++ < 1) {
         return url;

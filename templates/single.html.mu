@@ -43,19 +43,6 @@
           <p>Submit issues, suggestions, etc… on <a href="https://github.com/soundcloud/areweplayingyet/issues">github</a>.</p>
         </div>
       </div>
-      <div id="browserscope" class="row">
-        <div class="span10">
-          <h3>BrowserScope results</h3>
-          <table class="zebra-striped">
-            <thead>
-              <tr>
-                <td>Browser</td><td>Count</td><td>Score</td>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
     </div>
     <footer>
       <p>&copy; SoundCloud 2011</p>

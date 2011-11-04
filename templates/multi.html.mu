@@ -57,7 +57,6 @@
       </div>
       <div id="browserscope" class="row">
         <div class="span10">
-          <h3>BrowserScope results</h3>
           <table class="zebra-striped">
             <thead>
               <tr>

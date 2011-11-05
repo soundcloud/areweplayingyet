@@ -17,7 +17,7 @@
       }
     }, false);
 
-    audio.setAttribute('src', AWPY.sound.long.stream_url + (Math.random() * 1e9 | 0)); // Bust cache
+    audio.setAttribute('src', AWPY.sound.long.stream_url + '?' + (Math.random() * 1e9 | 0)); // Bust cache
     audio.load();
   }
 })

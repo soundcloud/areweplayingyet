@@ -5,8 +5,7 @@
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>{{description}} | AreWePlayingYet?</title>
-  <meta name="description" content="{{description}} | AreWePlayingYet?">
+  <title>{{description}} | AreWePlayingYet? — A pragmatic HTML5 Audio benchmark</title>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -24,9 +23,7 @@
       </div>
       <div class="row">
         <div class="span10">
-          <p id="breadcrumb">
-            <a href="/" title="AreWePlayingYet?">Tests</a> &gt; <span>{{description}}</span>
-          </p>
+          <h2>{{description}}</h2>
           <p>
             <button class="run big btn full-width" data-test-name="{{name}}">Run it!</button>
           </p>

@@ -25,17 +25,6 @@ AWPY.tests = (function() {
   return {
     init: function(tests) {
       list = tests;
-
-      // Insert the 3 audio assets into the browser cache
-      Object.keys(AWPY.sound).forEach(function(type) {
-        var obj = new Audio(AWPY.sound[type].stream_url);
-        obj.addEventListener('canplay', function() {
-          obj.setAttribute('src', '');
-          obj.load();
-        }, false);
-        obj.load();
-      });
-
     },
     run: function(testName, callback) {
       var globalCleanup = function(test) {

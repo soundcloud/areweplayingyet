@@ -14,7 +14,7 @@
     }, false);
 
     audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.short.stream_url());
+    audio.setAttribute('src', AWPY.sound.short.stream_url);
     audio.volume = 0;
   }
 })

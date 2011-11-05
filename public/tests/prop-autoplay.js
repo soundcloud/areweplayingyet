@@ -16,6 +16,6 @@
     }, false);
     audio.setAttribute('autoplay', true);
     audio.volume = 0;
-    audio.setAttribute('src', AWPY.sound.short.stream_url(true));
+    audio.setAttribute('src', AWPY.sound.short.stream_url);
   }
 })

@@ -14,6 +14,10 @@ AWPY.runner = {
 
       $('.run.big').html('Score: ' + score + '/' + tests.length);
 
+      $('html, body').animate({
+        scrollTop: $('.run[data-test-name="' + test.name + '"]').parents('tr').offset().top
+      });
+
       if (AWPY.tests.finished().length == tests.length) {
         AWPY.tests.save();
         this.showResults();
@@ -35,10 +39,6 @@ AWPY.runner = {
           return '<tr><td>' + browser + '</td><td>' + count + '</td><td><span class="label ' + ranking + '">' + score + '%</span></td></tr>';
         }).join('')
       );
-
-      $('html, body').animate({
-        scrollTop: $('#browserscope').offset().top
-      });
     });
   },
   init: function() {

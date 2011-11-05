@@ -6,10 +6,8 @@
     var audio = this.audio = new Audio();
 
     audio.addEventListener('loadedmetadata', function() {
-      audio.addEventListener('timeupdate', function() {
-        finish(audio.currentTime === 1);
-      }, false);
       audio.currentTime = 1;
+      finish(audio.currentTime === 1);
     }, false);
 
     audio.setAttribute('src', AWPY.sound.mini.stream_url);

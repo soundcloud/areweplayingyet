@@ -29,11 +29,11 @@ AWPY.tests = (function() {
       // Insert the 3 audio assets into the browser cache
       Object.keys(AWPY.sound).forEach(function(type) {
         var obj = new Audio(AWPY.sound[type].stream_url);
-        obj.load();
-        setTimeout(function() {
+        obj.addEventListener('canplay', function() {
           obj.setAttribute('src', '');
           obj.load();
-        }, 1000);
+        }, false);
+        obj.load();
       });
 
     },

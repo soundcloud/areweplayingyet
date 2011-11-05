@@ -9,11 +9,11 @@
     }, false);
 
     audio.addEventListener('loadedmetadata', function() {
+      audio.volume = 0;
       audio.play();
     });
 
-    audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.short.stream_url(true));
-    audio.volume = 0;
+    audio.setAttribute('src', AWPY.sound.mini.stream_url);
+    audio.load();
   }
 })

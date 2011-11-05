@@ -5,10 +5,10 @@
     var audio = this.audio = new Audio();
 
     audio.addEventListener('loadedmetadata', function() {
-      finish( true );
+      finish(true);
     }, false);
 
-    audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.short.stream_url());
+    audio.setAttribute('src', AWPY.sound.short.stream_url);
+    audio.load();
   }
 })

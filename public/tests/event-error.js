@@ -5,19 +5,15 @@
     var audio = this.audio = new Audio();
 
     audio.addEventListener('error', function() {
-      finish(true);
+      finish(true); // WIN
     }, false);
 
     audio.addEventListener('loadedmetadata', function() {
-      audio.play();
-      setTimeout(function(){
-        audio.src = '';
-        audio.load();
-      },3000);
+      audio.setAttribute('src', '');
+      audio.load(); // Should trigger error soon
     });
 
-    audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.long.stream_url(true));
-    audio.volume = 0;
+    audio.setAttribute('src', AWPY.sound.mini.stream_url);
+    audio.load();
   }
 })

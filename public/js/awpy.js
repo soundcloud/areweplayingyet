@@ -25,17 +25,6 @@ AWPY.tests = (function() {
   return {
     init: function(tests) {
       list = tests;
-
-      // Insert the 3 audio assets into the browser cache
-      Object.keys(AWPY.sound).forEach(function(type) {
-        var obj = new Audio(AWPY.sound[type].stream_url);
-        obj.load();
-        setTimeout(function() {
-          obj.setAttribute('src', '');
-          obj.load();
-        }, 1000);
-      });
-
     },
     run: function(testName, callback) {
       var globalCleanup = function(test) {
@@ -49,17 +38,20 @@ AWPY.tests = (function() {
       };
 
       list.filter(function(test) {
-        return (testName ? test.name === testName : true) && !test.finished;
+        return test.name === testName && !test.finished;
       }).forEach(function(test) {
-        var globalTimeout = setTimeout(function() {
+        var failTimeout = setTimeout(function() {
           test.finished = true;
-          test.result = 'TIMEOUT';
+          test.result = 'FAIL';
           globalCleanup(test);
           callback.call(null, test);
-        }, 15000);
+        }, 20000);
 
         test.assert(function(result) {
-          clearTimeout(globalTimeout);
+          if (failTimeout) {
+            clearTimeout(failTimeout);
+          }
+
           if (!test.finished) {
             test.finished = true;
             globalCleanup(test);

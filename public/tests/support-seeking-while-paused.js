@@ -6,12 +6,11 @@
 
     audio.addEventListener('loadedmetadata', function() {
       var seekTo = AWPY.sound.short.duration * 0.5;
-      audio.volume = 0;
       audio.currentTime = seekTo;
-      finish(Math.abs(audio.currentTime - seekTo) < 100);
+      finish(audio.currentTime === seekTo);
     }, false);
 
     audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.short.stream_url());
+    audio.setAttribute('src', AWPY.sound.short.stream_url);
   }
 })

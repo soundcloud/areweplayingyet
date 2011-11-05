@@ -7,18 +7,17 @@
 
     audio.addEventListener('loadedmetadata', function() {
       setTimeout(function() {
-        audio.addEventListener('progress', function progress() {
-          audio.removeEventListener('progress', progress, false);
-          finish(false);
+        audio.addEventListener('progress', function() {
+          finish(false); // Still loading data - FAIL
         }, false);
 
         setTimeout(function() {
-          finish(true);
-        }, 500);
-      }, 5000);
+          finish(true); // Stoped loading data - WIN
+        }, 1000);
+      }, 1000); // Wait 1 sec
     }, false);
 
     audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.short.stream_url());
+    audio.setAttribute('src', AWPY.sound.short.stream_url);
   }
 })

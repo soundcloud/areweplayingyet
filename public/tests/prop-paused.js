@@ -5,6 +5,6 @@
   assert: function(finish) {
     var audio = this.audio = new Audio();
 
-    finish( 'paused' in audio );
+    finish('paused' in audio);
   }
 })

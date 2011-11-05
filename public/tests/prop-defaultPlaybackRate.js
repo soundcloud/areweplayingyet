@@ -6,10 +6,10 @@
     var audio = this.audio = new Audio();
 
     if (!('defaultPlaybackRate' in audio)) {
-      finish( false );
+      finish(false);
     }
 
     audio.defaultPlaybackRate = 0.5;
-    finish( audio.defaultPlaybackRate === 0.5 );
+    finish(audio.defaultPlaybackRate === 0.5);
   }
 })

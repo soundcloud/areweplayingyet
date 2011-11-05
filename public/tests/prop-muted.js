@@ -6,10 +6,10 @@
     var audio = this.audio = new Audio();
 
     if (!('muted' in audio)) {
-      finish( false );
+      finish(false);
     }
 
     audio.muted = true;
-    finish( audio.muted === true );
+    finish(audio.muted === true);
   }
 })

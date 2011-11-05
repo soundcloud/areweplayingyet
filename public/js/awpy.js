@@ -51,7 +51,7 @@ AWPY.tests = (function() {
           if (tests[i + 1]) {
             run(tests, i + 1);
           }
-        }, 20000);
+        }, 10000);
 
         test.assert(function(result) {
           if (failTimeout) {

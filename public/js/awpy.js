@@ -1,14 +1,16 @@
 var AWPY = {
   config: {
     codec: (function() {
-      var audio = new Audio();
-      if (audio.canPlayType && (/probably|maybe/).test(audio.canPlayType('audio/mpeg'))) {
-        return 'mp3';
-      } else if (audio.canPlayType && (/probably|maybe/).test(audio.canPlayType('audio/ogg'))) {
-        return 'ogg';
-      } else {
-        return 'wav';
-      }
+      var audio = new Audio(), result;
+
+      ['mp3', 'ogg', 'aac', 'wav'].forEach(function(codec, i, list) {
+        result = codec;
+        if (/probably|maybe/.test(audio.canPlayType('audio/' + codec))) {
+          list.length = i;
+        }
+      });
+
+      return result;
     }()),
     browserscope: {
       key: 'agt1YS1wcm9maWxlcnINCxIEVGVzdBijlecJDA',
@@ -23,6 +25,17 @@ AWPY.tests = (function() {
   return {
     init: function(tests) {
       list = tests;
+
+      // Insert the 3 audio assets into the browser cache
+      Object.keys(AWPY.sound).forEach(function(type) {
+        var obj = new Audio(AWPY.sound[type].stream_url);
+        obj.load();
+        setTimeout(function() {
+          obj.setAttribute('src', '');
+          obj.load();
+        }, 1000);
+      });
+
     },
     run: function(testName, callback) {
       var globalCleanup = function(test) {
@@ -87,35 +100,22 @@ AWPY.tests = (function() {
   };
 }());
 
-AWPY.sound = (function() {
-  var sounds = {
-    mini: {
-      duration: 2377 / 1000
-    },
-    short: {
-      duration: 227325 / 1000
-    },
-    long: {
-      duration: 4046210 / 1000
-    }
-  };
+AWPY.sound = {
+  mini: {
+    duration: 2.377,
+    stream_url: 'http://areweplayingyet.org/sounds/mini.' + AWPY.config.codec
+  },
+  short: {
+    duration: 227.325,
+    stream_url: 'http://areweplayingyet.org/sounds/short.' + AWPY.config.codec
+  },
+  long: {
+    duration: 4046.210,
+    stream_url: 'http://areweplayingyet.org/sounds/long.' + AWPY.config.codec
+  }
+};
 
-  Object.keys(sounds).forEach(function(type) {
-    var runs = 0;
-    sounds[type].stream_url = function(cached) {
-      var url = 'http://areweplayingyet.herokuapp.com/sounds/' + type + '.' + AWPY.config.codec;
-
-      if (cached || runs++ < 1) {
-        return url;
-      } else {
-        return url + '?' + (Math.random() * 1e9 | 0);
-      }
-    };
-  });
-
-  return sounds;
-}());
-
+// Debugging function
 AWPY.logEvents = function(audio){
   var events = 'loadstart progress suspend abort error emptied stalled loadedmetadata ' +
       'loadeddata canplay canplaythrough playing waiting seeking seeked ended durationchange ' +

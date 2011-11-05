@@ -37,6 +37,7 @@ connect.createServer(
       var testName  = req.params.name.replace(/\.\w+$/, '');
 
       if (!rawTests[testName]) {
+        // TODO: need to add proper 404 page
         res.statusCode = 404;
         res.end();
       } else if (!extension) {
@@ -51,6 +52,7 @@ connect.createServer(
         res.setHeader('Location', '/tests/' + req.params.name);
         res.end();
       } else {
+        // TODO: need to add proper 404 page
         res.statusCode = 404;
         res.end();
       }

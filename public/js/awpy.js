@@ -38,7 +38,7 @@ AWPY.tests = (function() {
       };
 
       list.filter(function(test) {
-        return test.name === testName && !test.finished;
+        return (testName ? test.name === testName : true) && !test.finished;
       }).forEach(function(test) {
         var failTimeout = setTimeout(function() {
           test.finished = true;

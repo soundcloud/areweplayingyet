@@ -1,5 +1,5 @@
 ({
-  name: 'support-hot-swapping',
+  name: 'support-hot-swapping-src',
   description: 'Hot swapping audio src',
   longdesc: 'Audio should allow src changes without re-initializing the object.',
   assert: function(finish) {

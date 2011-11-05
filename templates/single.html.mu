@@ -35,7 +35,7 @@
           <pre class="prettyprint">{{code}}</pre>
           <h4>Description:</h4>
           <p class="longdesc">{{longdesc}}</p>
-          <p><a class="spec" href="{{spec}}">Specification</a></p>
+          {{#spec}}<p><a class="spec" href="{{spec}}">Specification</a></p>{{/spec}}
           {{#TODOKTX}}
             <h4>Browser compatibility</h4>
           {{/TODOKTX}}

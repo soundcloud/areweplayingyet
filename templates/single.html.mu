@@ -9,7 +9,7 @@
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="stylesheet" href="/css/awpy.css">
@@ -33,9 +33,15 @@
         <div class="span10">
           <h4>Test code:</h4>
           <pre class="prettyprint">{{code}}</pre>
-          <h4>Description:</h4>
-          <p class="longdesc">{{longdesc}}</p>
-          {{#spec}}<p><a class="spec" href="{{spec}}">Specification</a></p>{{/spec}}
+          {{#longdesc}}
+            <h4>Description:</h4>
+            <p class="longdesc">{{longdesc}}</p>
+          {{/longdesc}}
+          {{#spec}}
+            <p>
+              <a class="spec" href="{{spec}}">Specification</a>
+            </p>
+          {{/spec}}
           {{#TODOKTX}}
             <h4>Browser compatibility</h4>
           {{/TODOKTX}}

@@ -10,6 +10,6 @@
     }
 
     audio.volume = 0.5;
-    finish( audio.volume === 0.5 );
+    finish(audio.volume === 0.5);
   }
 })

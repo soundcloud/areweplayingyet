@@ -6,7 +6,7 @@
     var audio = this.audio = new Audio();
 
     audio.addEventListener('seeked', function() {
-      finish( true );
+      finish(true);
     }, false);
 
     audio.addEventListener('loadedmetadata', function() {
@@ -15,13 +15,9 @@
       } else {
         audio.currentTime = AWPY.sound.long.duration / 8;
       }
-
-      setTimeout(function() {
-        finish( false );
-      }, 10000);
     }, false);
 
-    audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.long.stream_url);
+    audio.setAttribute('src', AWPY.sound.long.stream_url + (Math.random() * 1e9 | 0)); // Bust cache
+    audio.load();
   }
 })

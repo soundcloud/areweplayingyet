@@ -6,10 +6,10 @@
     var audio = this.audio = new Audio();
 
     if (!('playbackRate' in audio)) {
-      finish( false );
+      finish(false);
     }
 
     audio.playbackRate = 0.5;
-    finish( audio.playbackRate === 0.5 );
+    finish(audio.playbackRate === 0.5);
   }
 })

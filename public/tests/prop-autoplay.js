@@ -6,16 +6,13 @@
     var audio = this.audio = new Audio();
 
     audio.addEventListener('loadedmetadata', function() {
-      audio.addEventListener('timeupdate', function timeUpdate() {
-        audio.removeEventListener('timeupdate', timeUpdate, false);
+      audio.volume = 0;
+      audio.addEventListener('timeupdate', function() {
         finish(true);
       }, false);
-      setTimeout(function() {
-        finish(false);
-      }, 5000);
     }, false);
+
     audio.setAttribute('autoplay', true);
-    audio.volume = 0;
-    audio.setAttribute('src', AWPY.sound.short.stream_url);
+    audio.setAttribute('src', AWPY.sound.mini.stream_url);
   }
 })

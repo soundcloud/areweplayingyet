@@ -6,10 +6,10 @@
     var audio = this.audio = new Audio();
 
     audio.addEventListener('loadedmetadata', function() {
-      finish( audio.seekable && audio.seekable.length );
+      finish(audio.seekable && audio.seekable.length);
     }, false);
 
-    audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.long.stream_url);
+    audio.setAttribute('src', AWPY.sound.mini.stream_url);
+    audio.load();
   }
 })

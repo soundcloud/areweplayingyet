@@ -38,17 +38,20 @@ AWPY.tests = (function() {
       };
 
       list.filter(function(test) {
-        return (testName ? test.name === testName : true) && !test.finished;
+        return test.name === testName && !test.finished;
       }).forEach(function(test) {
-        var globalTimeout = setTimeout(function() {
+        var failTimeout = setTimeout(function() {
           test.finished = true;
-          test.result = 'TIMEOUT';
+          test.result = 'FAIL';
           globalCleanup(test);
           callback.call(null, test);
-        }, 15000);
+        }, 20000);
 
         test.assert(function(result) {
-          clearTimeout(globalTimeout);
+          if (failTimeout) {
+            clearTimeout(failTimeout);
+          }
+
           if (!test.finished) {
             test.finished = true;
             globalCleanup(test);

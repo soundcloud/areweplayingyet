@@ -5,11 +5,9 @@
     var audio = this.audio = new Audio();
 
     audio.addEventListener('volumechange', function() {
-      finish( audio.volume === 0.5 );
+      finish(true);
     }, false);
 
-    audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.short.stream_url);
     audio.volume = 0.5;
   }
 })

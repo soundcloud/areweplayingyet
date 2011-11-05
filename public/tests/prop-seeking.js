@@ -6,15 +6,15 @@
     var audio = this.audio = new Audio();
 
     if (!('seeking' in audio)) {
-      finish( false );
+      finish(false);
     }
 
     audio.addEventListener('loadedmetadata', function() {
       audio.currentTime = 100;
-      finish ( audio.seeking );
+      finish(audio.seeking);
     }, false);
 
-    audio.setAttribute('preload', 'metadata');
     audio.setAttribute('src', AWPY.sound.short.stream_url);
+    audio.load();
   }
 })

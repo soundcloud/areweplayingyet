@@ -9,10 +9,7 @@
       finish(true);
     }, false);
 
-    audio.setAttribute('preload', 'metadata');
     audio.setAttribute('src', AWPY.sound.long.stream_url + '/redirect');
-    setTimeout(function() {
-      finish(false);
-    }, 10000);
+    audio.load();
   }
 })

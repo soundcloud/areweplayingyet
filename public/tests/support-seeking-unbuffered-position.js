@@ -7,35 +7,34 @@
         counter = 0,
         result = true;
 
+    audio.addEventListener('seeked', function() {
+      if (audio.paused || Math.abs(audio.currentTime - seekedTime) > 100) {
+        finish(false);
+      }
+
+      audio.addEventListener('timeupdate', function() {
+        if (++counter > 20) {
+          finish(result);
+        } else if (!audio.paused && audio.currentTime > seekedTime) {
+          result = true;
+        } else {
+          result = false;
+        }
+      }, false);
+    }, false);
+
     audio.addEventListener('loadedmetadata', function() {
       audio.volume = 0;
       audio.play();
-      audio.currentTime = seekedTime = AWPY.sound.long.duration * 0.5;
-      setTimeout(function() {
-        if (audio.paused || Math.abs(audio.currentTime - seekedTime) > 100) {
-          finish(false);
-        }
 
-        audio.addEventListener('timeupdate', function timeUpdate() {
-          if (++counter > 20) {
-            audio.removeEventListener('timeupdate', timeUpdate, false);
-            finish(result);
-          } else if (!audio.paused && audio.currentTime > seekedTime) {
-            result = true;
-          } else {
-            result = false;
-          }
-        }, false);
-
-        setTimeout(function() {
-          if (!counter) {
-            finish(false);
-          }
-        }, 1500);
-      }, 1000);
+      if (audio.buffered.length) {
+        audio.currentTime = seekedTime = audio.buffered.end(0) + 60;
+      } else {
+        audio.currentTime = seekedTime = AWPY.sound.long.duration * 0.5;
+      }
     }, false);
 
     audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.long.stream_url);
+    audio.setAttribute('src', AWPY.sound.long.stream_url + '?' + (Math.random() * 1e9 | 0));
   }
 })

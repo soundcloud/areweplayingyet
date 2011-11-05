@@ -11,10 +11,6 @@
     audio.addEventListener('loadstart', function() {
       audio.setAttribute('src', '');
       audio.load(); // Should trigger abort soon
-
-      setTimeout(function() {
-        finish(false); // FAIL
-      }, 1000);
     });
 
     audio.setAttribute('src', AWPY.sound.short.stream_url + '?' + (Math.random() * 1e10 | 0)); // Bust cache

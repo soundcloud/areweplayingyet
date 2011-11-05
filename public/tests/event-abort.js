@@ -8,16 +8,16 @@
       finish(true);
     }, false);
 
-    audio.addEventListener('loadedmetadata', function() {
-      audio.play();
-      setTimeout(function(){
-        audio.src = '';
-        audio.load();
-      },3000);
+    audio.addEventListener('loadstart', function() {
+      audio.setAttribute('src', '');
+      audio.load(); // Should trigger abort now
+
+      setTimeout(function() {
+        finish(false); // Didn't trigger abort
+      }, 1000);
     });
 
-    audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.long.stream_url(true));
-    audio.volume = 0;
+    audio.setAttribute('src', AWPY.sound.short.stream_url());
+    audio.load();
   }
 })

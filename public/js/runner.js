@@ -44,6 +44,9 @@ AWPY.runner = {
   init: function() {
     $('.run').one('click', function(ev) {
       ev.preventDefault();
+      if ($(this).hasClass('disabled')) {
+        return;
+      }
       var testName = $(this).data('test-name');
       var elements = testName ? $(this) : $('.run:not(.disabled)');
       elements.addClass('disabled').html('Running');

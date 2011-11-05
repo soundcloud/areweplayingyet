@@ -5,15 +5,15 @@
     var audio = this.audio = new Audio();
 
     audio.addEventListener('abort', function() {
-      finish(true);
+      finish(true); // WIN
     }, false);
 
     audio.addEventListener('loadstart', function() {
       audio.setAttribute('src', '');
-      audio.load(); // Should trigger abort now
+      audio.load(); // Should trigger abort soon
 
       setTimeout(function() {
-        finish(false); // Didn't trigger abort
+        finish(false); // FAIL
       }, 1000);
     });
 

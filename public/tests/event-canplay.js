@@ -5,10 +5,14 @@
     var audio = this.audio = new Audio();
 
     audio.addEventListener('canplay', function() {
-      finish(true);
+      finish(true); // WIN
     }, false);
 
     audio.setAttribute('src', AWPY.sound.mini.stream_url);
-    audio.load();
+    audio.load(); // Should trigger canplay soon
+
+    setTimeout(function() {
+      finish(false); // FAIL
+    }, 1000);
   }
 })

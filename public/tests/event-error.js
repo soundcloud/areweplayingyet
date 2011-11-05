@@ -13,7 +13,7 @@
       audio.load(); // Should trigger error soon
     });
 
-    audio.setAttribute('src', AWPY.sound.mini.stream_url);
+    audio.setAttribute('src', AWPY.sound.mini.stream_url());
     audio.load();
   }
 })

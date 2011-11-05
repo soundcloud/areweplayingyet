@@ -13,6 +13,6 @@
       audio.play();
     }, false);
 
-    audio.setAttribute('src', AWPY.sound.mini.stream_url);
+    audio.setAttribute('src', AWPY.sound.mini.stream_url());
   }
 })

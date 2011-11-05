@@ -13,7 +13,7 @@
       audio.load(); // Should trigger abort soon
     });
 
-    audio.setAttribute('src', AWPY.sound.short.stream_url + '?' + (Math.random() * 1e10 | 0)); // Bust cache
+    audio.setAttribute('src', AWPY.sound.short.stream_url());
     audio.load();
   }
 })

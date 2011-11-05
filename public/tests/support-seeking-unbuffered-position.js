@@ -35,6 +35,6 @@
     }, false);
 
     audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.long.stream_url + '?' + (Math.random() * 1e9 | 0));
+    audio.setAttribute('src', AWPY.sound.long.stream_url());
   }
 })

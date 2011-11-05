@@ -9,7 +9,7 @@
       finish(true);
     }, false);
 
-    audio.setAttribute('src', AWPY.sound.long.stream_url + '/redirect');
+    audio.setAttribute('src', AWPY.sound.long.stream_url() + '/redirect');
     audio.load();
   }
 })

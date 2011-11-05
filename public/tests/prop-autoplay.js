@@ -13,6 +13,6 @@
     }, false);
 
     audio.setAttribute('autoplay', true);
-    audio.setAttribute('src', AWPY.sound.mini.stream_url);
+    audio.setAttribute('src', AWPY.sound.mini.stream_url());
   }
 })

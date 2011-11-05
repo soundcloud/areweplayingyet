@@ -27,6 +27,7 @@ AWPY.tests = (function() {
       list = tests;
     },
     run: function(testName, callback) {
+      var single = !!testName;
       var globalCleanup = function(test) {
         if (!test.audio) {
           return;
@@ -36,30 +37,37 @@ AWPY.tests = (function() {
         test.audio.load();
         delete test.audio;
       };
+      var tests = list.filter(function(test) {
+        return (single ? test.name === testName : true) && !test.finished;
+      });
 
-      list.filter(function(test) {
-        return (testName ? test.name === testName : true) && !test.finished;
-      }).forEach(function(test) {
+      (function run(tests, i) {
+        var test = tests[i];
         var failTimeout = setTimeout(function() {
           test.finished = true;
           test.result = 'FAIL';
           globalCleanup(test);
           callback.call(null, test);
+          if (tests[i + 1]) {
+            run(tests, i + 1);
+          }
         }, 20000);
 
         test.assert(function(result) {
           if (failTimeout) {
             clearTimeout(failTimeout);
           }
-
           if (!test.finished) {
             test.finished = true;
             globalCleanup(test);
             test.result = result ? 'WIN' : 'FAIL';
             callback.call(null, test);
+            if (tests[i + 1]) {
+              run(tests, i + 1);
+            }
           }
         });
-      });
+      }(tests, 0));
     },
     get: function(testName) {
       return list.filter(function(item) {
@@ -92,20 +100,27 @@ AWPY.tests = (function() {
   };
 }());
 
-AWPY.sound = {
-  mini: {
-    duration: 2.377,
-    stream_url: 'http://areweplayingyet.org/sounds/mini.' + AWPY.config.codec
-  },
-  short: {
-    duration: 227.325,
-    stream_url: 'http://areweplayingyet.org/sounds/short.' + AWPY.config.codec
-  },
-  long: {
-    duration: 4046.210,
-    stream_url: 'http://areweplayingyet.org/sounds/long.' + AWPY.config.codec
-  }
-};
+AWPY.sound = (function() {
+  var sounds = {
+    mini: {
+      duration: 2.377,
+    },
+    short: {
+      duration: 227.325,
+    },
+    long: {
+      duration: 4046.210,
+    }
+  };
+
+  Object.keys(sounds).forEach(function(type) {
+    sounds[type].stream_url = function() {
+      return 'http://areweplayingyet.org/sounds/' + type + '.' + AWPY.config.codec + '?' + (Math.random() * 1e9 | 0);
+    };
+  });
+
+  return sounds;
+}());
 
 // Debugging function
 AWPY.logEvents = function(audio){

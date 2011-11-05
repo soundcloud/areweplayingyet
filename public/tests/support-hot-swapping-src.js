@@ -7,12 +7,11 @@
 
     audio.addEventListener('loadedmetadata', function() {
       audio.removeEventListener('loadedmetadata', arguments.callee, false);
-      audio.currentTime = 1;
+      audio.volume = 0.5;
       audio.addEventListener('loadedmetadata', function() {
-        finish(audio.currentTime === 1);
+        finish(audio.volume === 0.5);
       }, false);
       audio.setAttribute('src', AWPY.sound.short.stream_url);
-      audio.load();
     }, false);
 
     audio.setAttribute('src', AWPY.sound.mini.stream_url);

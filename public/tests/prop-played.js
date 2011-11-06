@@ -1,7 +1,13 @@
 ({
   name: 'prop-played',
   description: 'Property "played"',
-  spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-mediacontroller-played',
+  spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-played',
+  reports: {
+    firefox: {
+      desc: 'Patch should get landed soon.',
+      link: 'https://bugzilla.mozilla.org/show_bug.cgi?id=462959'
+    }
+  },
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

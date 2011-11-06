@@ -11,3 +11,4 @@ Tests:
 [all] File bug reports
 [tomas] Browser compatibility table
 + verify why currentTime fails on Firefox in the benchmark but not on the single test page!!!
++ create a README/blogpost (see SC Open Source Guideline), give github read access for external developers

@@ -1,7 +1,7 @@
 ({
   name: 'preload-metadata',
   description: 'Attribute "preload" with value "metadata"',
-  spec: 'http://dev.w3.org/html5/spec/Overview.html#attr-media-preload',
+  spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#attr-media-preload',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

@@ -1,7 +1,7 @@
 ({
   name: 'event-durationchange',
   description: 'Event "durationchange"',
-  spec: 'http://www.w3.org/TR/html5/video.html#event-media-durationchange',
+  spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#event-media-durationchange',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

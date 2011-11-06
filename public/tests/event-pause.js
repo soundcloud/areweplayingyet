@@ -1,6 +1,7 @@
 ({
   name: 'event-pause',
   description: 'Event "pause"',
+  spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#event-media-pause',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

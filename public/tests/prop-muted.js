@@ -1,7 +1,7 @@
 ({
   name: 'prop-muted',
   description: 'Property "muted"',
-  spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-mediacontroller-muted',
+  spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-muted',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

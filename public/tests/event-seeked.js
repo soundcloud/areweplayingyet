@@ -1,6 +1,7 @@
 ({
   name: 'event-seeked',
   description: 'Event "seeked"',
+  spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#event-media-seeked',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

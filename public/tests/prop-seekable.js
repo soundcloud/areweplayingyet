@@ -1,7 +1,7 @@
 ({
   name: 'prop-seekable',
   description: 'Property "seekable"',
-  spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-media-seekable',
+  spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-seekable',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

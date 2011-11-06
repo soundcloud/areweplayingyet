@@ -1,7 +1,7 @@
 ({
   name: 'prop-buffered',
   description: 'Property "buffered"',
-  spec: 'http://dev.w3.org/html5/spec/Overview.html#dom-media-buffered',
+  spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-buffered',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

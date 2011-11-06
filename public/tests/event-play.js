@@ -1,6 +1,7 @@
 ({
   name: 'event-play',
   description: 'Event "play"',
+  spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#event-media-play',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 

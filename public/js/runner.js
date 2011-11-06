@@ -15,10 +15,6 @@ AWPY.runner = {
 
       $('.run.big').html('Score: ' + score + '/' + tests.length);
 
-      $('html, body').animate({
-        scrollTop: $('.run[data-test-name="' + test.name + '"]').parents('tr').offset().top
-      });
-
       if (AWPY.tests.finished().length == tests.length) {
         AWPY.tests.save();
         this.showResults();

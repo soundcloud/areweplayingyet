@@ -15,7 +15,6 @@ body {
 /* The white background content wrapper */
 .content {
   background-color: #fbfbfb;
-  text-align: justify;
   padding: 20px;
   margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
   -webkit-border-radius: 6px;
@@ -88,10 +87,4 @@ td:first-child {
   display: none;
   overflow: hidden;
   margin-top: 20px;
-}
-
-#acidhouse {
-  margin-top: 30px;
-  width: 100%;
-  height: 300px;
 }

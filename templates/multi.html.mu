@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>AreWePlayingYet? — A pragmatic HTML5 Audio benchmark</title>
+  <title>AreWePlayingYet? — A pragmatic HTML5 Audio test suite</title>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="author" content="SoundCloud - Tomás Senart, Yves Van Goethem, Kasper Lahti, Matas Petrikas">
+  <meta name="description" content="AreWePlayingYet? - A pragmatic HTML5 Audio test suite">
   <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="stylesheet" href="/css/awpy2.css">

@@ -1,6 +1,8 @@
 var connect  = require('connect');
 var mu       = require('mu');
 var fs       = require('fs');
+var util     = require('util');
+
 
 mu.root = __dirname + '/templates';
 ['single', 'multi', '404'].forEach(function(template) {
@@ -11,21 +13,37 @@ mu.root = __dirname + '/templates';
 
 var rawTests = {};
 
-fs.readdir('./public/tests/', function(err, list) {
+fs.readdir(__dirname + '/public/tests/', function(err, list) {
   list.sort().reverse().forEach(function(file) {
-    rawTests[file.replace(/\.js/, '')] = fs.readFileSync('./public/tests/' + file, 'utf8');
+    rawTests[file.replace(/\.js/, '')] = fs.readFileSync(__dirname + '/public/tests/' + file, 'utf8');
   });
 });
 
 connect.createServer(
   connect.logger('dev'),
-  connect.static(__dirname + '/public'),
-  connect.favicon(__dirname + '/public/images/favicon.ico'),
   connect.router(function(app) {
     app.get('/sounds/:sound.:format/redirect', function(req, res, next) {
       res.statusCode = 303;
       res.setHeader('Location', '/sounds/' + req.params.sound + '.' + req.params.format);
       res.end();
+    });
+
+    app.get('/sounds/:sound.:format/stall', function(req, res, next) {
+      var path = __dirname + '/public/sounds/' + req.params.sound + '.' + req.params.format;
+      var stat = fs.statSync(path);
+      var stream;
+
+      res.writeHead(200, {
+        'Content-Length': stat.size,
+        'Content-Type': 'audio/' + req.params.format
+      });
+
+      stream = fs.createReadStream(path);
+      stream.pause();
+      stream.pipe(res);
+      setTimeout(function() {
+        stream.resume();
+      }, 3100);
     });
 
     app.get('/:name', function(req, res, name) {
@@ -63,5 +81,8 @@ connect.createServer(
       res.statusCode = 200;
       mu.render('multi.html.mu', { tests: tests, js: js }).pipe(res);
     });
-  })
+  }),
+  connect.staticCache(),
+  connect.static(__dirname + '/public'),
+  connect.favicon(__dirname + '/public/images/favicon.ico')
 ).listen(process.env.PORT || 3000);

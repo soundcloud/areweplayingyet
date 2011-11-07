@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/* @override
+=======
 /* @override 
+>>>>>>> 5185f8305599f2c12a7e0526114ef5c06e872fa3
 	http://localhost:3000/css/awpy2.css */
 
 * { margin: 0; padding: 0; }
@@ -78,7 +82,11 @@ table.header td:first-child {
   text-transform: capitalize;
 }
 
+<<<<<<< HEAD
+.content .zebra-striped tbody tr td > * {
+=======
 .content table tbody tr td > * {
+>>>>>>> 5185f8305599f2c12a7e0526114ef5c06e872fa3
   margin: 10px;
 }
 
@@ -107,7 +115,11 @@ table.header td:first-child {
 }
 
 .content .zebra-striped tbody tr:hover {
+<<<<<<< HEAD
+
+=======
   
+>>>>>>> 5185f8305599f2c12a7e0526114ef5c06e872fa3
 }
 
 .content .zebra-striped tbody tr:nth-child(odd) td {
@@ -205,7 +217,11 @@ table.header td:first-child {
   text-shadow: 0 1px 2px #FFF;
 }
 
+<<<<<<< HEAD
+.btn:active,
+=======
 .btn:active, 
+>>>>>>> 5185f8305599f2c12a7e0526114ef5c06e872fa3
 .page-header .submit a:active {
   -moz-box-shadow: 0 1px 0 #ffffff, inset 0 1px 0 rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 0 #ffffff, inset 0 1px 0 rgba(0, 0, 0, 0.5);
@@ -291,7 +307,11 @@ background-size: 24px;
   font-size: 16px;
   line-height: 35px;
   text-indent: -2px;
+<<<<<<< HEAD
+
+=======
   
+>>>>>>> 5185f8305599f2c12a7e0526114ef5c06e872fa3
   position: absolute;
   top: 50%;
   left: 50%;

@@ -1,12 +1,6 @@
-Tests:
-  event-suspend event-stalled event-waiting
-
 [kasper - yves] Get some art directions from Kasper & define a graphic identity.
 [kasper - yves] Implement logo, graphic changes
-[tomas] Move audio assets to CDN
-[all] Review all tests
-[tomas] Add descriptions where needed
-[all] Link to spec
+[tomas] Adapt code to CDN assets
 [all] Search for related bug reports
 [all] File bug reports
-+ create a README/blogpost (see SC Open Source Guideline), give github read access for external developers
+[matas] create a README/blogpost (see SC Open Source Guideline)

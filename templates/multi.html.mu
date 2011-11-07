@@ -9,7 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="author" content="SoundCloud - Tomás Senart, Yves Van Goethem, Kasper Lahti, Matas Petrikas">
   <meta name="description" content="AreWePlayingYet? - A pragmatic HTML5 Audio test suite">
-  <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="stylesheet" href="/css/awpy2.css">
   <link rel="shortcut icon" href="/images/favicon.ico">

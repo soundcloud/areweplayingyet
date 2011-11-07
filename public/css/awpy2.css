@@ -1,18 +1,41 @@
-* { margin: 0; padding: 0; }
-html, body {
+/* -----------------------------------------------------------------------------
+    authors:  Kasper Lahti, Yves Van Goethem
+    summary:  RESET
+              GENERIC
+              TABLE_HEADERS
+              TABLE_BODYS
+              PAGE_HEADER
+              SINGLE_PAGE
+              BROWSER_ISSUES
+              PAGE_FOOTER
+----------------------------------------------------------------------------- */
+
+/* =RESET
+----------------------------------------------------------------------------- */
+* { margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; }
+body {
   background-color: #EEE;
   font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0 !important;
   padding: 0 !important;
 }
-
 a {
   text-decoration: none;
 }
+ul {
+  list-style: none;
+}
 
+/* =GENERIC
+----------------------------------------------------------------------------- */
 .container {
   width: 100%;
   position: relative;
@@ -41,8 +64,8 @@ a {
   position: relative;
 }
 
-/* Table Header */
-
+/* =TABLE_HEADERS
+----------------------------------------------------------------------------- */
 #browserscope thead,
 table.header {
   position: absolute;
@@ -96,37 +119,36 @@ table.header tr td:first-child {
   width: 50%;
 }
 
-/* Table Body */
-
-.content .zebra-striped tbody {
+/* =TABLE_BODYS
+----------------------------------------------------------------------------- */
+.zebra-striped tbody {
   background-color: #FFF;
 }
 
-.content .zebra-striped tbody tr td {
+.zebra-striped .genre {
   text-transform: capitalize;
 }
 
-.content .zebra-striped tbody tr td > * {
+.zebra-striped tbody td > * {
   margin: 10px;
 }
 
-.content table tbody tr td:first-child {
+table tbody td:first-child {
   text-align: center;
 }
 
-.content table tbody tr td {
+table tbody td {
   padding: 10px;
 }
 
-.content table tbody tr td a {
+table tbody a {
   color: #000;
-  text-indent: 10px;
 }
 
-.content .zebra-striped tbody tr:hover {
+.zebra-striped tbody tr:hover {
 }
 
-.content .zebra-striped tbody tr:nth-child(odd) td {
+.zebra-striped tbody tr:nth-child(odd) td {
   background-color: #f5f5f5;
 }
 
@@ -146,8 +168,8 @@ table.header tr td:first-child {
   margin-top: 2px;
 }
 
-/* Page Header */
-
+/* =PAGE_HEADER
+----------------------------------------------------------------------------- */
 .page-header {
   position: fixed;
   margin: 0;
@@ -328,8 +350,8 @@ background-size: 24px;
   text-decoration: none;
 }
 
-/* Single Page */
-
+/* =SINGLE_PAGE
+----------------------------------------------------------------------------- */
 .section-header {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -357,8 +379,8 @@ pre {
   width: 70%;
 }
 
-/* Browser Issues */
-
+/* =BROWSER_ISSUES
+----------------------------------------------------------------------------- */
 ul li {
   margin: 10px;
 }
@@ -371,9 +393,10 @@ ul li {
   padding: 10px;
 }
 
-/* Footer */
-
+/* =PAGE_FOOTER
+----------------------------------------------------------------------------- */
 footer {
+  display: block;
   background: #f3f3f3;
   background: -moz-linear-gradient(top,  #f3f3f3 0%, #e4e4e4 1%, #b6b6b6 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(1%,#e4e4e4), color-stop(100%,#b6b6b6));

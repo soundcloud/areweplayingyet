@@ -88,6 +88,7 @@
   <script>
     AWPY.tests.init([{{{js}}}]);
     AWPY.runner.init();
+    AWPY.runner.showResults(AWPY.tests.get()[0]);
     prettyPrint();
   </script>
 </body>

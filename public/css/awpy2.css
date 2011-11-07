@@ -43,7 +43,7 @@ ul {
 }
 
 .content {
-  margin-top: 88px;
+  margin-top: 92px;
   padding-bottom: 50px;
 }
 
@@ -80,7 +80,7 @@ table.header {
 }
 #browserscope thead tr td, 
 table.header td {
-  border-left: 1px solid #aeb1b5;
+  border-left: 2px groove;
   padding: 7px 9px 5px;
   font-weight: bold;
   font-size: 11px;
@@ -137,6 +137,10 @@ table tbody td:first-child {
   text-align: center;
 }
 
+.single.content table tbody tr td:first-child {
+  text-align: left;
+}
+
 table tbody td {
   padding: 10px;
 }
@@ -145,27 +149,32 @@ table tbody a {
   color: #000;
 }
 
-.zebra-striped tbody tr:hover {
-}
-
 .zebra-striped tbody tr:nth-child(odd) td {
   background-color: #f5f5f5;
 }
 
 .btn.small {
   border-radius: 20px;
-  width: 29px;
   text-indent: 1px;
   font-size: 16px;
   padding: 0 !important;
+  margin: 0!important;
   width: 31px;
   height: 31px;
+}
+
+.btn.big img {
+  width: 60%;
+  height: 60%;
+  margin-top: 8px;
+  margin-right: 3px;
 }
 
 .btn.small img {
   width: 75%;
   height: 75%;
-  margin-top: 2px;
+  margin-top: 4px;
+  margin-right: 2px;
 }
 
 /* =PAGE_HEADER
@@ -245,17 +254,17 @@ table tbody a {
 
 .btn:active,
 .page-header .submit a:active {
-  -moz-box-shadow: 0 1px 0 #ffffff, inset 0 1px 0 rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0 1px 0 #ffffff, inset 0 1px 0 rgba(0, 0, 0, 0.5);
-  box-shadow: 0 1px 0 #ffffff, inset 0 1px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 1px #ffffff, inset 0 1px 0 rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 1px #ffffff, inset 0 1px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 1px #ffffff, inset 0 1px 0 rgba(0, 0, 0, 0.5);
 }
 
 .page-header .play .btn.big {
   float: left;
   border-radius: 25px;
   font-size: 20px;
-  line-height: 30px;
-  text-indent: -2px;
+  line-height: 42px;
+  text-indent: 3px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -365,8 +374,9 @@ background-size: 24px;
 
 .section-header + * {
   margin-left: 20%;
-  margin-top: -36px;
+  margin-top: -34px;
   margin-bottom: 20px;
+  font-size: 14px;
 }
 
 pre {

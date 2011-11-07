@@ -54,11 +54,7 @@
           {{/tests}}
         </tbody>
       </table>
-      <!-- <div class="row">
-        <div class="span">
-          <h4>Wanna help us?</h4>
-          <p>Submit issues, suggestions, etc… on <a href="https://github.com/soundcloud/areweplayingyet/issues">github</a>.</p>
-        </div>
+      <div class="row">
       </div>
       <div id="browserscope" class="row">
         <div class="span">
@@ -71,7 +67,7 @@
             <tbody></tbody>
           </table>
         </div>
-      </div> -->
+      </div>
     </div>
     <footer>
       <p>&copy; SoundCloud 2011</p>

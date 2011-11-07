@@ -1,5 +1,5 @@
 ({
-  name: 'prop-played',
+  name: 'property-played',
   description: 'Property "played"',
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-played',
   reports: {

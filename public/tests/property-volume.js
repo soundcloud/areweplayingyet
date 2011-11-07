@@ -1,5 +1,5 @@
 ({
-  name: 'prop-volume',
+  name: 'property-volume',
   description: 'Property "volume"',
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-volume',
   assert: function(finish) {

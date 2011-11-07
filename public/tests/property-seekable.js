@@ -1,12 +1,12 @@
 ({
-  name: 'prop-buffered',
-  description: 'Property "buffered"',
-  spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-buffered',
+  name: 'property-seekable',
+  description: 'Property "seekable"',
+  spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-seekable',
   assert: function(finish) {
     var audio = this.audio = new Audio();
 
     audio.addEventListener('loadedmetadata', function() {
-      finish(audio.buffered && audio.buffered.length);
+      finish(audio.seekable && audio.seekable.length);
     }, false);
 
     audio.setAttribute('src', AWPY.sound.mini.stream_url());

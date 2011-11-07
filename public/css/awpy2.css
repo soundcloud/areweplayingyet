@@ -70,6 +70,14 @@ table.header td:first-child {
 
 /* Table Body */
 
+.content .zebra-striped tbody {
+  background-color: #FFF;
+}
+
+.content .zebra-striped tbody tr td {
+  text-transform: capitalize;
+}
+
 .content table tbody tr td > * {
   margin: 10px;
 }

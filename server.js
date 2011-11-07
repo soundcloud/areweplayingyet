@@ -57,7 +57,9 @@ connect.createServer(
         return rawTests[testName];
       }).join(',');
       var tests = eval('[' + js + ']');
-
+      tests.forEach(function(test) {
+        test.genre = test.name.split('-')[0];
+      });
       res.statusCode = 200;
       mu.render('multi.html.mu', { tests: tests, js: js }).pipe(res);
     });

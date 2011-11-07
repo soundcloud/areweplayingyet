@@ -1,5 +1,5 @@
 ({
-  name: 'prop-muted',
+  name: 'property-muted',
   description: 'Property "muted"',
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-muted',
   assert: function(finish) {

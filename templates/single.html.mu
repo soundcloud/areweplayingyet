@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
   <meta name="author" content="SoundCloud - Tomás Senart, Yves Van Goethem, Kasper Lahti, Matas Petrikas">
   <meta name="description" content="{{description}} | AreWePlayingYet? - A pragmatic HTML5 Audio test suite">
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="stylesheet" href="/css/awpy2.css">
   <link rel="shortcut icon" href="/images/favicon.ico">
@@ -33,10 +33,10 @@
       </div>
       <div class="row">
         <div class="span">
-          <h4>Test code:</h4>
+          <h4 class="section-header">Test code:</h4>
           <pre class="prettyprint">{{code}}</pre>
           {{#longdesc}}
-            <h4>Description:</h4>
+            <h4 class="section-header">Description:</h4>
             <p class="longdesc">{{longdesc}}</p>
           {{/longdesc}}
           {{#spec}}
@@ -45,10 +45,10 @@
             </p>
           {{/spec}}
           {{#TODOKTX}}
-            <h4>Browser compatibility</h4>
+            <h4 class="section-header">Browser compatibility</h4>
           {{/TODOKTX}}
           {{#reports}}
-            <h4>Browser issues</h4>
+            <h4 class="section-header">Browser issues</h4>
             <ul>
       {{#firefox}}<li>{{#link}}<a href="{{link}}">{{/link}}Firefox:           {{desc}}{{#link}}</a>{{/link}}</li>{{/firefox}}
         {{#opera}}<li>{{#link}}<a href="{{link}}">{{/link}}Opera:             {{desc}}{{#link}}</a>{{/link}}</li>{{/opera}}
@@ -62,7 +62,7 @@
  {{#safariMobile}}<li>{{#link}}<a href="{{link}}">{{/link}}Safari Mobile:     {{desc}}{{#link}}</a>{{/link}}</li>{{/safariMobile}}
             </ul>
           {{/reports}}
-          <h4>Wanna help us?</h4>
+          <h4 class="section-header">Wanna help us?</h4>
           <p>Submit browser issues, suggestions to AWPY, etc… on <a href="https://github.com/soundcloud/areweplayingyet/issues">github</a>.</p>
         </div>
       </div>

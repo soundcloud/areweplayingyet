@@ -4,7 +4,7 @@
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-played',
   reports: {
     firefox: {
-      desc: 'Patch should get landed soon.',
+      desc: 'Bug 462959 - Implement nsIDOMHTMLMediaElement::GetPlayed()',
       link: 'https://bugzilla.mozilla.org/show_bug.cgi?id=462959'
     }
   },

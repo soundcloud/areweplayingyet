@@ -32,8 +32,8 @@
           <thead>
             <tr>
               <td>&nbsp;</td>
-              <td>Name</td>
-              <td>Genre</td>
+              <td class="name">Name</td>
+              <td class="genre">Genre</td>
             </tr>
           </thead>
         </table>
@@ -45,7 +45,7 @@
               <td>
                 <button class="btn run small" data-test-name="{{name}}"><span>▶</span></button>
               </td>
-              <td>
+              <td class="name">
                 <a href="/{{name}}">{{description}}</a>
               </td>
               <td class="genre">{{genre}}</td>

@@ -46,25 +46,6 @@ connect.createServer(
       }, 3100);
     });
 
-    app.get('/sounds/:sound.:format/wait', function(req, res, next) {
-      var path = __dirname + '/public/sounds/' + req.params.sound + '.' + req.params.format;
-      var stat = fs.statSync(path);
-      var stream;
-
-      res.writeHead(200, {
-        'Content-Length': stat.size,
-        'Content-Type': 'audio/' + req.params.format
-      });
-
-      stream = fs.createReadStream(path);
-      stream.pipe(res);
-      setTimeout(function() {
-        stream.pause();
-        setTimeout(res.end, 2000);
-      }, 1000);
-    });
-
-
     app.get('/:name', function(req, res, name) {
       var extension = (req.params.name.match(/\.(\w+)$/) || [,])[1];
       var testName  = req.params.name.replace(/\.\w+$/, '');

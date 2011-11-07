@@ -9,12 +9,6 @@ mu.root = __dirname + '/templates';
   });
 });
 
-var sound = {
-  duration: 4046210,
-  stream_url: 'https://api.soundcloud.com/tracks/25906673/stream?oauth_token=1f267b9842b777a99eb79588d80294b8',
-  download_url: 'https://api.soundcloud.com/tracks/25906673/download?oauth_token=1f267b9842b777a99eb79588d80294b8'
-};
-
 var rawTests = {};
 
 fs.readdir('./public/tests/', function(err, list) {
@@ -26,9 +20,9 @@ fs.readdir('./public/tests/', function(err, list) {
 connect.createServer(
   connect.logger('dev'),
   connect.router(function(app) {
-    app.get('/sounds/long.:format/redirect', function(req, res, next) {
+    app.get('/sounds/:sound.:format/redirect', function(req, res, next) {
       res.statusCode = 303;
-      res.setHeader('Location', req.params.format === 'mp3' ? sound.stream_url : sound.download_url);
+      res.setHeader('Location', '/sounds/' + req.params.sound + '.' + req.params.format);
       res.end();
     });
 
@@ -67,6 +61,5 @@ connect.createServer(
     });
   }),
   connect.static(__dirname + '/public'),
-  connect.staticCache(),
   connect.favicon(__dirname + '/public/images/favicon.ico')
 ).listen(process.env.PORT || 3000);

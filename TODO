@@ -1,9 +1,8 @@
 [kasper - yves] Get some art directions from Kasper & define a graphic identity.
 [kasper - yves] Implement logo, graphic changes
-[tomas - alx] Move audio assets to CDN
+[tomas] Adapt code to CDN assets
 [tomas] Add descriptions where needed
 [all] Link to spec
 [all] Search for related bug reports
 [all] File bug reports
-+ create a README/blogpost (see SC Open Source Guideline), give github read access for external developers
-reset browserscope
++ create a README/blogpost (see SC Open Source Guideline)

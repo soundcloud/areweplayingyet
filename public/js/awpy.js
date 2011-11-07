@@ -115,7 +115,8 @@ AWPY.sound = (function() {
 
   Object.keys(sounds).forEach(function(type) {
     sounds[type].stream_url = function() {
-      return 'http://areweplayingyet.org/sounds/' + type + '.' + AWPY.config.codec + '?' + (Math.random() * 1e9 | 0);
+      return '/sounds/' + type + '.' + AWPY.config.codec + '?' + (Math.random() * 1e9 | 0);
+      // return 'http://areweplayingyet.org/sounds/' + type + '.' + AWPY.config.codec + '?' + (Math.random() * 1e9 | 0);
     };
   });
 

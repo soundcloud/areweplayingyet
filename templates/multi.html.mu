@@ -11,18 +11,28 @@
   <meta name="description" content="AreWePlayingYet? - A pragmatic HTML5 Audio test suite">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prettify.css">
-  <link rel="stylesheet" href="/css/awpy.css">
+  <link rel="stylesheet" href="/css/awpy2.css">
   <link rel="shortcut icon" href="/images/favicon.ico">
 </head>
 <body>
   <div class="container">
     <div class="content">
       <div class="page-header">
-        <h1><a href="/">Are We Playing Yet?</a></h1>
+        <div class="play">
+          <button class="run btn big">▶</button>
+          <label>Run All Tests</label>
+        </div>
+        <div class="submit">
+          <a href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
+          <label>Submit issues, suggestions, etc…</label>
+        </div>
+        <div class="display">
+          <h1><a href="/">Are We Playing Yet?</a></h1>
+          <h2>A pragmatic HTML5 Audio browser benchmark</h2>
+        </div>
       </div>
       <div class="row">
-        <div class="span10">
-          <h2>A pragmatic HTML5 Audio test suite</h2>
+        <div class="span">
           <p>
             This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers.
             We want to build the best HTML5 audio player on the web and we need help from the browser vendors for that.
@@ -30,18 +40,17 @@
             Please join the discussion on <a href="http://twitter.com/areweplayingyet">@areweplayingyet</a>!
           </p>
           <p>
-            <button class="run big btn full-width">Run all tests!</button>
           </p>
         </div>
       </div>
       <div class="row">
-        <div class="span10">
+        <div class="span">
           <table id="tests" class="zebra-striped">
             <tbody>
               {{#tests}}
                 <tr class="test">
                   <td>
-                    <button class="btn run small" data-test-name="{{name}}">Run</button>
+                    <button class="btn run small" data-test-name="{{name}}">▶</button>
                   </td>
                   <td>
                     <a href="/{{name}}" title="Open single test">{{description}}</a>
@@ -53,13 +62,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="span10">
+        <div class="span">
           <h4>Wanna help us?</h4>
           <p>Submit issues, suggestions, etc… on <a href="https://github.com/soundcloud/areweplayingyet/issues">github</a>.</p>
         </div>
       </div>
       <div id="browserscope" class="row">
-        <div class="span10">
+        <div class="span">
           <table class="zebra-striped">
             <thead>
               <tr>

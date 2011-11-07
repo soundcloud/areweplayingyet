@@ -28,38 +28,33 @@
           <h1><a href="/">Are We Playing Yet?</a></h1>
           <h2>A pragmatic HTML5 Audio browser benchmark</h2>
         </div>
+        <table class="header">
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <td>Name</td>
+              <td>Genre</td>
+              <td>Time</td>
+            </tr>
+          </thead>
+        </table>
       </div>
-      <div class="row">
-        <div class="span">
-          <p>
-            This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers.
-            We want to build the best HTML5 audio player on the web and we need help from the browser vendors for that.
-            As the specifications left room to interpretation, some of the features got implemented not as well they could be.
-            Please join the discussion on <a href="http://twitter.com/areweplayingyet">@areweplayingyet</a>!
-          </p>
-          <p>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="span">
-          <table id="tests" class="zebra-striped">
-            <tbody>
-              {{#tests}}
-                <tr class="test">
-                  <td>
-                    <button class="btn run small" data-test-name="{{name}}">▶</button>
-                  </td>
-                  <td>
-                    <a href="/{{name}}">{{description}}</a>
-                  </td>
-                </tr>
-              {{/tests}}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="row">
+      <table id="tests" class="zebra-striped">
+        <tbody>
+          {{#tests}}
+            <tr class="test">
+              <td>
+                <button class="btn run small" data-test-name="{{name}}"><span>▶</span></button>
+              </td>
+              <td>
+                <a href="/{{name}}">{{description}}</a>
+              </td>
+              <td></td>
+            </tr>
+          {{/tests}}
+        </tbody>
+      </table>
+      <!-- <div class="row">
         <div class="span">
           <h4>Wanna help us?</h4>
           <p>Submit issues, suggestions, etc… on <a href="https://github.com/soundcloud/areweplayingyet/issues">github</a>.</p>
@@ -76,7 +71,7 @@
             <tbody></tbody>
           </table>
         </div>
-      </div>
+      </div> -->
     </div>
     <footer>
       <p>&copy; SoundCloud 2011</p>

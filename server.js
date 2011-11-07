@@ -60,6 +60,5 @@ connect.createServer(
       mu.render('multi.html.mu', { tests: tests, js: js }).pipe(res);
     });
   }),
-  connect.static(__dirname + '/public'),
-  connect.favicon(__dirname + '/public/images/favicon.ico')
+  connect.static(__dirname + '/public')
 ).listen(process.env.PORT || 3000);

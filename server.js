@@ -27,13 +27,23 @@ connect.createServer(
     });
 
     app.get('/sounds/:sound.:format/stall', function(req, res, next) {
-      var audioStream = fs.createReadStream(__dirname + '/public/sounds/' + req.params.sound + '.' + req.params.format);
+      var stream = fs.createReadStream(__dirname + '/public/sounds/' + req.params.sound + '.' + req.params.format);
+      var stall = false;
+
       res.statusCode = 200;
-      audioStream.pipe(res);
-      audioStream.pause();
+
+      stream.on('data', function(chunk) {
+        if (!stall) {
+          res.write(chunk);
+        }
+      });
+
+      stream.on('end', res.end);
+
+      stall = true;
       setTimeout(function() {
-        audioStream.resume();
-      }, 3500);
+        stall = false;
+      }, 3100);
     });
 
     app.get('/:name', function(req, res, name) {

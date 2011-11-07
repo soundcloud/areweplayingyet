@@ -88,3 +88,9 @@ td:first-child {
   overflow: hidden;
   margin-top: 20px;
 }
+
+#acidhouse {
+  margin-top: 30px;
+  width: 100%;
+  height: 300px;
+}

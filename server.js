@@ -3,7 +3,7 @@ var mu       = require('mu');
 var fs       = require('fs');
 
 mu.root = __dirname + '/templates';
-['single', 'multi'].forEach(function(template) {
+['single', 'multi', '404'].forEach(function(template) {
   mu.compile(template + '.html.mu', function(err, data) {
     if (err) { throw err; }
   });
@@ -37,9 +37,8 @@ connect.createServer(
       var testName  = req.params.name.replace(/\.\w+$/, '');
 
       if (!rawTests[testName]) {
-        // TODO: need to add proper 404 page
         res.statusCode = 404;
-        res.end();
+        mu.render('404.html.mu').pipe(res);
       } else if (!extension) {
         var test = eval(rawTests[testName]);
         test.code = test.assert.toString().split('\n').slice(1).slice(0, -1).join('\n');
@@ -52,9 +51,8 @@ connect.createServer(
         res.setHeader('Location', '/tests/' + req.params.name);
         res.end();
       } else {
-        // TODO: need to add proper 404 page
         res.statusCode = 404;
-        res.end();
+        mu.render('404.html.mu').pipe(res);
       }
     });
 

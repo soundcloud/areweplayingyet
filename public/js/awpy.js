@@ -3,7 +3,7 @@ var AWPY = {
     codec: (function() {
       var audio = new Audio(), result;
 
-      ['mp3', 'ogg', 'm4a', 'wav'].forEach(function(codec, i, list) {
+      ['mp3', 'ogg', 'aac', 'wav'].forEach(function(codec, i, list) {
         result = codec;
         if (/probably|maybe/.test(audio.canPlayType('audio/' + codec))) {
           list.length = i;

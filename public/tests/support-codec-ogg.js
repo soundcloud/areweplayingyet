@@ -1,5 +1,5 @@
 ({
-  name: 'support-ogg-codec',
+  name: 'support-codec-ogg',
   description: 'Supports OGG codec',
   reports: {
     safari: {

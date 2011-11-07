@@ -1,5 +1,5 @@
 ({
-  name: 'support-mp3-codec',
+  name: 'support-codec-mp3',
   description: 'Supports MP3 codec',
   reports: {
     firefox: {

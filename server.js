@@ -11,9 +11,9 @@ mu.root = __dirname + '/templates';
 
 var rawTests = {};
 
-fs.readdir('./public/tests/', function(err, list) {
+fs.readdir(__dirname + '/public/tests/', function(err, list) {
   list.sort().reverse().forEach(function(file) {
-    rawTests[file.replace(/\.js/, '')] = fs.readFileSync('./public/tests/' + file, 'utf8');
+    rawTests[file.replace(/\.js/, '')] = fs.readFileSync(__dirname + '/public/tests/' + file, 'utf8');
   });
 });
 

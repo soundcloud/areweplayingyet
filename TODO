@@ -3,8 +3,7 @@ Tests:
 
 [kasper - yves] Get some art directions from Kasper & define a graphic identity.
 [kasper - yves] Implement logo, graphic changes
-[tomas] Move audio assets to CDN
-[all] Review all tests
+[tomas - alx] Move audio assets to CDN
 [tomas] Add descriptions where needed
 [all] Link to spec
 [all] Search for related bug reports

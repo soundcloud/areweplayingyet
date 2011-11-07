@@ -14,8 +14,11 @@
 </head>
 <body>
   <div class="container">
-    <div class="content">
+    <div class="content single">
       <div class="page-header">
+        <div class="back">
+          <a class="back" href="/">Are We Playing Yet?</a>
+        </div>
         <div class="play">
           <button class="run big btn" data-test-name="{{name}}">▶</button>
           <label>Run Test</label>
@@ -25,16 +28,15 @@
           <label>Submit issues, suggestions, etc…</label>
         </div>
         <div class="display">
-          <a class="back" href="/">Are We Playing Yet?</a>
           <h1>{{description}}</h1>
         </div>
       </div>
       <div class="row">
         <div class="span">
-          <h4 class="section-header">Test code:</h4>
+          <h4 class="section-header">Test code</h4>
           <pre class="prettyprint">{{code}}</pre>
           {{#longdesc}}
-            <h4 class="section-header">Description:</h4>
+            <h4 class="section-header">Description</h4>
             <p class="longdesc">{{longdesc}}</p>
           {{/longdesc}}
           {{#spec}}
@@ -60,12 +62,11 @@
  {{#safariMobile}}<li>{{#link}}<a href="{{link}}">{{/link}}Safari Mobile:     {{desc}}{{#link}}</a>{{/link}}</li>{{/safariMobile}}
             </ul>
           {{/reports}}
-          <h4 class="section-header">Wanna help us?</h4>
-          <p>Submit browser issues, suggestions to AWPY, etc… on <a href="https://github.com/soundcloud/areweplayingyet/issues">github</a>.</p>
         </div>
       </div>
       <div id="browserscope" class="row">
         <div class="span">
+          <h4 class="section-header">Browser issues</h4>
           <table class="zebra-striped">
             <thead>
               <tr>

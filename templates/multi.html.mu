@@ -21,7 +21,12 @@
       <div class="row">
         <div class="span10">
           <h2>A pragmatic HTML5 Audio browser benchmark</h2>
-          <p>This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers. We want to build the best HTML5 audio player on the web and we need help from the browser developers for that. As the specifications left room to interpretation, some of the features got implemented not as well they could be.  We don't want to write code for different browsers, and to make this real we need to know that we can rely on them instead. Please join the discussion on <a href="http://twitter.com/areweplayingyet">@areweplayingyet</a>!</p>
+          <p>
+            This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers.
+            We want to build the best HTML5 audio player on the web and we need help from the browser vendors for that.
+            As the specifications left room to interpretation, some of the features got implemented not as well they could be.
+            Please join the discussion on <a href="http://twitter.com/areweplayingyet">@areweplayingyet</a>!
+          </p>
           <p>
             <button class="run big btn full-width">Run all tests!</button>
           </p>

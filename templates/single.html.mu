@@ -9,25 +9,28 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prettify.css">
-  <link rel="stylesheet" href="/css/awpy.css">
+  <link rel="stylesheet" href="/css/awpy2.css">
   <link rel="shortcut icon" href="/images/favicon.ico">
 </head>
 <body>
   <div class="container">
     <div class="content">
       <div class="page-header">
-        <h1><a href="/">Are We Playing Yet?</a></h1>
-      </div>
-      <div class="row">
-        <div class="span10">
-          <h2>{{description}}</h2>
-          <p>
-            <button class="run big btn full-width" data-test-name="{{name}}">Run it!</button>
-          </p>
+        <div class="play">
+          <button class="run big btn" data-test-name="{{name}}">▶</button>
+          <label>Run Test</label>
+        </div>
+        <div class="submit">
+          <a href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
+          <label>Submit issues, suggestions, etc…</label>
+        </div>
+        <div class="display">
+          <a class="back" href="/">Are We Playing Yet?</a>
+          <h1>{{description}}</h1>
         </div>
       </div>
       <div class="row">
-        <div class="span10">
+        <div class="span">
           <h4>Test code:</h4>
           <pre class="prettyprint">{{code}}</pre>
           {{#longdesc}}
@@ -62,7 +65,7 @@
         </div>
       </div>
       <div id="browserscope" class="row">
-        <div class="span10">
+        <div class="span">
           <table class="zebra-striped">
             <thead>
               <tr>

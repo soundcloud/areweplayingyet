@@ -12,8 +12,7 @@ var AWPY = {
       return result;
     }()),
     browserscope: {
-      key: 'agt1YS1wcm9maWxlcnINCxIEVGVzdBijlecJDA',
-      sandboxKey: '4efdd178084165d'
+      key: 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjyz7IKDA'
     }
   }
 };
@@ -86,10 +85,7 @@ AWPY.tests = (function() {
 
       window._bTestResults = data;
 
-      $.getJSON('http://www.browserscope.org/user/beacon/' + AWPY.config.browserscope.key +
-        '?sandboxid=' + AWPY.config.browserscope.sandboxKey +
-        '&callback=?'
-      );
+      $.getJSON('http://www.browserscope.org/user/beacon/' + AWPY.config.browserscope.key + '?callback=?');
     },
     finished: function() {
       return list.filter(function(test) {

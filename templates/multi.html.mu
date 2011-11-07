@@ -11,23 +11,28 @@
   <meta name="description" content="AreWePlayingYet? - A pragmatic HTML5 Audio test suite">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="stylesheet" href="/css/awpy.css">
+  <link rel="stylesheet" href="/css/mobile.css" media="handheld, only screen and (max-device-width:540px)">
   <link rel="shortcut icon" href="/images/favicon.ico">
 </head>
 <body>
   <div class="container">
     <div class="content">
-      <div class="page-header">
-        <div class="play">
-          <button class="run btn big">▶</button>
-          <label>Run All Tests</label>
-        </div>
-        <div class="submit">
-          <a href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
-          <label>Submit issues, suggestions, etc…</label>
-        </div>
-        <div class="display">
-          <h1><a href="/">Are We Playing Yet?</a></h1>
-          <h2>A pragmatic HTML5 Audio browser test suite</h2>
+      <header>
+        <div class="page-header">
+          <div class="play">
+            <button class="run btn big">▶</button>
+            <!-- <label>Run All Tests</label> -->
+          </div>
+          <div class="display">
+            <a href="/">
+              <h1>Are We Playing Yet?</h1>
+              <h2>A pragmatic HTML5 Audio browser test suite</h2>
+            </a>
+          </div>
+          <div class="submit">
+            <a href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
+            <!-- <label>Submit issues, suggestions, etc…</label> -->
+          </div>
         </div>
         <table class="header">
           <thead>
@@ -38,7 +43,7 @@
             </tr>
           </thead>
         </table>
-      </div>
+      </header>
       <table id="tests" class="zebra-striped">
         <tbody>
           {{#tests}}

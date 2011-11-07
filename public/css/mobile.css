@@ -1,0 +1,31 @@
+/* -----------------------------------------------------------------------------
+    authors:  Kasper Lahti, Yves Van Goethem
+    summary:  RESET
+              GENERIC
+              TABLE_HEADERS
+              TABLE_BODYS
+              PAGE_HEADER
+              SINGLE_PAGE
+              BROWSER_ISSUES
+              PAGE_FOOTER
+----------------------------------------------------------------------------- */
+/* =RESET
+----------------------------------------------------------------------------- */
+
+/* =GENERIC
+----------------------------------------------------------------------------- */
+
+/* =TABLE_HEADERS
+----------------------------------------------------------------------------- */
+.page-header label,
+.page-header .submit {
+  display: none;
+}
+
+.page-header h1 {
+  font-size: 100%;
+}
+
+.page-header h2 {
+  font-size: 70%;
+}

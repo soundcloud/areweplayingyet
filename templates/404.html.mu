@@ -20,11 +20,12 @@
       <div class="row">
         <div class="span10">
           <h2>The page you were looking for was not found.</h2>
+          <p>Looks like you're stuck listening to Acid House now!</p>
         </div>
       </div>
       <div class="row">
         <div class="span10">
-          <iframe id="acidhouse" src="http://www.youtube.com/embed/V_yHGkhVSEM?rel=0&autoplay=1" frameborder="0"></iframe>
+          <iframe width="100%" height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F27232637&amp;auto_play=true&amp;show_artwork=true&amp;color=ff7700"></iframe>
         </div>
       </div>
    </div>

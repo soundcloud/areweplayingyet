@@ -1,6 +1,6 @@
 ({
-  name: 'support-mp3-format',
-  description: 'Supports MP3 format',
+  name: 'support-mp3-codec',
+  description: 'Supports MP3 codec',
   reports: {
     firefox: {
       desc: 'Bug 562730 - Reproducing Mp3 files with html5 ',

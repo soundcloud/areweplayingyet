@@ -7,6 +7,8 @@
       link: 'https://bugs.webkit.org/show_bug.cgi?id=42750#c3'
     }
   },
+  name: 'support-ogg-codec',
+  description: 'Supports OGG codec',
   assert: function(finish) {
     var audio = this.audio = new Audio();
     finish(/probably|maybe/.test(audio.canPlayType('audio/ogg')));

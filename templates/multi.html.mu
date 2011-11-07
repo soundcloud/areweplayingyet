@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>AreWePlayingYet? — A pragmatic HTML5 Audio benchmark</title>
+  <title>AreWePlayingYet? — A pragmatic HTML5 Audio test suite</title>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="author" content="SoundCloud - Tomás Senart, Yves Van Goethem, Kasper Lahti, Matas Petrikas">
+  <meta name="description" content="AreWePlayingYet? - A pragmatic HTML5 Audio test suite">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="stylesheet" href="/css/awpy.css">
@@ -20,7 +22,7 @@
       </div>
       <div class="row">
         <div class="span10">
-          <h2>A pragmatic HTML5 Audio browser benchmark</h2>
+          <h2>A pragmatic HTML5 Audio test suite</h2>
           <p>
             This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers.
             We want to build the best HTML5 audio player on the web and we need help from the browser vendors for that.

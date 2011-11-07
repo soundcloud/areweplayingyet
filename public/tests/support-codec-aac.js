@@ -1,5 +1,5 @@
 ({
-  name: 'support-aac-codec',
+  name: 'support-codec-aac',
   description: 'Supports AAC codec',
   assert: function(finish) {
     var audio = this.audio = new Audio();

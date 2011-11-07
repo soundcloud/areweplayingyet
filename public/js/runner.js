@@ -1,6 +1,8 @@
 AWPY.runner = {
   display: function(test, single) {
-    $('.run[data-test-name="' + test.name + '"]').html(test.result).addClass({
+    var btn = $('.run[data-test-name="' + test.name + '"]');
+    var genre = btn.parent().siblings('.genre');
+    btn.html(test.result).addClass({
       'TIMEOUT': 'default',
       'WIN': 'success',
       'FAIL': 'danger'

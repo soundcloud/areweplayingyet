@@ -36,7 +36,6 @@
               <td>&nbsp;</td>
               <td>Name</td>
               <td>Genre</td>
-              <td>Time</td>
             </tr>
           </thead>
         </table>
@@ -51,7 +50,7 @@
               <td>
                 <a href="/{{name}}">{{description}}</a>
               </td>
-              <td></td>
+              <td class="genre">{{genre}}</td>
             </tr>
           {{/tests}}
         </tbody>

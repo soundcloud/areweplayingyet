@@ -42,7 +42,7 @@
                     <button class="btn run small" data-test-name="{{name}}">Run</button>
                   </td>
                   <td>
-                    <a href="/{{name}}">{{description}}</a>
+                    <a href="/{{name}}" title="Open single test">{{description}}</a>
                   </td>
                 </tr>
               {{/tests}}

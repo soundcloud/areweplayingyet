@@ -1,6 +1,8 @@
 var connect  = require('connect');
 var mu       = require('mu');
 var fs       = require('fs');
+var util     = require('util');
+
 
 mu.root = __dirname + '/templates';
 ['single', 'multi', '404'].forEach(function(template) {
@@ -27,22 +29,20 @@ connect.createServer(
     });
 
     app.get('/sounds/:sound.:format/stall', function(req, res, next) {
-      var stream = fs.createReadStream(__dirname + '/public/sounds/' + req.params.sound + '.' + req.params.format);
-      var stall = false;
+      var path = __dirname + '/public/sounds/' + req.params.sound + '.' + req.params.format;
+      var stat = fs.statSync(path);
+      var stream;
 
-      res.statusCode = 200;
-
-      stream.on('data', function(chunk) {
-        if (!stall) {
-          res.write(chunk);
-        }
+      res.writeHead(200, {
+        'Content-Length': stat.size,
+        'Content-Type': 'audio/' + req.params.format
       });
 
-      stream.on('end', res.end);
-
-      stall = true;
+      stream = fs.createReadStream(path);
+      stream.pause();
+      stream.pipe(res);
       setTimeout(function() {
-        stall = false;
+        stream.resume();
       }, 3100);
     });
 

@@ -11,21 +11,29 @@ mu.root = __dirname + '/templates';
 
 var rawTests = {};
 
-fs.readdir('./public/tests/', function(err, list) {
+fs.readdir(__dirname + '/public/tests/', function(err, list) {
   list.sort().reverse().forEach(function(file) {
-    rawTests[file.replace(/\.js/, '')] = fs.readFileSync('./public/tests/' + file, 'utf8');
+    rawTests[file.replace(/\.js/, '')] = fs.readFileSync(__dirname + '/public/tests/' + file, 'utf8');
   });
 });
 
 connect.createServer(
   connect.logger('dev'),
-  connect.static(__dirname + '/public'),
-  connect.favicon(__dirname + '/public/images/favicon.ico'),
   connect.router(function(app) {
     app.get('/sounds/:sound.:format/redirect', function(req, res, next) {
       res.statusCode = 303;
       res.setHeader('Location', '/sounds/' + req.params.sound + '.' + req.params.format);
       res.end();
+    });
+
+    app.get('/sounds/:sound.:format/stall', function(req, res, next) {
+      var audioStream = fs.createReadStream(__dirname + '/public/sounds/' + req.params.sound + '.' + req.params.format);
+      res.statusCode = 200;
+      audioStream.pipe(res);
+      audioStream.pause();
+      setTimeout(function() {
+        audioStream.resume();
+      }, 3500);
     });
 
     app.get('/:name', function(req, res, name) {
@@ -61,5 +69,7 @@ connect.createServer(
       res.statusCode = 200;
       mu.render('multi.html.mu', { tests: tests, js: js }).pipe(res);
     });
-  })
+  }),
+  connect.static(__dirname + '/public'),
+  connect.favicon(__dirname + '/public/images/favicon.ico')
 ).listen(process.env.PORT || 3000);

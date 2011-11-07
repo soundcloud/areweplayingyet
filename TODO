@@ -1,6 +1,3 @@
-Tests:
-  event-stalled event-waiting
-
 [kasper - yves] Get some art directions from Kasper & define a graphic identity.
 [kasper - yves] Implement logo, graphic changes
 [tomas - alx] Move audio assets to CDN

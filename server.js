@@ -80,6 +80,7 @@ connect.createServer(
       mu.render('multi.html.mu', { tests: tests, js: js }).pipe(res);
     });
   }),
+  connect.staticCache(),
   connect.static(__dirname + '/public'),
   connect.favicon(__dirname + '/public/images/favicon.ico')
 ).listen(process.env.PORT || 3000);

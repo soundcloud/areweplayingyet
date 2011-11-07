@@ -1,8 +1,14 @@
 /* @override
 	http://localhost:3000/css/awpy2.css */
 
+* { margin: 0; padding: 0; }
 html, body {
-  background-color: #FFF;
+  background-color: #eee;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0 !important;
+  padding: 0 !important;
 }
 
 .container {
@@ -10,16 +16,42 @@ html, body {
 }
 
 .content {
-  margin-top: 65px;
+  margin-top: 89px;
 }
 
 .content .span {
   width: 100%;
 }
 
-.content table td {
+table.header {
+  position: fixed;
+  background: #dcdcdc;
+  background: -moz-linear-gradient(top, #dcdcdc 0%, #ffffff 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dcdcdc), color-stop(100%,#ffffff));
+  background: -webkit-linear-gradient(top, #dcdcdc 0%,#ffffff 100%);
+  background: -o-linear-gradient(top, #dcdcdc 0%,#ffffff 100%);
+  background: -ms-linear-gradient(top, #dcdcdc 0%,#ffffff 100%);
+  background: linear-gradient(top, #dcdcdc 0%,#ffffff 100%);
+  border-bottom: 1px solid #aeb1b5;
+}
+table.header td {
+  border-left: 1px solid #aeb1b5;
+  padding: 2px 9px 2px;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+table.header td:first-child {
+  border-left: 0;
+}
+.content table:not(.header) td {
   border-style: none;
 }
+
+.content table td:first-child {
+  width: 4%;
+}
+
 
 /*.content .zebra-striped tbody tr:nth-child(odd) td {
   background-color: #F9F9F9;
@@ -29,6 +61,14 @@ html, body {
   border-radius: 20px;
   width: 29px;
   text-indent: 1px;
+  padding: 0 !important;
+  width: 31px;
+  height: 31px;
+}
+.btn.small img {
+  width: 75%;
+  height: 75%;
+  margin-top: 2px;
 }
 
 .page-header {
@@ -224,19 +264,25 @@ background-size: 24px;
 }
 
 footer {
-  -moz-box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.49);
-  -webkit-box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.49);
-  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.49);
-  padding: 10px;
-  text-align: center;
-  background-color: #777;
+  background: #f3f3f3;
+  background: -moz-linear-gradient(top,  #f3f3f3 0%, #e4e4e4 1%, #b6b6b6 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(1%,#e4e4e4), color-stop(100%,#b6b6b6));
+  background: -webkit-linear-gradient(top,  #f3f3f3 0%,#e4e4e4 1%,#b6b6b6 100%);
+  background: -o-linear-gradient(top,  #f3f3f3 0%,#e4e4e4 1%,#b6b6b6 100%);
+  background: -ms-linear-gradient(top,  #f3f3f3 0%,#e4e4e4 1%,#b6b6b6 100%);
+  background: linear-gradient(top,  #f3f3f3 0%,#e4e4e4 1%,#b6b6b6 100%);
+  padding: 0 !important;
+  margin: 0 !important;
   position: fixed;
   bottom: 0;
   width: 100%;
+  line-height: normal;
+  height:18px;
+  outline: 1px solid rgba(104,104,104, .8);
+  border-top: 1px solid rgba(250, 250, 250, .8);
 }
 
 footer p {
-  color: #CCC;
-  text-shadow: 0 -1px 1px #000;
-  font-weight: bold;
+  font-size: 10px;
+  padding: 0 0 0 8px;
 }

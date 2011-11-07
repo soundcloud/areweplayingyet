@@ -59,7 +59,7 @@ AWPY.runner = {
       }
       var testName = $(this).data('test-name');
       var elements = testName ? $(this) : $('.run:not(.disabled)');
-      elements.addClass('disabled').html('Running');
+      elements.addClass('disabled').html('<img src="/images/throbber.gif" alt="Running" title="Running">');
       AWPY.tests.run(testName, function(test) {
         AWPY.runner.display(test, testName);
       });

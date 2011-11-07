@@ -1,6 +1,8 @@
 var connect  = require('connect');
 var mu       = require('mu');
 var fs       = require('fs');
+var util     = require('util');
+
 
 mu.root = __dirname + '/templates';
 ['single', 'multi', '404'].forEach(function(template) {
@@ -27,13 +29,21 @@ connect.createServer(
     });
 
     app.get('/sounds/:sound.:format/stall', function(req, res, next) {
-      var audioStream = fs.createReadStream(__dirname + '/public/sounds/' + req.params.sound + '.' + req.params.format);
-      res.statusCode = 200;
-      audioStream.pipe(res);
-      audioStream.pause();
+      var path = __dirname + '/public/sounds/' + req.params.sound + '.' + req.params.format;
+      var stat = fs.statSync(path);
+      var stream;
+
+      res.writeHead(200, {
+        'Content-Length': stat.size,
+        'Content-Type': 'audio/' + req.params.format
+      });
+
+      stream = fs.createReadStream(path);
+      stream.pause();
+      stream.pipe(res);
       setTimeout(function() {
-        audioStream.resume();
-      }, 3500);
+        stream.resume();
+      }, 3100);
     });
 
     app.get('/:name', function(req, res, name) {

@@ -19,6 +19,8 @@ fs.readdir('./public/tests/', function(err, list) {
 
 connect.createServer(
   connect.logger('dev'),
+  connect.static(__dirname + '/public'),
+  connect.favicon(__dirname + '/public/images/favicon.ico'),
   connect.router(function(app) {
     app.get('/sounds/:sound.:format/redirect', function(req, res, next) {
       res.statusCode = 303;
@@ -59,6 +61,5 @@ connect.createServer(
       res.statusCode = 200;
       mu.render('multi.html.mu', { tests: tests, js: js }).pipe(res);
     });
-  }),
-  connect.static(__dirname + '/public')
+  })
 ).listen(process.env.PORT || 3000);

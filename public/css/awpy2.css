@@ -69,6 +69,10 @@ table.header td:first-child {
   background-color: #FFF;
 }
 
+.content .zebra-striped tbody tr td {
+  text-transform: capitalize;
+}
+
 .content .zebra-striped tbody tr td > * {
   margin: 10px;
 }

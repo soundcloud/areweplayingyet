@@ -27,7 +27,7 @@
         </div>
         <div class="display">
           <h1><a href="/">Are We Playing Yet?</a></h1>
-          <h2>A pragmatic HTML5 Audio browser benchmark</h2>
+          <h2>A pragmatic HTML5 Audio browser test suite</h2>
         </div>
         <table class="header">
           <thead>

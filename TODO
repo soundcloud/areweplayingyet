@@ -1,8 +1,6 @@
 [kasper - yves] Get some art directions from Kasper & define a graphic identity.
 [kasper - yves] Implement logo, graphic changes
 [tomas] Adapt code to CDN assets
-[tomas] Add descriptions where needed
-[all] Link to spec
 [all] Search for related bug reports
 [all] File bug reports
-+ create a README/blogpost (see SC Open Source Guideline)
+[matas] create a README/blogpost (see SC Open Source Guideline)

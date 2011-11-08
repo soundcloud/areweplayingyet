@@ -38,39 +38,62 @@
           </div>
         </header>
       </div>
-      <div class="row">
-        <div class="span">
-          <h4 class="section-header source">Test source</h4>
-          <pre class="prettyprint">{{code}}</pre>
-          {{#longdesc}}
+      <div class="tab">
+        <div class="row">
+          <div class="col">
+            <h4 class="section-header source">Test source</h4>
+          </div>
+          <div class="col">
+            <pre class="prettyprint">{{code}}</pre>
+          </div>
+        </div>
+        {{#longdesc}}
+        <div class="row">
+          <div class="col">
             <h4 class="section-header description">Description</h4>
+          </div>
+          <div class="col">
             <p class="longdesc">{{longdesc}}</p>
-          {{/longdesc}}
-          {{#spec}}
-            <p>
-              <a class="spec" href="{{spec}}">Specification</a>
-            </p>
-          {{/spec}}
-          {{#reports}}
+          </div>
+        </div>
+        {{/longdesc}}
+        {{#spec}}
+        <div class="row">
+          <div class="col">
+            <div class="section-header spec">
+              <p>
+                <a class="spec" href="{{spec}}">Specification</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        {{/spec}}
+        {{#reports}}
+        <div class="row">
+          <div class="col">
             <h4 class="section-header browser">Browser issues</h4>
+          </div>
+          <div class="col">
             <ul>
       {{#firefox}}<li>{{#link}}<a href="{{link}}">{{/link}}Firefox:           {{desc}}{{#link}}</a>{{/link}}</li>{{/firefox}}
         {{#opera}}<li>{{#link}}<a href="{{link}}">{{/link}}Opera:             {{desc}}{{#link}}</a>{{/link}}</li>{{/opera}}
        {{#chrome}}<li>{{#link}}<a href="{{link}}">{{/link}}Chrome:            {{desc}}{{#link}}</a>{{/link}}</li>{{/chrome}}
        {{#safari}}<li>{{#link}}<a href="{{link}}">{{/link}}Safari:            {{desc}}{{#link}}</a>{{/link}}</li>{{/safari}}
            {{#ie}}<li>{{#link}}<a href="{{link}}">{{/link}}Internet Explorer: {{desc}}{{#link}}</a>{{/link}}</li>{{/ie}}
-{{#firefoxMobile}}<li>{{#link}}<a href="{{link}}">{{/link}}Firefox Mobile:    {{desc}}{{#link}}</a>{{/link}}</li>{{/firefoxMobile}}
+  {{#firefoxMobile}}<li>{{#link}}<a href="{{link}}">{{/link}}Firefox Mobile:    {{desc}}{{#link}}</a>{{/link}}</li>{{/firefoxMobile}}
   {{#operaMobile}}<li>{{#link}}<a href="{{link}}">{{/link}}Opera Mobile:      {{desc}}{{#link}}</a>{{/link}}</li>{{/operaMobile}}
       {{#android}}<li>{{#link}}<a href="{{link}}">{{/link}}Android:           {{desc}}{{#link}}</a>{{/link}}</li>{{/android}}
      {{#ieMobile}}<li>{{#link}}<a href="{{link}}">{{/link}}IE Mobile:         {{desc}}{{#link}}</a>{{/link}}</li>{{/ieMobile}}
- {{#safariMobile}}<li>{{#link}}<a href="{{link}}">{{/link}}Safari Mobile:     {{desc}}{{#link}}</a>{{/link}}</li>{{/safariMobile}}
+  {{#safariMobile}}<li>{{#link}}<a href="{{link}}">{{/link}}Safari Mobile:     {{desc}}{{#link}}</a>{{/link}}</li>{{/safariMobile}}
             </ul>
-          {{/reports}}
+          </div>
         </div>
-      </div>
+        {{/reports}}
       <div id="browserscope" class="row">
-        <div class="span">
+        <div class="col">
           <h4 class="section-header browser">Compatibility</h4>
+        </div>
+        <div class="col">
           <table class="zebra-striped">
             <thead>
               <tr>

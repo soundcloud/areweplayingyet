@@ -1,6 +1,3 @@
-/* @override 
-	http://localhost:3000/css/awpy.css */
-
 /* -----------------------------------------------------------------------------
     authors:  Kasper Lahti, Yves Van Goethem
     summary:  RESET
@@ -8,6 +5,7 @@
               TABLE_HEADERS
               TABLE_BODYS
               PAGE_HEADER
+              PAGE_CONTENT
               SINGLE_PAGE
               BROWSER_ISSUES
               PAGE_FOOTER
@@ -284,22 +282,47 @@ header {
   text-shadow: 0 1px 1px #FFF;
 }
 
+/* =PAGE_CONTENT
+----------------------------------------------------------------------------- */
+.tab {
+  display: table;
+  margin: 20px;
+  width: 96%;
+}
+.row {
+  display: table-row;
+}
+.row .col {
+  display: table-cell;
+  border-top: 2px groove #fff;
+  vertical-align: top;
+  padding: 20px;
+}
+.row .col:not(:first-child) > * {
+  font-size: 14px;
+  border-radius: 3px;
+  overflow: hidden;
+  -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
+}
+.row .col:first-child {
+  width: 20%;
+  padding: 0;
+}
+
 /* =SECTION_HEADERS
 ----------------------------------------------------------------------------- */
-
-
 .section-header {
-  padding-top: 80px;
-  padding-bottom: 20px;
   font-weight: bold;
   font-size: 16px;
   text-shadow: 0 1px 1px #FFF;
-  border-top: 2px groove #fff;
-  width: 20%;
   background: no-repeat 20px 10px transparent;
-  padding-right: 80%;
   text-align: left;
-  text-indent: 20px;
+}
+
+.col h4 {
+  padding: 80px 0 20px 20px;
 }
 
 .section-header.source {
@@ -312,18 +335,6 @@ header {
 
 .section-header.description {
   background-image: url(../images/info-button.png);
-}
-
-.section-header + * {
-  margin-left: 20%;
-  margin-top: -100px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  border-radius: 3px;
-  overflow: hidden;
-  -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
 }
 
 .content.single table {
@@ -339,7 +350,6 @@ pre {
   line-height: 20px;
   background-color: #f5f5f5;
   border-style: none!important;
-  margin: 20px;
   width: 70%;
 }
 

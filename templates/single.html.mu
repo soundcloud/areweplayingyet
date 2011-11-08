@@ -25,7 +25,7 @@
               <label>Back</label>
             </div>
             <div class="play">
-              <button class="run big btn" data-test-name="{{name}}">▶</button>
+              <button class="run btn big"><span class="icon"><span><img src="/images/throbber.gif" alt="Running" title="Running"><span class="result"></span></button>
               <label>Run Test</label>
             </div>
             <div class="display">

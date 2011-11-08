@@ -126,18 +126,18 @@ a.btn {
   opacity: .5;
 }
 
-.btn.score {
+.multi .btn.score {
   border: 0 !important;
   background: none !important;
   width: auto !important;
   color: #000;
 }
 
-.btn.score .result {
+.multi .btn.score .result {
   display: block;
 }
 
-.btn.score img {
+.multi .btn.score img {
   display: none;
 }
 

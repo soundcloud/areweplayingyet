@@ -20,6 +20,9 @@ AWPY.runner = {
       if (AWPY.tests.finished().length == tests.length) {
         AWPY.tests.save();
         this.showResults();
+        $('html, body').animate({
+          scrollTop: parseInt($('#browserscope').offset().top - 100,10)
+        });
       }
     } else {
       AWPY.tests.save();
@@ -51,11 +54,6 @@ AWPY.runner = {
           }
         }).join('')
       );
-      if ($('.multi')[0]) {
-        $('html, body').animate({
-          scrollTop: parseInt($('#browserscope').offset().top - 100,10)
-        });
-      }
     });
   },
   init: function() {

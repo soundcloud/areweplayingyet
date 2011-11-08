@@ -433,18 +433,6 @@ header {
   display: none;
 }
 
-.page-header .logo-icon {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  margin-top: -10px;
-  z-index: 2000;
-  left: 20px;
-  background-image: url(../images/logo-icon.png);
-}
-
 .page-header .info-small {
   position: absolute;
   top: 50%;
@@ -634,17 +622,31 @@ footer {
   bottom: 0;
   width: 100%;
   line-height: normal;
-  height: 32px;
+  height: 52px;
   border-top: 1px solid rgba(250, 250, 250, .8);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
 }
 
 footer p {
   font-size: 11px;
-  padding: 10px;
+  padding: 20px 10px;
   color: #777;
   text-shadow: 0 1px 0 rgba(255,255,255,0.5);
   background-image: url(../images/brush.png);
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  display: block;
+  background-image: url(../images/logo-icon.png);
+  position: absolute;
+  left: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: -16px;
+  top: 0;
 }

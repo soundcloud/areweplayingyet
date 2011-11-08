@@ -111,6 +111,7 @@
     </div>
     <footer>
       <p>&copy; SoundCloud 2011</p>
+      <div class="logo-icon"></div>
     </footer>
   </div>
 

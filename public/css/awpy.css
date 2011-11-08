@@ -1,3 +1,6 @@
+/* @override 
+	http://localhost:3000/css/awpy.css */
+
 /* -----------------------------------------------------------------------------
     authors:  Kasper Lahti, Yves Van Goethem
     summary:  RESET
@@ -305,6 +308,7 @@ header {
   font-size: 14px;
   border-radius: 3px;
   overflow: hidden;
+  background-color: #FFF;
   -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
@@ -314,18 +318,35 @@ header {
   padding: 0;
 }
 
+
+.tab .row {
+  border-top: 2px groove #fff;
+}
+
+.tab .row .col:first-child {
+  width: 20%;
+}
+
+.tab .row .col:last-child {
+  font-size: 14px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+
 /* =SECTION_HEADERS
 ----------------------------------------------------------------------------- */
 .section-header {
   font-weight: bold;
   font-size: 16px;
   text-shadow: 0 1px 1px #FFF;
-  background: no-repeat 20px 10px transparent;
-  text-align: left;
+  background: no-repeat center 10px transparent;
+  text-align: center;
+  padding-top: 30px;
 }
 
 .col h4 {
-  padding: 80px 0 20px 20px;
+  padding: 80px 0 20px;
 }
 
 .section-header.source {
@@ -346,32 +367,6 @@ header {
 
 /* =SINGLE_PAGE
 ----------------------------------------------------------------------------- */
-
-table#details {
-  width: 100%;
-}
-
-table#details tbody {
-  background-color: transparent;
-}
-
-table#details tr {
-  border-top: 2px groove #fff;
-}
-
-table#details tr td:first-child {
-  width: 20%;
-}
-
-table#details tr td:last-child {
-  font-size: 14px;
-  border-radius: 3px;
-  overflow: hidden;
-  background-color: #FFF;
-  -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
-}
 
 pre {
   font-family: monaco, courier, monospace;

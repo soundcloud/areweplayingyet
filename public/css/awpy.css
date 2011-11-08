@@ -217,7 +217,7 @@ table thead {
 }
 
 table thead td {
-  border-left: 2px groove #EEE;
+  border-left: 1px solid #CCC;
   padding: 7px 9px 5px;
   font-weight: bold;
   font-size: 11px;

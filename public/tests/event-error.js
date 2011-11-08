@@ -10,11 +10,9 @@
     }, false);
 
     audio.addEventListener('loadedmetadata', function() {
-      audio.setAttribute('src', '');
-      audio.load(); // Should trigger error soon
-    });
+      audio.src = 'invalid:url';
+    }, false);
 
-    audio.setAttribute('src', AWPY.sound.mini.stream_url());
-    audio.load();
+    audio.src = AWPY.sound.mini.stream_url();
   }
 })

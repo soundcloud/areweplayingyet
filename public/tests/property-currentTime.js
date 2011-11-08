@@ -10,7 +10,6 @@
       finish(audio.currentTime === 1);
     }, false);
 
-    audio.setAttribute('src', AWPY.sound.mini.stream_url());
-    audio.load();
+    audio.src = AWPY.sound.mini.stream_url();
   }
 })

@@ -11,10 +11,9 @@
       audio.addEventListener('loadedmetadata', function() {
         finish(audio.volume === 0.5);
       }, false);
-      audio.setAttribute('src', AWPY.sound.short.stream_url());
+      audio.src = AWPY.sound.short.stream_url();
     }, false);
 
-    audio.setAttribute('src', AWPY.sound.mini.stream_url());
-    audio.load();
+    audio.src = AWPY.sound.mini.stream_url();
   }
 })

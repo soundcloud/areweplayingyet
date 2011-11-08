@@ -38,7 +38,7 @@ AWPY.tests = (function() {
           return;
         }
         test.audio.pause();
-        test.audio.setAttribute('src', '');
+        test.audio.removeAttribute('src');
         test.audio.load();
         delete test.audio;
       };

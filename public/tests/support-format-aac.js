@@ -1,6 +1,6 @@
 ({
-  name: 'support-codec-aac',
-  description: 'Supports AAC codec',
+  name: 'support-format-aac',
+  description: 'Supports AAC format',
   assert: function(finish) {
     var audio = this.audio = new Audio();
     finish(/probably|maybe/.test(audio.canPlayType('audio/mp4; codecs="mp4a.40.2"')));

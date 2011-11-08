@@ -73,7 +73,7 @@
         {{#reports}}
         <div class="row">
           <div class="col">
-            <h4 class="section-header browser">Browser issues</h4>
+            <h4 class="section-header issues">Browser issues</h4>
           </div>
           <div class="col">
             <ul>

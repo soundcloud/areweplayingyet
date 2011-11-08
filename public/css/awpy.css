@@ -18,9 +18,9 @@
 ----------------------------------------------------------------------------- */
 * { margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; }
 body {
-  background-color: #EEE;
   font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
   line-height: 1;
+  background: url(../images/wood.jpg) fixed #333;
 }
 table {
   border-collapse: collapse;
@@ -43,8 +43,15 @@ ul {
 
 /* =GENERIC
 ----------------------------------------------------------------------------- */
+
 .container {
   background: url(../images/roughcloth.png) #CCC;
+  max-width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+  -moz-box-shadow: 0 3px 5px black;
+  -webkit-box-shadow: 0 3px 5px black;
+  box-shadow: 0 3px 5px black;
 }
 
 .content {
@@ -188,6 +195,10 @@ table tbody td {
   padding: 10px;
 }
 
+#tests tbody td:first-child {
+  text-align: center;
+}
+
 table tbody td a {
   color: #333;
   display: block;
@@ -205,11 +216,12 @@ table tbody td.genre {
   top: 0;
   width: 100%;
   z-index: 1000;
+  max-width: 900px;
 }
 header {
   display: block;
   width: 100%;
-  height: 80px;
+  height: 84px;
   border-top: 1px solid white;
   border-bottom: 1px solid #999999;
   text-align: center;
@@ -391,6 +403,10 @@ header {
 
 .section-header.spec {
   background-image: url(../images/spec-button.png);
+}
+
+.section-header.issues {
+  background-image: url(../images/issue-button.png);
 }
 
 /* =SINGLE_PAGE

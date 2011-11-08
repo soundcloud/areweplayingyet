@@ -35,6 +35,9 @@ header {
 }
 /* =PAGE_HEADER
 ----------------------------------------------------------------------------- */
+header {
+  height: 65px;
+}
 .single .page-header .submit {
   display: none;
 }

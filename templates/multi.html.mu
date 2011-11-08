@@ -27,6 +27,7 @@
             <div class="display">
               <div>
                 <a href="/">
+                  <span class="logo-icon"></span>
                   <h1>Are We Playing Yet?</h1>
                   <h2>A pragmatic HTML5 Audio browser test suite</h2>
                   <button class="info-small">i</button>

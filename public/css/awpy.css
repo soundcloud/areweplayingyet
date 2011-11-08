@@ -425,12 +425,24 @@ header {
 
 .page-header h1,
 .page-header h2 {
-  color: #e7e7f5;
-  text-shadow: 0 1px 3px rgba(233,244,255,0.75);
+  color: #EEE;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .mobile-header {
   display: none;
+}
+
+.page-header .logo-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  z-index: 2000;
+  left: 20px;
+  background-image: url(../images/logo-icon.png);
 }
 
 .page-header .info-small {
@@ -446,9 +458,6 @@ header {
   height: 20px;
   border-radius: 10px;
   z-index: 2000;
-  -moz-box-shadow: 0 0 5px rgba(233,244,255,0.75);
-  -webkit-box-shadow: 0 0 5px rgba(233,244,255,0.75);
-  box-shadow: 0 0 5px rgba(233,244,255,0.75);
 }
 
 /* =INFO_BUBBLE

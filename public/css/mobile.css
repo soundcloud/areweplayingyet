@@ -55,6 +55,7 @@ header {
   content: 'Run test';
 }
 .mobile-header {
+  display: block;
   margin: 20px;
 }
 
@@ -69,6 +70,8 @@ header {
 }
 .col h4 {
   padding: 35px 0 30px 100px !important;
+  background-position: 20px 50%;
+  text-align: left;
 }
 .col:not(:first-child) > *,
 .content.single table {

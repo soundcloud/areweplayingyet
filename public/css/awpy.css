@@ -235,6 +235,7 @@ table tbody tr:hover {
 
 table tbody td {
   padding: 10px;
+  vertical-align: middle;
 }
 
 #tests tbody td:first-child {
@@ -288,6 +289,9 @@ header {
   text-align: center;
   background-image: -webkit-gradient(linear, left bottom, left top, from(#cacaca), to(#ececec));
   background-image: -moz-linear-gradient(90deg, #cacaca 0%, #ececec 100%);
+  background-image: -o-linear-gradient(90deg, #cacaca 0%, #ececec 100%);
+  background-image: -ms-linear-gradient(90deg, #cacaca 0%, #ececec 100%);
+  background-image: linear-gradient(90deg, #cacaca 0%, #ececec 100%);
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);

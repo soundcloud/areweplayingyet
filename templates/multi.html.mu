@@ -30,7 +30,7 @@
                 <h2>A pragmatic HTML5 Audio browser test suite</h2>
                 <button class="info-small">i</button>
               </a>
-              <p class="info-description">This is an <strong>open and public</strong> initiative to bring more harmony into HTML5 Audio implementations.
+              <p class="info-description hide">This is an <strong>open and public</strong> initiative to bring more harmony into HTML5 Audio implementations.
 The specifications are missing some features and sometime leaves room for interpretation.
 We want to un-mute the Web and make Audio rock! If you feel the same, you can <strong>report browsers bugs</strong>, <a href="https://github.com/soundcloud/areweplayingyet/">write tests</a>, <a href="https://github.com/soundcloud/areweplayingyet/issues">fill issues</a> and join <a href="http://twitter.com/areweplayingyet">our conversation</a>.
               </p>

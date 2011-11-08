@@ -33,7 +33,7 @@ AWPY.runner = {
     url += '&callback=?';
     $('.run.big').removeClass('running').addClass('score');
     $.getJSON(url).done(function(response) {
-      $('#browserscope').addClass('show').find('tbody').html(
+      $('#browserscope').find('tbody').html(
         Object.keys(response.results).map(function(browser) {
           var score, ranking, count, result;
           if (test) {

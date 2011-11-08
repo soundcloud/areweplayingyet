@@ -572,10 +572,6 @@ ul li {
 
 #browserscope {
   width: 100%;
-  visibility: hidden;
-}
-#browserscope.show {
-  visibility: visible;
 }
 
 #browserscope thead tr td {

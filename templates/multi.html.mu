@@ -96,6 +96,7 @@ We want to un-mute the Web and make Audio rock! If you feel the same, you can <s
   <script>
     AWPY.tests.init([{{{js}}}]);
     AWPY.runner.init();
+    AWPY.runner.showResults();
     AWPY.UI.toggleInfo();
   </script>
 </body>

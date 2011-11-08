@@ -345,6 +345,9 @@ header {
   text-shadow: 0 1px 1px #000000;
   background: -moz-linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%) #333;
   background: -webkit-gradient(linear, left bottom, left top, from(#373737), color-stop(0.49, black), color-stop(0.50, #454545), to(#4f4f4f)) #333;
+  background-image: -o-linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%);
+  background-image: -ms-linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%);
+  background-image: linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%);
 }
 
 .single .page-header h1 {

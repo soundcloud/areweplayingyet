@@ -29,7 +29,7 @@
       audio.currentTime = seekedTime = AWPY.sound.long.duration * 0.8;
     }, false);
 
-    audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.long.stream_url());
+    audio.preload = 'metadata';
+    audio.src = AWPY.sound.long.stream_url();
   }
 })

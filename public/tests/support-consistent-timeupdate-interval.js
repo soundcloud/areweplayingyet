@@ -6,9 +6,7 @@
         lastTime, count = 0;
 
     audio.addEventListener('timeupdate', function() {
-      if (!lastTime) {
-        lastTime = new Date();
-      } else {
+      if (lastTime) {
         var now = new Date();
         if ((now - lastTime) < 15 || (now - lastTime) > 250) {
           finish(false);
@@ -24,7 +22,6 @@
       audio.play();
     }, false);
 
-    audio.setAttribute('src', AWPY.sound.short.stream_url());
-    audio.load();
+    audio.src = AWPY.sound.short.stream_url();
   }
 })

@@ -9,7 +9,6 @@
       finish(audio.buffered && audio.buffered.length);
     }, false);
 
-    audio.setAttribute('src', AWPY.sound.mini.stream_url());
-    audio.load();
+    audio.src = AWPY.sound.mini.stream_url();
   }
 })

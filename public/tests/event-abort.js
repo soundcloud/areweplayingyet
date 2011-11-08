@@ -10,11 +10,10 @@
     }, false);
 
     audio.addEventListener('loadstart', function() {
-      audio.setAttribute('src', '');
+      audio.removeAttribute('src');
       audio.load(); // Should trigger abort soon
     });
 
-    audio.setAttribute('src', AWPY.sound.short.stream_url());
-    audio.load();
+    audio.src = AWPY.sound.short.stream_url();
   }
 })

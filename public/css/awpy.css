@@ -45,7 +45,7 @@ ul {
 ----------------------------------------------------------------------------- */
 
 .container {
-  background: url(../images/roughcloth.png) #CCC;
+  background: url(../images/texture.jpg) #CCC;
   max-width: 1000px;
   margin-right: auto;
   margin-left: auto;
@@ -55,7 +55,7 @@ ul {
 }
 
 .content {
-  padding-top: 86px;
+  padding-top: 82px;
 }
 
 .content .span {
@@ -97,14 +97,12 @@ a.btn {
 }
 
 .btn img {
-  margin-top: 4px;
-  margin-right: 0px;
   opacity: .5;
 }
 
 .btn.small img {
-  margin-top: 4px !important;
-  margin-right: 1px;
+  margin-top: 4px;
+  margin-right: 0px;
   width: 62%;
   height: 62%;
 }
@@ -206,7 +204,7 @@ table thead {
 }
 
 table thead td {
-  border-left: 2px groove #fff;
+  border-left: 2px groove #EEE;
   padding: 7px 9px 5px;
   font-weight: bold;
   font-size: 11px;
@@ -263,8 +261,7 @@ table tbody td.genre {
 header {
   display: block;
   width: 100%;
-  height: 84px;
-  border-top: 1px solid white;
+  height: 80px;
   border-bottom: 1px solid #999999;
   text-align: center;
   background-image: -webkit-gradient(linear, left bottom, left top, from(#cacaca), to(#ececec));
@@ -280,7 +277,7 @@ header {
 }
 
 .page-header > div {
-  border-left: 2px groove #fff;
+  border-left: 2px groove #EEE;
   display: table-cell;
   vertical-align: middle;
   padding: 0 10px 3px;
@@ -321,8 +318,10 @@ header {
 .page-header .display {
   position: relative;
   overflow: hidden;
-  color: #333;
-  text-shadow: 0 1px 1px #FFF;
+  color: #EEE;
+  text-shadow: 0 1px 1px #000000;
+  background: -moz-linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%) #333;
+  background: -webkit-gradient(linear, left bottom, left top, from(#373737), color-stop(0.49, black), color-stop(0.50, #454545), to(#4f4f4f)) #333;
 }
 
 .single .page-header h1 {
@@ -342,13 +341,13 @@ header {
   margin: 0;
   margin-top: 5px;
   font-weight: normal;
-  color: #333;
-  text-shadow: 0 1px 1px #FFF;
+  color: #EEE;
+  text-shadow: 0 1px 1px #000000;
 }
 
 .page-header a h1 {
-  color: #333;
-  text-shadow: 0 1px 1px #FFF;
+  color: #EEE;
+  text-shadow: 0 1px 1px #000000;
 }
 
 .mobile-header {
@@ -369,13 +368,13 @@ header {
   display: table-cell;
   vertical-align: top;
   padding: 20px;
-  border-bottom: 2px groove;
+  border-bottom: 2px groove #EEE;
 }
 .row .col:not(:first-child) > * {
   font-size: 14px;
   border-radius: 3px;
   overflow: hidden;
-  background-color: #FFF;
+  background-color: #EEE;
   min-height: 100px;
   -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
@@ -386,14 +385,8 @@ header {
   padding: 0;
 }
 
-.row .col2 {
-  min-height: 100px;
-  padding: 10px 20px 20px;
-  border-bottom: 2px groove;
-}
-
 .tab .row {
-  border-top: 2px groove #fff;
+  border-top: 2px groove #EEE;
 }
 
 .tab .row .col:first-child {
@@ -453,8 +446,14 @@ pre {
   border-style: none!important;
 }
 
-.longdesc {
+.longdesc, .col p {
   padding: 20px;
+}
+
+a.spec,
+ul li a {
+  color: #333;
+  text-decoration: underline;
 }
 
 /* =BROWSER_ISSUES
@@ -495,12 +494,14 @@ footer {
   bottom: 0;
   width: 100%;
   line-height: normal;
-  height:18px;
+  height: 32px;
   outline: 1px solid rgba(104,104,104, .8);
   border-top: 1px solid rgba(250, 250, 250, .8);
 }
 
 footer p {
-  font-size: 10px;
-  padding: 0 0 0 8px;
+  font-size: 11px;
+  padding: 10px;
+  color: #777;
+  text-shadow: 0 1px 0 #fff;
 }

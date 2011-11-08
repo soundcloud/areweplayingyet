@@ -65,8 +65,10 @@
           <div class="col">
             <h4 class="section-header spec">Specification</h4>
           </div>
-          <div class="col2">
-            <a class="go btn big" href="{{spec}}">Specification</a>
+          <div class="col">
+            <p>
+              <a class="spec" href="{{spec}}">{{spec}}</a>
+            </p>
           </div>
         </div>
         {{/spec}}

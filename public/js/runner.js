@@ -2,16 +2,12 @@ AWPY.runner = {
   display: function(test, single) {
     var btn = $('.run[data-test-name="' + test.name + '"]');
     var genre = btn.parent().siblings('.genre');
-    btn.html(test.result).addClass({
-      'TIMEOUT': 'default',
-      'WIN': 'success',
-      'FAIL': 'danger'
-    }[test.result]).unbind();
+    btn.empty().addClass(test.result ? 'success' : 'danger').unbind();
 
     var tests = AWPY.tests.get();
     if (!single) {
       var score = tests.filter(function(test) {
-        return test.result === 'WIN';
+        return test.result;
       }).length;
 
       $('.run.big').addClass('running');
@@ -43,7 +39,7 @@ AWPY.runner = {
             score = response.results[browser].results[test.name].result;
             score = score.length ? +score : -1;
             ranking = score === 1 ? 'success' : score !== -1 ? 'important' : '';
-            result =  score === 1 ? 'WIN' : score !== -1 ? 'FAIL' : 'N/A';
+            result  = score === 1 ? 'WIN' : score !== -1 ? 'FAIL' : 'N/A';
             return '<tr><td>' + browser + '</td><td><span class="label ' + ranking + '">' + result + '</span></td></tr>';
           } else {
             score = +response.results[browser].summary_score;
@@ -59,6 +55,7 @@ AWPY.runner = {
   init: function() {
     $('.run').one('click', function(ev) {
       ev.preventDefault();
+      alert('YAY')
       if ($(this).hasClass('disabled')) {
         return;
       }

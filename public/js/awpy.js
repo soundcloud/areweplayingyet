@@ -50,7 +50,7 @@ AWPY.tests = (function() {
         var test = tests[i];
         var failTimeout = setTimeout(function() {
           test.finished = true;
-          test.result = 'FAIL';
+          test.result = false;
           globalCleanup(test);
           callback.call(null, test);
           if (tests[i + 1]) {
@@ -65,7 +65,7 @@ AWPY.tests = (function() {
           if (!test.finished) {
             test.finished = true;
             globalCleanup(test);
-            test.result = result ? 'WIN' : 'FAIL';
+            test.result = result;
             callback.call(null, test);
             if (tests[i + 1]) {
               run(tests, i + 1);
@@ -83,11 +83,7 @@ AWPY.tests = (function() {
       var data = {}, newScript, firstScript;
 
       this.finished().forEach(function(test) {
-        if (test.result === 'WIN') {
-          data[test.name] = 1;
-        } else if (test.result === 'FAIL') {
-          data[test.name] = 0;
-        } // TIMEOUT doesn't count
+        data[test.name] = test.result ? 1 : 0;
       });
 
       window._bTestResults = data;

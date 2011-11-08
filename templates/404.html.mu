@@ -15,18 +15,25 @@
 </head>
 <body>
   <div class="container">
-    <div class="content">
-      <div class="page-header">
-        <h1><a href="/">Are We Playing Yet?</a></h1>
+    <div class="content error">
+      <div class="wrapper-header">
+        <header>
+          <div class="page-header">
+            <div class="back">
+              <a class="btn big back" href="/"><h1>Are We Playing Yet?</h1></a>
+              <label>Are We Playing Yet?</label>
+            </div>
+          </div>
+        </header>
       </div>
       <div class="row">
-        <div class="span10">
+        <div class="span">
           <h2>The page you were looking for was not found.</h2>
           <p>Looks like you're stuck listening to Acid House now!</p>
         </div>
       </div>
       <div class="row">
-        <div class="span10">
+        <div class="span">
           <iframe width="100%" height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F27232637&amp;auto_play=true&amp;show_artwork=true&amp;color=ff7700"></iframe>
         </div>
       </div>

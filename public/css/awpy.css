@@ -72,7 +72,7 @@ ul {
 .btn {
   background-repeat: no-repeat;
   background-color: transparent;
-  background-image: url(../images/button.png);
+  background-image: url(../images/frame-button.png);
   width: 64px;
   height: 64px;
   border-style: none;
@@ -184,6 +184,10 @@ a.btn {
 
 .btn.back {
   background-image: url(../images/back-button.png);
+}
+
+.btn.home {
+  background-image: url(../images/home-button.png);
 }
 
 .btn.back:active {
@@ -318,6 +322,10 @@ header {
 
 .single .page-header .play {
   width: 10%;
+}
+
+.single .page-header .display {
+  border-left: 1px solid #000
 }
 
 .page-header .play {

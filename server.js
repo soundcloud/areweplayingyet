@@ -20,9 +20,10 @@ fs.readdir(__dirname + '/public/tests/', function(err, list) {
 });
 
 var router = function(app) {
+
   app.get('/sounds/:sound.:format/redirect', function(req, res, next) {
     res.statusCode = 303;
-    res.setHeader('Location', '/sounds/' + req.params.sound + '.' + req.params.format);
+    res.setHeader('Location', 'http://sounds.areweplayingyet.org/sounds/' + req.params.sound + '.' + req.params.format);
     res.end();
   });
 

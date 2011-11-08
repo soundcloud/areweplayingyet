@@ -18,9 +18,6 @@
 header {
   width: 100%;
 }
-.content {
-  padding-top: 66px;
-}
 
 /* =TABLE_HEADERS
 ----------------------------------------------------------------------------- */
@@ -34,18 +31,16 @@ header {
 }
 
 .page-header h2 {
-  font-size: 70%;
+  font-size: 80%;
+  line-height:1.2;
 }
 
 /* =PAGE_HEADER
 ----------------------------------------------------------------------------- */
-header {
-  height: 65px;
-}
-.single .page-header .submit {
-  display: none;
-}
-.single header .display {
+.single .page-header .submit,
+.single header .display,
+.info-description,
+.info-small {
   display: none;
 }
 .single header .play {

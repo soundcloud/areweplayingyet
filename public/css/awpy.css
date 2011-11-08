@@ -86,9 +86,17 @@ a.btn {
 }
 
 .btn.small {
-  background-size: 32px;
+  background-size: 64px;
   width: 32px;
   height: 32px;
+}
+
+.btn.small:active {
+  background-position: -32px!important;
+}
+
+.btn.small.disabled {
+  background-size: 32px;
 }
 
 .btn.run img {
@@ -151,7 +159,7 @@ a.btn {
 }
 
 .btn.run:active {
-  background-image: url(../images/play-button-pressed.png);
+  background-position: -64px;
 }
 
 .btn.run.disabled {
@@ -171,7 +179,7 @@ a.btn {
 }
 
 .btn.github:active {
-  background-image: url(../images/cat-button-pressed.png);
+  background-position: -64px;
 }
 
 .btn.back {
@@ -179,17 +187,8 @@ a.btn {
 }
 
 .btn.back:active {
-  background-image: url(../images/back-button-pressed.png);
+  background-position: -64px;
 }
-
-.btn.go {
-  background-image: url(../images/go-button.png);
-}
-
-.btn.go:active {
-  background-image: url(../images/go-button-pressed.png);
-}
-
 
 .btn.big.disabled:not(.run) {
   border: 0;
@@ -421,6 +420,9 @@ header {
   color: #333;
   text-shadow: 0 1px 0 #ffffff;
   text-align: left;
+  -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
 }
 .info-description::after {
   content: " ";

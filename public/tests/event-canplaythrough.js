@@ -10,6 +10,5 @@
     }, false);
 
     audio.src = AWPY.sound.mini.stream_url();
-    // Should trigger canplaythrough soon
   }
 })

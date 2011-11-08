@@ -11,7 +11,6 @@
 
     audio.addEventListener('loadedmetadata', function() {
       audio.src = 'invalid:url';
-      // Should trigger error soon
     });
 
     audio.src = AWPY.sound.mini.stream_url();

@@ -409,14 +409,14 @@ header {
   border-radius: 5px;
   padding: 20px;
   top: 70px;
-  width: 270px;
+  width: 400px;
   line-height: 20px;
   font-size: 14px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
   border: 1px solid #FFF;
   border-top-style: none;
   position: absolute;
-  right: -45px;
+  right: -70px;
   color: #333;
   text-shadow: 0 1px 0 #ffffff;
   text-align: left;
@@ -439,6 +439,7 @@ header {
 .info-description a {
   color: #F60;
   text-decoration: underline;
+  font-weight: bold;
 }
 
 /* =PAGE_CONTENT

@@ -22,7 +22,7 @@
       </div>
       <div class="row">
         <div class="span10">
-          <h2>A pragmatic HTML5 Audio browser test suitek</h2>
+          <h2>A pragmatic HTML5 Audio browser test suite</h2>
           <p>
             This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers.
             We want to build the best HTML5 audio player on the web and we need help from the browser vendors for that.

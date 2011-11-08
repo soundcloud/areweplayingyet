@@ -1,3 +1,6 @@
+/* @override 
+	http://localhost:3000/css/awpy.css */
+
 /* -----------------------------------------------------------------------------
     authors:  Kasper Lahti, Yves Van Goethem
     summary:  RESET
@@ -240,11 +243,11 @@ table#tests thead {
 
 table#tests thead td {
   border-bottom: 1px solid #CCC;
-  border-right: 1px solid #CCC;
+  border-left: 1px solid #CCC;
 }
 
 table#tests thead td:first-child {
-  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
 }
 
 /* =TABLE_BODYS

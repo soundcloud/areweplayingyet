@@ -300,6 +300,10 @@ header {
   text-shadow: 0 1px 1px #FFF;
 }
 
+.mobile-header {
+  display: none;
+}
+
 /* =PAGE_CONTENT
 ----------------------------------------------------------------------------- */
 .tab {

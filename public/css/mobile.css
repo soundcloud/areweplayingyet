@@ -18,6 +18,9 @@
 header {
   width: 100%;
 }
+.content {
+  padding-top: 66px;
+}
 
 /* =TABLE_HEADERS
 ----------------------------------------------------------------------------- */
@@ -33,6 +36,7 @@ header {
 .page-header h2 {
   font-size: 70%;
 }
+
 /* =PAGE_HEADER
 ----------------------------------------------------------------------------- */
 header {
@@ -40,4 +44,42 @@ header {
 }
 .single .page-header .submit {
   display: none;
+}
+.single header .display {
+  display: none;
+}
+.single header .play {
+  width: 75% !important;
+}
+.single header .play:after {
+  content: 'Run test';
+}
+.mobile-header {
+  margin: 20px;
+}
+
+/* =PAGE_CONTENT
+----------------------------------------------------------------------------- */
+.tab, .col, .row {
+  display: block !important;
+  width: auto !important;
+}
+.col:not(:first-child) {
+  border: 0 !important;
+}
+.col h4 {
+  padding: 35px 0 30px 100px !important;
+}
+.col:not(:first-child) > *,
+.content.single table {
+  width: 100%;
+}
+
+pre span {
+  display:none;
+}
+pre:after {
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  content:'Use a desktop browser to see the source';
+  white-space: normal;
 }

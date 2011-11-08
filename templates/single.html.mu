@@ -38,6 +38,9 @@
           </div>
         </header>
       </div>
+      <div class="mobile-header">
+        <h1>{{description}}</h1>
+      </div>
       <div class="tab">
         <div class="row">
           <div class="col">

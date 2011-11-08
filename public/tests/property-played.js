@@ -1,10 +1,10 @@
 ({
-  name: 'prop-played',
+  name: 'property-played',
   description: 'Property "played"',
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-played',
   reports: {
     firefox: {
-      desc: 'Bug 462959 - Implement nsIDOMHTMLMediaElement::GetPlayed()',
+      desc: 'Patch should get landed soon.',
       link: 'https://bugzilla.mozilla.org/show_bug.cgi?id=462959'
     }
   },

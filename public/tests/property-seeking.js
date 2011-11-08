@@ -1,5 +1,5 @@
 ({
-  name: 'prop-seeking',
+  name: 'property-seeking',
   description: 'Property "seeking"',
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-seeking',
   assert: function(finish) {

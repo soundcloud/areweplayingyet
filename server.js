@@ -19,67 +19,79 @@ fs.readdir(__dirname + '/public/tests/', function(err, list) {
   });
 });
 
-connect.createServer(
-  connect.logger('dev'),
-  connect.router(function(app) {
-    app.get('/sounds/:sound.:format/redirect', function(req, res, next) {
-      res.statusCode = 303;
-      res.setHeader('Location', '/sounds/' + req.params.sound + '.' + req.params.format);
-      res.end();
+var router = function(app) {
+  app.get('/sounds/:sound.:format/redirect', function(req, res, next) {
+    res.statusCode = 303;
+    res.setHeader('Location', '/sounds/' + req.params.sound + '.' + req.params.format);
+    res.end();
+  });
+
+  app.get('/sounds/:sound.:format/stall', function(req, res, next) {
+    var path = __dirname + '/public/sounds/' + req.params.sound + '.' + req.params.format;
+    var stat = fs.statSync(path);
+    var stream;
+
+    res.writeHead(200, {
+      'Content-Length': stat.size,
+      'Content-Type': 'audio/' + req.params.format
     });
 
-    app.get('/sounds/:sound.:format/stall', function(req, res, next) {
-      var path = __dirname + '/public/sounds/' + req.params.sound + '.' + req.params.format;
-      var stat = fs.statSync(path);
-      var stream;
+    stream = fs.createReadStream(path);
+    stream.pause();
+    stream.pipe(res);
+    setTimeout(function() {
+      stream.resume();
+    }, 3100);
+  });
 
-      res.writeHead(200, {
-        'Content-Length': stat.size,
-        'Content-Type': 'audio/' + req.params.format
-      });
+  app.get('/:name', function(req, res, name) {
+    var extension = (req.params.name.match(/\.(\w+)$/) || [,])[1];
+    var testName  = req.params.name.replace(/\.\w+$/, '');
 
-      stream = fs.createReadStream(path);
-      stream.pause();
-      stream.pipe(res);
-      setTimeout(function() {
-        stream.resume();
-      }, 3100);
-    });
-
-    app.get('/:name', function(req, res, name) {
-      var extension = (req.params.name.match(/\.(\w+)$/) || [,])[1];
-      var testName  = req.params.name.replace(/\.\w+$/, '');
-
-      if (!rawTests[testName]) {
-        res.statusCode = 404;
-        mu.render('404.html.mu').pipe(res);
-      } else if (!extension) {
-        var test = eval(rawTests[testName]);
-        test.code = test.assert.toString().split('\n').slice(1).slice(0, -1).join('\n');
-        test.js = rawTests[testName];
-
-        res.statusCode = 200;
-        mu.render('single.html.mu', test).pipe(res);
-      } else if (extension === 'js') {
-        res.statusCode = 303;
-        res.setHeader('Location', '/tests/' + req.params.name);
-        res.end();
-      } else {
-        res.statusCode = 404;
-        mu.render('404.html.mu').pipe(res);
-      }
-    });
-
-    app.get('/', function(req, res, name) {
-      var js = Object.keys(rawTests).map(function(testName) {
-        return rawTests[testName];
-      }).join(',');
-      var tests = eval('[' + js + ']');
+    if (!rawTests[testName]) {
+      res.statusCode = 404;
+      mu.render('404.html.mu').pipe(res);
+    } else if (!extension) {
+      var test = eval(rawTests[testName]);
+      test.code = test.assert.toString().split('\n').slice(1).slice(0, -1).join('\n');
+      test.js = rawTests[testName];
 
       res.statusCode = 200;
-      mu.render('multi.html.mu', { tests: tests, js: js }).pipe(res);
+      mu.render('single.html.mu', test).pipe(res);
+    } else if (extension === 'js') {
+      res.statusCode = 303;
+      res.setHeader('Location', '/tests/' + req.params.name);
+      res.end();
+    } else {
+      res.statusCode = 404;
+      mu.render('404.html.mu').pipe(res);
+    }
+  });
+
+  app.get('/', function(req, res, name) {
+    var js = Object.keys(rawTests).map(function(testName) {
+      return rawTests[testName];
+    }).join(',');
+    var tests = eval('[' + js + ']');
+    tests.forEach(function(test) {
+      test.genre = test.name.split('-')[0];
     });
-  }),
-  connect.static(__dirname + '/public'),
-  connect.favicon(__dirname + '/public/images/favicon.ico')
-).listen(process.env.PORT || 3000);
+    res.statusCode = 200;
+    mu.render('multi.html.mu', { tests: tests, js: js }).pipe(res);
+  });
+};
+
+if (process.env.PROD === '1') {
+  connect.createServer(
+    connect.router(router),
+    connect.staticCache(),
+    connect.static(__dirname + '/public'),
+    connect.favicon(__dirname + '/public/images/favicon.ico')
+  ).listen(process.env.PORT);
+} else {
+  connect.createServer(
+    connect.logger('dev'),
+    connect.router(router),
+    connect.static(__dirname + '/public')
+  ).listen(3000)
+}

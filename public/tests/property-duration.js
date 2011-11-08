@@ -1,5 +1,5 @@
 ({
-  name: 'prop-duration',
+  name: 'property-duration',
   description: 'Property "duration"',
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-duration',
   assert: function(finish) {

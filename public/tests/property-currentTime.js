@@ -1,5 +1,5 @@
 ({
-  name: 'prop-currentTime',
+  name: 'property-currentTime',
   description: 'Property "currentTime"',
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-currenttime',
   assert: function(finish) {

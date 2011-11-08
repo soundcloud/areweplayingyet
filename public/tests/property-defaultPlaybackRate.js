@@ -1,5 +1,5 @@
 ({
-  name: 'prop-defaultPlaybackRate',
+  name: 'property-defaultPlaybackRate',
   description: 'Property "defaultPlaybackRate"',
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-defaultplaybackrate',
   reports: {

@@ -251,6 +251,25 @@ table tbody td.genre {
   text-transform: capitalize;
 }
 
+.label {
+  color: gray;
+}
+
+.important {
+  color: red;
+  font-weight: bold;
+}
+
+.warning {
+  color: orange;
+  font-weight: bold;
+}
+
+.notice {
+  color: green;
+  font-weight: bold;
+}
+
 /* =PAGE_HEADER
 ----------------------------------------------------------------------------- */
 .wrapper-header {

@@ -9,7 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="author" content="SoundCloud - Tomás Senart, Yves Van Goethem, Kasper Lahti, Matas Petrikas">
   <meta name="description" content="AreWePlayingYet? - A pragmatic HTML5 Audio test suite">
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/awpy.css">
   <link rel="shortcut icon" href="/images/favicon.ico">
 </head>
@@ -20,17 +19,15 @@
         <header>
           <div class="page-header">
             <div class="back">
-              <a class="btn big back" href="/"><h1>Are We Playing Yet?</h1></a>
-              <label>Are We Playing Yet?</label>
+              <a class="back btn big" href="/">Are We Playing Yet?</a>
+              <label>Back</label>
+            </div>
+            <div class="display">
+              <h1>The page you were looking for was not found.</h1>
+              <h2>Looks like you're stuck listening to Acid House now!</h2>
             </div>
           </div>
         </header>
-      </div>
-      <div class="row">
-        <div class="span">
-          <h2>The page you were looking for was not found.</h2>
-          <p>Looks like you're stuck listening to Acid House now!</p>
-        </div>
       </div>
       <div class="row">
         <div class="span">

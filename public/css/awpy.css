@@ -327,6 +327,7 @@ header {
   display: table-cell;
   vertical-align: top;
   padding: 20px;
+  border-bottom: 2px groove;
 }
 .row .col:not(:first-child) > * {
   font-size: 14px;
@@ -344,7 +345,9 @@ header {
 }
 
 .row .col2 {
-  margin: 10px 20px 20px;
+  min-height: 100px;
+  padding: 10px 20px 20px;
+  border-bottom: 2px groove;
 }
 
 

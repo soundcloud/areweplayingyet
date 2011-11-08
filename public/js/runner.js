@@ -15,11 +15,8 @@ AWPY.runner = {
         return test.result === 'WIN';
       }).length;
 
-      var button = $('.run.big');
-      button.parent().addClass('score');
-      button
-        .removeClass('btn')
-        .html('Score: ' + score + '/' + tests.length);
+      $('.run.big').addClass('running');
+      $('.run.big .result').html('Score: ' + score + '/' + tests.length);
 
       if (AWPY.tests.finished().length == tests.length) {
         AWPY.tests.save();
@@ -35,9 +32,9 @@ AWPY.runner = {
   showResults: function(test) {
     var url = 'http://www.browserscope.org/user/tests/table/' + AWPY.config.browserscope.key + '?o=json';
     url += '&callback=?';
-
+    $('.run.big').removeClass('running').addClass('score');
     $.getJSON(url).done(function(response) {
-      $('#browserscope').show().find('tbody').html(
+      $('#browserscope').addClass('show').find('tbody').html(
         Object.keys(response.results).map(function(browser) {
           var score, ranking, count, result;
           if (test) {
@@ -55,6 +52,11 @@ AWPY.runner = {
           }
         }).join('')
       );
+      if ($('.multi')[0]) {
+        $('html, body').animate({
+          scrollTop: parseInt($('#browserscope').offset().top - 100,10)
+        });
+      }
     });
   },
   init: function() {
@@ -65,7 +67,7 @@ AWPY.runner = {
       }
       var testName = $(this).data('test-name');
       var elements = testName ? $(this) : $('.run:not(.disabled)');
-      elements.addClass('disabled').html('<img src="/images/throbber.gif" alt="Running" title="Running">');
+      elements.addClass('disabled running');
       AWPY.tests.run(testName, function(test) {
         AWPY.runner.display(test, testName);
       });

@@ -46,7 +46,7 @@ ul {
 
 .container {
   background: url(../images/roughcloth.png) #CCC;
-  max-width: 900px;
+  max-width: 1000px;
   margin-right: auto;
   margin-left: auto;
   -moz-box-shadow: 0 3px 5px black;
@@ -216,7 +216,7 @@ table tbody td.genre {
   top: 0;
   width: 100%;
   z-index: 1000;
-  max-width: 900px;
+  max-width: 1000px;
 }
 header {
   display: block;
@@ -383,6 +383,7 @@ header {
   background: no-repeat center 10px transparent;
   text-align: center;
   padding-top: 30px;
+  opacity: 0.75;
 }
 
 .col h4 {

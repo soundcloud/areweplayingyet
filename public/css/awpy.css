@@ -340,7 +340,6 @@ header {
 
 .page-header .display {
   position: relative;
-  overflow: hidden;
   color: #EEE;
   text-shadow: 0 1px 1px #000000;
   background: -moz-linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%) #333;
@@ -380,6 +379,58 @@ header {
   display: none;
 }
 
+.page-header .info-small {
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  right: 30px;
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  border-style: none;
+  background-color: #EEE;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  z-index: 2000;
+}
+
+/* =INFO_BUBBLE
+----------------------------------------------------------------------------- */
+
+
+.info-description {
+  border-radius: 5px;
+  padding: 20px;
+  top: 70px;
+  width: 270px;
+  line-height: 20px;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #FFF;
+  border-top-style: none;
+  position: absolute;
+  right: -45px;
+  color: #333;
+  text-shadow: 0 1px 0 #ffffff;
+  text-align: left;
+}
+.info-description::after {
+  content: " ";
+  width: 32px;
+  height: 16px;
+  position: absolute;
+  top: -16px;
+  background-image: url(../images/corner.png);
+  right: 22%;
+}
+.info-description.hide {
+  display: none;
+}
+.info-description a {
+  color: #F60;
+  text-decoration: underline;
+}
+
 /* =PAGE_CONTENT
 ----------------------------------------------------------------------------- */
 .tab {
@@ -400,7 +451,7 @@ header {
   font-size: 14px;
   border-radius: 3px;
   overflow: hidden;
-  background-color: #EEE;
+  background-color: #FFF;
   min-height: 100px;
   -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);

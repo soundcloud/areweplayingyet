@@ -91,17 +91,54 @@ a.btn {
   height: 32px;
 }
 
+.btn.run img {
+  opacity: 0;
+  margin-top: 16px;
+}
+
 .btn img {
   margin-top: 4px;
   margin-right: 0px;
-  opacity: 0.5;
+  opacity: .5;
 }
 
 .btn.small img {
-  margin-top: 4px;
+  margin-top: 4px !important;
   margin-right: 1px;
   width: 62%;
   height: 62%;
+}
+
+.btn.big + label .waiting,
+.btn.big.running + label .running {
+  display: block;
+}
+.btn.small.running span,
+.btn.big + label .running,
+.btn.big.running + label .waiting,
+.btn.big.score + label .waiting,
+.btn.big.score + label .running {
+  display: none;
+}
+
+
+.btn.running img {
+  opacity: .5;
+}
+
+.btn.score {
+  border: 0 !important;
+  background: none !important;
+  width: auto !important;
+  color: #000;
+}
+
+.btn.score .result {
+  display: block;
+}
+
+.btn.score img {
+  display: none;
 }
 
 .btn.run {
@@ -148,6 +185,11 @@ a.btn {
   background-image: url(../images/go-button-pressed.png);
 }
 
+
+.btn.big.disabled:not(.run) {
+  border: 0;
+  background: none;
+}
 
 /* =TABLE_HEADERS
 ----------------------------------------------------------------------------- */
@@ -263,14 +305,6 @@ header {
   width: 60%;
 }
 
-
-
-.score button {
-  border: 0;
-  color: #333;
-  text-shadow: 0 1px 1px #FFF;
-}
-
 .page-header label {
   display: block;
   color: #333;
@@ -358,7 +392,6 @@ header {
   border-bottom: 2px groove;
 }
 
-
 .tab .row {
   border-top: 2px groove #fff;
 }
@@ -428,6 +461,14 @@ pre {
 ----------------------------------------------------------------------------- */
 ul li {
   margin: 20px;
+}
+
+#browserscope {
+  width: 100%;
+  visibility: hidden;
+}
+#browserscope.show {
+  visibility: visible;
 }
 
 #browserscope thead tr td {

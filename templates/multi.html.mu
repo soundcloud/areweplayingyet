@@ -16,13 +16,13 @@
 </head>
 <body>
   <div class="container">
-    <div class="content">
+    <div class="content multi">
       <div class="wrapper-header">
         <header>
           <div class="page-header">
             <div class="play">
-              <button class="run btn big"><span class="icon"><span></button>
-              <label>Run All Tests</label>
+              <button class="run btn big"><span class="icon"><span><img src="/images/throbber.gif" alt="Running" title="Running"><span class="result"></span></button>
+              <label><span class="waiting">Run All Tests</span><span class="running">Running…</span></label>
             </div>
             <div class="display">
               <a href="/">
@@ -49,7 +49,7 @@
           {{#tests}}
             <tr class="test">
               <td>
-                <button class="btn run small" data-test-name="{{name}}"><span>▶</span></button>
+                <button class="btn run small" data-test-name="{{name}}"><span>▶</span><img src="/images/throbber.gif" alt="Running" title="Running"></button>
               </td>
               <td class="name">
                 <a href="/{{name}}">{{description}}</a>
@@ -59,18 +59,21 @@
           {{/tests}}
         </tbody>
       </table>
-      <div class="row">
-      </div>
-      <div id="browserscope" class="row">
-        <div class="span">
-          <table class="zebra-striped">
-            <thead>
-              <tr>
-                <td>Browser</td><td>Count</td><td>Score</td>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+      <div class="tab">
+        <div id="browserscope" class="row">
+          <div class="col">
+            <h4 class="section-header browser">Compatibility</h4>
+          </div>
+          <div class="col">
+            <table class="zebra-striped">
+              <thead>
+                <tr>
+                  <td>Browser</td><td>Status</td>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

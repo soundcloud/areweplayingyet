@@ -108,15 +108,20 @@ a.btn {
 }
 
 .btn.big + label .waiting,
-.btn.big.running + label .running {
+.btn.big.score.disabled.success + label .done,
+.btn.big.score.disabled.warning + label .done {
   display: block;
 }
 .btn.small.running span,
 .btn.big + label .running,
 .btn.big.running + label .waiting,
 .btn.big.score.disabled + label .waiting,
-.btn.big.score.disabled + label .running {
+.btn.big.score.disabled + label .running,
+.btn.big + label .done {
   display: none;
+}
+.btn.big.running + label .running {
+  display: block !important;
 }
 
 
@@ -131,14 +136,14 @@ a.btn {
   display: block;
 }
 
-.btn.score.disabled:not(.running) {
+.btn.score.disabled:not(.running):not(.success):not(.danger) {
   border: 0 !important;
   background: none !important;
   width: auto !important;
   color: #000;
 }
 
-.btn.score.disabled:not(.running) img {
+.btn.score.disabled:not(.running):not(.success):not(.danger) img {
   display: none;
 }
 

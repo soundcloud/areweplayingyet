@@ -93,7 +93,7 @@ a.btn {
 
 .btn.run img {
   opacity: 0;
-  margin-top: 16px;
+  margin-top: 5px;
 }
 
 .btn img {
@@ -114,28 +114,31 @@ a.btn {
 .btn.small.running span,
 .btn.big + label .running,
 .btn.big.running + label .waiting,
-.btn.big.score + label .waiting,
-.btn.big.score + label .running {
+.btn.big.score.disabled + label .waiting,
+.btn.big.score.disabled + label .running {
   display: none;
 }
 
 
 .btn.running img {
-  opacity: .5;
+  opacity: .5 !important;
 }
 
-.multi .btn.score {
+.btn .result {
+  display: none;
+}
+.btn.score .result {
+  display: block;
+}
+
+.btn.score.disabled:not(.running) {
   border: 0 !important;
   background: none !important;
   width: auto !important;
   color: #000;
 }
 
-.multi .btn.score .result {
-  display: block;
-}
-
-.multi .btn.score img {
+.btn.score.disabled:not(.running) img {
   display: none;
 }
 
@@ -297,6 +300,7 @@ header {
 .page-header {
   display: table;
   width: 100%;
+  height: 80px;
 }
 
 .page-header > div {
@@ -344,9 +348,9 @@ header {
   text-shadow: 0 1px 1px #000000;
   background: -moz-linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%) #333;
   background: -webkit-gradient(linear, left bottom, left top, from(#373737), color-stop(0.49, black), color-stop(0.50, #454545), to(#4f4f4f)) #333;
-  background-image: -o-linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%);
-  background-image: -ms-linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%);
-  background-image: linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%);
+  background: -o-linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%);
+  background: -ms-linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%);
+  background: linear-gradient(90deg, #373737 0%, black 49%, #454545 50%, #4f4f4f 100%);
 }
 
 .single .page-header h1 {

@@ -375,6 +375,11 @@ header {
   border-left: 1px solid #000;
 }
 
+.page-header .display > div {
+  position: relative;
+  display: block;
+}
+
 .page-header .submit {
   width: 20%;
   border-left: 1px solid #EEE;
@@ -465,7 +470,7 @@ header {
 .info-description {
   border-radius: 5px;
   padding: 20px;
-  top: 70px;
+  top: 50px;
   width: 400px;
   line-height: 20px;
   font-size: 14px;
@@ -473,7 +478,7 @@ header {
   border: 1px solid #FFF;
   border-top-style: none;
   position: absolute;
-  right: -70px;
+  right: -72px;
   color: #333;
   text-shadow: 0 1px 0 #ffffff;
   text-align: left;
@@ -606,10 +611,6 @@ ul li {
 
 #browserscope {
   width: 100%;
-  visibility: hidden;
-}
-#browserscope.show {
-  visibility: visible;
 }
 
 #browserscope thead tr td {

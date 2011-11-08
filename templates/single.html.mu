@@ -11,6 +11,7 @@
   <meta name="description" content="{{description}} | AreWePlayingYet? - A pragmatic HTML5 Audio test suite">
   <link rel="stylesheet" href="/css/prettify.css">
   <link rel="stylesheet" href="/css/awpy.css">
+  <link rel="stylesheet" href="/css/mobile.css" media="handheld, only screen and (max-device-width:540px)">
   <link rel="shortcut icon" href="/images/favicon.ico">
 </head>
 <body>

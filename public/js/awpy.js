@@ -98,13 +98,13 @@ AWPY.tests = (function() {
 AWPY.sound = (function() {
   var sounds = {
     mini: {
-      duration: 2.377,
+      duration: 2.377
     },
     short: {
-      duration: 227.325,
+      duration: 227.325
     },
     long: {
-      duration: 4046.210,
+      duration: 4046.210
     }
   };
 
@@ -133,13 +133,21 @@ AWPY.logEvents = function(audio){
 
 AWPY.UI = {
   toggleInfo: function() {
-    $(".info-small").click(function(event) {
+    var info = $(".info-description");
+    $(".info-small").live('click', function(event) {
       event.preventDefault();
       event.stopPropagation();
-      $(".info-description").toggleClass("hide");
+      info.toggleClass("hide");
     });
-    $(".info-description").click(function(event) {
-      $(".info-description").toggleClass("hide");
+    $('body').live('click', function(){
+      info.addClass('hide');
     });
+    if (document.cookie.split('awpy=bubble_expiration')[1] !== '') {
+      var date = new Date();
+      date.setTime( date.getTime() + ( 7*24*60*60*1000 ) ); // expires in 7 days
+      date.toGMTString();
+      document.cookie = 'awpy=bubble_expiration; expires='+ date +'; path=/';
+      info.removeClass('hide');
+    }
   }
 }

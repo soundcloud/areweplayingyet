@@ -136,7 +136,7 @@ table thead {
 }
 
 table thead td {
-  border-left: 2px groove;
+  border-left: 2px groove #fff;
   padding: 7px 9px 5px;
   font-weight: bold;
   font-size: 11px;
@@ -294,7 +294,7 @@ header {
   font-weight: bold;
   font-size: 16px;
   text-shadow: 0 1px 1px #FFF;
-  border-top: 2px groove;
+  border-top: 2px groove #fff;
   width: 20%;
   background: no-repeat 20px 10px transparent;
   padding-right: 80%;

@@ -55,7 +55,6 @@ AWPY.runner = {
   init: function() {
     $('.run').one('click', function(ev) {
       ev.preventDefault();
-      alert('YAY')
       if ($(this).hasClass('disabled')) {
         return;
       }

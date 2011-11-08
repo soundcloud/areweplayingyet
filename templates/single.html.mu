@@ -41,9 +41,6 @@
               <a class="spec" href="{{spec}}">Specification</a>
             </p>
           {{/spec}}
-          {{#TODOKTX}}
-            <h4>Browser compatibility</h4>
-          {{/TODOKTX}}
           {{#reports}}
             <h4>Browser issues</h4>
             <ul>

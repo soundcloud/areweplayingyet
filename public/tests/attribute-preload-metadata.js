@@ -17,7 +17,7 @@
       }, 1000); // Wait 1 sec
     }, false);
 
-    audio.setAttribute('preload', 'metadata');
-    audio.setAttribute('src', AWPY.sound.short.stream_url());
+    audio.preload = 'metadata';
+    audio.src = AWPY.sound.short.stream_url();
   }
 })

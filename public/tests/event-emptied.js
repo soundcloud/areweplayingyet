@@ -10,7 +10,7 @@
     }, false);
 
     audio.addEventListener('play', function() {
-      audio.setAttribute('src', '');
+      audio.removeAttribute('src');
       audio.load();
     }, false);
 
@@ -19,6 +19,6 @@
       audio.play();
     }, false);
 
-    audio.setAttribute('src', AWPY.sound.mini.stream_url());
+    audio.src = AWPY.sound.mini.stream_url();
   }
 })

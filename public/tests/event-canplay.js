@@ -9,7 +9,7 @@
       finish(true); // WIN
     }, false);
 
-    audio.setAttribute('src', AWPY.sound.mini.stream_url());
-    audio.load(); // Should trigger canplay soon
+    audio.src = AWPY.sound.mini.stream_url();
+    // Should trigger canplay soon
   }
 })

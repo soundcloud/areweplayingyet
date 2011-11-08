@@ -15,7 +15,6 @@
       audio.pause();
     }, false);
 
-    audio.setAttribute('src', AWPY.sound.short.stream_url());
-    audio.load();
+    audio.src = AWPY.sound.short.stream_url();
   }
 })

@@ -13,7 +13,6 @@
       audio.currentTime = AWPY.sound.long.duration / 8;
     }, false);
 
-    audio.setAttribute('src', AWPY.sound.long.stream_url());
-    audio.load();
+    audio.src = AWPY.sound.long.stream_url();
   }
 })

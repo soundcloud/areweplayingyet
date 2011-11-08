@@ -12,7 +12,7 @@
       }, false);
     }, false);
 
-    audio.setAttribute('autoplay', true);
-    audio.setAttribute('src', AWPY.sound.mini.stream_url());
+    audio.autoplay = true;
+    audio.src = AWPY.sound.mini.stream_url();
   }
 })

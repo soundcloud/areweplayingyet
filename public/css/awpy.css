@@ -179,7 +179,7 @@ table tbody td a {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #eee;
+  background: url(../images/brush.png) #eee;
   z-index: 1000;
 }
 header {
@@ -376,7 +376,6 @@ footer {
   background: linear-gradient(top,  #f3f3f3 0%,#e4e4e4 1%,#b6b6b6 100%);
   padding: 0 !important;
   margin: 0 !important;
-  position: absolute;
   bottom: 0;
   width: 100%;
   line-height: normal;

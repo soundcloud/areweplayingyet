@@ -49,7 +49,6 @@ ul {
 
 .content {
   padding-top: 86px;
-  padding-bottom: 50px;
 }
 
 .content .span {
@@ -139,6 +138,10 @@ a.btn {
   background-image: url(../images/play-button.png);
 }
 
+.btn.run:active {
+  background-image: url(../images/play-button-pressed.png);
+}
+
 .btn.run.disabled {
   background-image: url(../images/frame-button.png);
 }
@@ -155,9 +158,26 @@ a.btn {
   background-image: url(../images/cat-button.png);
 }
 
+.btn.github:active {
+  background-image: url(../images/cat-button-pressed.png);
+}
+
 .btn.back {
   background-image: url(../images/back-button.png);
 }
+
+.btn.back:active {
+  background-image: url(../images/back-button-pressed.png);
+}
+
+.btn.go {
+  background-image: url(../images/go-button.png);
+}
+
+.btn.go:active {
+  background-image: url(../images/go-button-pressed.png);
+}
+
 
 .btn.big.disabled:not(.run) {
   border: 0;
@@ -226,13 +246,12 @@ table tbody td.genre {
   position: fixed;
   top: 0;
   width: 100%;
-  background: url(../images/brush.png) #eee;
   z-index: 1000;
 }
 header {
   display: block;
   width: 100%;
-  height: 84px;
+  height: 80px;
   border-top: 1px solid white;
   border-bottom: 1px solid #999999;
   text-align: center;
@@ -251,9 +270,8 @@ header {
 .page-header > div {
   border-left: 2px groove #fff;
   display: table-cell;
-  height: 65px;
   vertical-align: middle;
-  padding: 0 10px;
+  padding: 0 10px 3px;
 }
 .page-header > div:first-child {
   border-left: 0;
@@ -275,8 +293,12 @@ header {
   width: 60%;
 }
 
-.run label {
-  display: none !important;
+
+
+.score button {
+  border: 0;
+  color: #333;
+  text-shadow: 0 1px 1px #FFF;
 }
 
 .page-header label {
@@ -289,12 +311,14 @@ header {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  margin-top: 4px;
+  margin-top: 1px;
 }
 
 .page-header .display {
   position: relative;
   overflow: hidden;
+  color: #333;
+  text-shadow: 0 1px 1px #FFF;
 }
 
 .single .page-header h1 {
@@ -339,15 +363,16 @@ header {
 }
 .row .col {
   display: table-cell;
-  border-top: 2px groove #fff;
   vertical-align: top;
   padding: 20px;
+  border-bottom: 2px groove;
 }
 .row .col:not(:first-child) > * {
   font-size: 14px;
   border-radius: 3px;
   overflow: hidden;
   background-color: #FFF;
+  min-height: 100px;
   -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
@@ -357,6 +382,11 @@ header {
   padding: 0;
 }
 
+.row .col2 {
+  min-height: 100px;
+  padding: 10px 20px 20px;
+  border-bottom: 2px groove;
+}
 
 .tab .row {
   border-top: 2px groove #fff;
@@ -400,8 +430,8 @@ header {
   background-image: url(../images/info-button.png);
 }
 
-.content.single table {
-  width: 70%;
+.section-header.spec {
+  background-image: url(../images/spec-button.png);
 }
 
 /* =SINGLE_PAGE
@@ -412,13 +442,16 @@ pre {
   font-size: 13px;
   line-height: 20px;
   border-style: none!important;
-  width: 70%;
+}
+
+.longdesc {
+  padding: 20px;
 }
 
 /* =BROWSER_ISSUES
 ----------------------------------------------------------------------------- */
 ul li {
-  margin: 10px;
+  margin: 20px;
 }
 
 #browserscope {

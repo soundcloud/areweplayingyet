@@ -81,7 +81,7 @@ var router = function(app) {
   });
 };
 
-if (process.env.PROD === '1') {
+if (process.env.PORT) {
   connect.createServer(
     connect.router(router),
     connect.staticCache(),

@@ -63,11 +63,10 @@
         {{#spec}}
         <div class="row">
           <div class="col">
-            <div class="section-header spec">
-              <p>
-                <a class="spec" href="{{spec}}">Specification</a>
-              </p>
-            </div>
+            <h4 class="section-header spec">Specification</h4>
+          </div>
+          <div class="col2">
+            <a class="go btn big" href="{{spec}}">Specification</a>
           </div>
         </div>
         {{/spec}}

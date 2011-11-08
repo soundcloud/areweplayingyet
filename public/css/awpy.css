@@ -102,6 +102,10 @@ a.btn {
   background-image: url(../images/play-button.png);
 }
 
+.btn.run:active {
+  background-image: url(../images/play-button-pressed.png);
+}
+
 .btn.run.disabled {
   background-image: url(../images/frame-button.png);
 }
@@ -118,9 +122,18 @@ a.btn {
   background-image: url(../images/cat-button.png);
 }
 
+.btn.github:active {
+  background-image: url(../images/cat-button-pressed.png);
+}
+
 .btn.back {
   background-image: url(../images/back-button.png);
 }
+
+.btn.back:active {
+  background-image: url(../images/back-button-pressed.png);
+}
+
 
 /* =TABLE_HEADERS
 ----------------------------------------------------------------------------- */
@@ -184,7 +197,6 @@ table tbody td.genre {
   position: fixed;
   top: 0;
   width: 100%;
-  background: url(../images/brush.png) #eee;
   z-index: 1000;
 }
 header {
@@ -309,6 +321,7 @@ header {
   border-radius: 3px;
   overflow: hidden;
   background-color: #FFF;
+  min-height: 100px;
   -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
@@ -361,10 +374,6 @@ header {
   background-image: url(../images/info-button.png);
 }
 
-.content.single table {
-  width: 70%;
-}
-
 /* =SINGLE_PAGE
 ----------------------------------------------------------------------------- */
 
@@ -373,13 +382,16 @@ pre {
   font-size: 13px;
   line-height: 20px;
   border-style: none!important;
-  width: 70%;
+}
+
+.longdesc {
+  padding: 20px;
 }
 
 /* =BROWSER_ISSUES
 ----------------------------------------------------------------------------- */
 ul li {
-  margin: 10px;
+  margin: 20px;
 }
 
 #browserscope thead tr td {

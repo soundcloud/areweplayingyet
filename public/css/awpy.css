@@ -24,7 +24,7 @@
 body {
   font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
   line-height: 1;
-  background: url(../images/wood.jpg) fixed #333;
+  background: url(../images/texture.jpg) #CCC;
 }
 table {
   border-collapse: collapse;
@@ -49,13 +49,9 @@ ul {
 ----------------------------------------------------------------------------- */
 
 .container {
-  background: url(../images/texture.jpg) #CCC;
   max-width: 1000px;
   margin-right: auto;
   margin-left: auto;
-  -moz-box-shadow: 0 3px 5px black;
-  -webkit-box-shadow: 0 3px 5px black;
-  box-shadow: 0 3px 5px black;
 }
 
 .content {
@@ -249,11 +245,15 @@ table tbody {
 }
 
 table tbody tr:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
 table tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+table tbody td:hover {
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 table tbody td {
@@ -606,8 +606,10 @@ footer {
   width: 100%;
   line-height: normal;
   height: 32px;
-  outline: 1px solid rgba(104,104,104, .8);
   border-top: 1px solid rgba(250, 250, 250, .8);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 footer p {

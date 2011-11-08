@@ -17,33 +17,35 @@
 <body>
   <div class="container">
     <div class="content">
-      <header>
-        <div class="page-header">
-          <div class="play">
-            <button class="run btn big">▶</button>
-            <!-- <label>Run All Tests</label> -->
+      <div class="wrapper-header">
+        <header>
+          <div class="page-header">
+            <div class="play">
+              <button class="run btn big">▶</button>
+              <label>Run All Tests</label>
+            </div>
+            <div class="display">
+              <a href="/">
+                <h1>Are We Playing Yet?</h1>
+                <h2>A pragmatic HTML5 Audio browser test suite</h2>
+              </a>
+            </div>
+            <div class="submit">
+              <a href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
+              <label>Submit issues, suggestions, etc…</label>
+            </div>
           </div>
-          <div class="display">
-            <a href="/">
-              <h1>Are We Playing Yet?</h1>
-              <h2>A pragmatic HTML5 Audio browser test suite</h2>
-            </a>
-          </div>
-          <div class="submit">
-            <a href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
-            <!-- <label>Submit issues, suggestions, etc…</label> -->
-          </div>
-        </div>
-        <table class="header">
-          <thead>
-            <tr>
-              <td>&nbsp;</td>
-              <td class="name">Name</td>
-              <td class="genre">Genre</td>
-            </tr>
-          </thead>
-        </table>
-      </header>
+          <table class="header">
+            <thead>
+              <tr>
+                <td>&nbsp;</td>
+                <td class="name">Name</td>
+                <td class="genre">Genre</td>
+              </tr>
+            </thead>
+          </table>
+        </header>
+      </div>
       <table id="tests" class="zebra-striped">
         <tbody>
           {{#tests}}

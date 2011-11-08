@@ -27,6 +27,9 @@ input::-moz-focus-inner {
   border: 0 !important;
   padding: 0 !important;
 }
+button {
+  cursor: pointer;
+}
 a {
   text-decoration: none;
 }
@@ -37,18 +40,14 @@ ul {
 /* =GENERIC
 ----------------------------------------------------------------------------- */
 .container {
-  width: 100%;
+  width: 760px;
+  margin: 0 auto;
   position: relative;
-  background-color: #FFF;
 }
 
 .content {
-  margin-top: 92px;
+  padding-top: 112px;
   padding-bottom: 50px;
-}
-
-.content.single {
-  margin-top: 65px;
 }
 
 .content .span {
@@ -78,10 +77,10 @@ table.header {
   background: linear-gradient(top, #dcdcdc 0%,#ffffff 100%);
   border-bottom: 1px solid #aeb1b5;
 }
-#browserscope thead tr td,
+#browserscope thead td,
 table.header td {
   border-left: 2px groove #fff;
-  padding: 7px 9px 5px;
+  padding: 7px 10px 5px 10px;
   font-weight: bold;
   font-size: 11px;
   text-align: left;
@@ -175,11 +174,16 @@ table tbody a {
 
 /* =PAGE_HEADER
 ----------------------------------------------------------------------------- */
-header {
-  display: block;
+.wrapper-header {
   position: fixed;
   top: 0;
-  width: 100%;
+  background: #eee;
+  padding-top: 20px;
+  z-index: 1000;
+}
+header {
+  display: block;
+  width: 760px;
   height: 63px;
   border-top: 1px solid white;
   border-bottom: 1px solid #999999;
@@ -200,6 +204,7 @@ header {
   display: table-cell;
   height: 65px;
   vertical-align: middle;
+  padding: 0 10px;
 }
 .page-header > div:first-child {
   border-left: 0;
@@ -257,7 +262,7 @@ header {
 .page-header .play .btn.big {
   border-radius: 25px;
   font-size: 20px;
-  line-height: 42px;
+  line-height: 43px;
   text-indent: 3px;
   width: 40px;
   height: 40px;
@@ -290,8 +295,9 @@ header {
 }
 
 .single .page-header h1 {
-  line-height: 44px;
+/*  line-height: 44px;*/
   font-weight: bold;
+  font-size: 14px;
 }
 
 .page-header h1 {
@@ -317,7 +323,7 @@ header {
 .page-header .submit a {
   border-radius: 25px;
   font-size: 16px;
-  line-height: 40px;
+  line-height: 43px;
   padding: 0 20px;
   width: 50px;
   height: 40px;

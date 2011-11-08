@@ -16,25 +16,29 @@
 <body>
   <div class="container">
     <div class="content single">
-      <div class="page-header">
-        <div class="back">
-          <a class="back" href="/">Are We Playing Yet?</a>
-        </div>
-        <div class="play">
-          <button class="run big btn" data-test-name="{{name}}">▶</button>
-          <label>Run Test</label>
-        </div>
-        <div class="submit">
-          <a href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
-          <label>Submit issues, suggestions, etc…</label>
-        </div>
-        <div class="display">
-          <h1>{{description}}</h1>
-        </div>
+      <div class="wrapper-header">
+        <header>
+          <div class="page-header">
+            <div class="back">
+              <a class="back" href="/">Are We Playing Yet?</a>
+            </div>
+            <div class="play">
+              <button class="run big btn" data-test-name="{{name}}">▶</button>
+              <label>Run Test</label>
+            </div>
+            <div class="display">
+              <h1>{{description}}</h1>
+            </div>
+            <div class="submit">
+              <a href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
+              <label>Submit issues, suggestions, etc…</label>
+            </div>
+          </div>
+        </header>
       </div>
       <div class="row">
         <div class="span">
-          <h4 class="section-header">Test code</h4>
+          <h4 class="section-header">Test source</h4>
           <pre class="prettyprint">{{code}}</pre>
           {{#longdesc}}
             <h4 class="section-header">Description</h4>
@@ -45,9 +49,6 @@
               <a class="spec" href="{{spec}}">Specification</a>
             </p>
           {{/spec}}
-          {{#TODOKTX}}
-            <h4 class="section-header">Browser compatibility</h4>
-          {{/TODOKTX}}
           {{#reports}}
             <h4 class="section-header">Browser issues</h4>
             <ul>
@@ -67,7 +68,7 @@
       </div>
       <div id="browserscope" class="row">
         <div class="span">
-          <h4 class="section-header">Browser issues</h4>
+          <h4 class="section-header">Compatibility</h4>
           <table class="zebra-striped">
             <thead>
               <tr>

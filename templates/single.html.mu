@@ -26,7 +26,7 @@
             </div>
             <div class="play">
               <button class="run btn big"><span class="icon"><span><img src="/images/throbber.gif" alt="Running" title="Running"><span class="result"></span></button>
-              <label>Run Test</label>
+              <label><span class="waiting">Run test</span><span class="running">Running…</span></label>
             </div>
             <div class="display">
               <h1>{{description}}</h1>

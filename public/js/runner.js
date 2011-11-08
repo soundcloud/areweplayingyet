@@ -15,7 +15,11 @@ AWPY.runner = {
         return test.result === 'WIN';
       }).length;
 
-      $('.run.big').html('Score: ' + score + '/' + tests.length);
+      var button = $('.run.big');
+      button.parent().addClass('score');
+      button
+        .removeClass('btn')
+        .html('Score: ' + score + '/' + tests.length);
 
       if (AWPY.tests.finished().length == tests.length) {
         AWPY.tests.save();

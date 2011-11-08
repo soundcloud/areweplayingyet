@@ -259,6 +259,15 @@ header {
   box-shadow: 0 1px 1px #ffffff, inset 0 1px 0 rgba(0, 0, 0, 0.5);
 }
 
+.score button {
+  background: none;
+  border: 0;
+}
+
+.score label {
+  display: none !important;
+}
+
 .page-header .play .btn.big {
   border-radius: 25px;
   font-size: 20px;

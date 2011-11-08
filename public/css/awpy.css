@@ -346,6 +346,7 @@ header {
   display: table;
   width: 100%;
   height: 80px;
+  background-image: url(../images/brush.png);
 }
 
 .page-header > div {
@@ -419,8 +420,8 @@ header {
 
 .page-header h1,
 .page-header h2 {
-  color: #EEF;
-  text-shadow: 0 1px 3px rgba(227,233,255,0.75);
+  color: #e7e7f5;
+  text-shadow: 0 1px 3px rgba(233,244,255,0.75);
 }
 
 .mobile-header {
@@ -435,14 +436,14 @@ header {
   font-style: italic;
   font-family: Georgia, "Times New Roman", Times, serif;
   border-style: none;
-  background-color: #EEF;
+  background-color: #e7e7f5;
   width: 20px;
   height: 20px;
   border-radius: 10px;
   z-index: 2000;
-  -moz-box-shadow: 0 0 5px rgba(227,233,255,0.75);
-  -webkit-box-shadow: 0 0 5px rgba(227,233,255,0.75);
-  box-shadow: 0 0 5px rgba(227,233,255,0.75);
+  -moz-box-shadow: 0 0 5px rgba(233,244,255,0.75);
+  -webkit-box-shadow: 0 0 5px rgba(233,244,255,0.75);
+  box-shadow: 0 0 5px rgba(233,244,255,0.75);
 }
 
 /* =INFO_BUBBLE
@@ -634,5 +635,6 @@ footer p {
   font-size: 11px;
   padding: 10px;
   color: #777;
-  text-shadow: 0 1px 0 #fff;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+  background-image: url(../images/brush.png);
 }

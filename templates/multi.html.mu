@@ -28,7 +28,13 @@
               <a href="/">
                 <h1>Are We Playing Yet?</h1>
                 <h2>A pragmatic HTML5 Audio browser test suite</h2>
+                <button class="info-small">i</button>
               </a>
+              <p class="info-description">This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers.
+                  We want to build the best HTML5 audio player on the web and we need help from the browser vendors for that.
+                  As the specifications left room to interpretation, some of the features got implemented not as well they could be.
+                  Please join the discussion on <a href="http://twitter.com/areweplayingyet">@areweplayingyet</a>!
+              </p>
             </div>
             <div class="submit">
               <a class="github btn big" href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
@@ -91,6 +97,7 @@
   <script>
     AWPY.tests.init([{{{js}}}]);
     AWPY.runner.init();
+    AWPY.UI.toggleInfo();
   </script>
 </body>
 </html>

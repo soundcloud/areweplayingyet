@@ -130,3 +130,16 @@ AWPY.logEvents = function(audio){
     }, false);
   });
 };
+
+AWPY.UI = {
+  toggleInfo: function() {
+    $(".info-small").click(function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      $(".info-description").toggleClass("hide");
+    });
+    $(".info-description").click(function(event) {
+      $(".info-description").toggleClass("hide");
+    });
+  }
+}

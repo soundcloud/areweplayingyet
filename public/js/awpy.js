@@ -140,7 +140,6 @@ AWPY.UI = {
       info.toggleClass("hide");
     });
     $('body').live('click', function(){
-      console.log(info)
       info.addClass('hide');
     });
     if (document.cookie.split('awpy=bubble_expiration')[1] !== '') {

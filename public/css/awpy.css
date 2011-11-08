@@ -44,7 +44,6 @@ ul {
 
 /* =GENERIC
 ----------------------------------------------------------------------------- */
-
 .container {
   max-width: 1000px;
   margin-right: auto;
@@ -65,7 +64,6 @@ ul {
 
 /* =ERROR
 ----------------------------------------------------------------------------- */
-
 .error .page-header div.back {
   width: 12%;
 }
@@ -76,7 +74,6 @@ ul {
 
 /* =BUTTONS
 ----------------------------------------------------------------------------- */
-
 .btn {
   background-repeat: no-repeat;
   background-color: transparent;
@@ -139,7 +136,6 @@ a.btn {
 .btn.big.running + label .running {
   display: block !important;
 }
-
 
 .btn.running img {
   opacity: .5 !important;
@@ -209,7 +205,6 @@ a.btn {
 
 /* =TABLE_HEADERS
 ----------------------------------------------------------------------------- */
-
 table thead {
   background: #dcdcdc;
   background: -moz-linear-gradient(top, #dcdcdc 0%, #ffffff 100%);
@@ -254,7 +249,6 @@ table#tests thead td:first-child {
 
 /* =TABLE_BODYS
 ----------------------------------------------------------------------------- */
-
 table tbody {
   background-color: #FFF;
   font-size: 14px;
@@ -450,8 +444,6 @@ header {
 
 /* =INFO_BUBBLE
 ----------------------------------------------------------------------------- */
-
-
 .info-description {
   border-radius: 5px;
   padding: 20px;
@@ -534,7 +526,6 @@ header {
   overflow: hidden;
 }
 
-
 /* =SECTION_HEADERS
 ----------------------------------------------------------------------------- */
 .section-header {
@@ -570,7 +561,6 @@ header {
 
 /* =SINGLE_PAGE
 ----------------------------------------------------------------------------- */
-
 pre {
   font-family: monaco, courier, monospace;
   font-size: 13px;

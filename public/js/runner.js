@@ -17,9 +17,9 @@ AWPY.runner = {
 
       var button = $('.run.big');
       button.parent().addClass('score');
+      $(".play label").html("Running Test…");
       button
-        .removeClass('btn')
-        .html('Score: ' + score + '/' + tests.length);
+        .html(score + '/' + tests.length);
 
       if (AWPY.tests.finished().length == tests.length) {
         AWPY.tests.save();

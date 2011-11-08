@@ -49,7 +49,6 @@ ul {
 
 .content {
   padding-top: 86px;
-  padding-bottom: 50px;
 }
 
 .content .span {
@@ -255,12 +254,9 @@ header {
 
 
 .score button {
-  background: none;
   border: 0;
-}
-
-.score label {
-  display: none !important;
+  color: #333;
+  text-shadow: 0 1px 1px #FFF;
 }
 
 .page-header label {

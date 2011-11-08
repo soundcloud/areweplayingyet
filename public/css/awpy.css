@@ -94,6 +94,7 @@ a.btn {
   background-size: 64px;
   width: 32px;
   height: 32px;
+  text-indent: -9999px;
 }
 
 .btn.small:active {

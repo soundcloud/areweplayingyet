@@ -16,7 +16,7 @@ AWPY.runner = {
       }).length;
 
       $('.run.big').addClass('running');
-      $('.run.big .result').html('Score: ' + score + '/' + tests.length);
+      $('.run.big .result').html(score + '/' + tests.length);
 
       if (AWPY.tests.finished().length == tests.length) {
         AWPY.tests.save();

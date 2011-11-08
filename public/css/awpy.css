@@ -133,8 +133,7 @@ a.btn {
 
 .btn.score.disabled:not(.running) {
   border: 0 !important;
-  background: none !important;
-  width: auto !important;
+  background-image: url(../images/frame-button.png);
   color: #000;
 }
 

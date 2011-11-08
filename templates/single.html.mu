@@ -20,7 +20,8 @@
         <header>
           <div class="page-header">
             <div class="back">
-              <a class="back" href="/">Are We Playing Yet?</a>
+              <a class="back btn big" href="/">Are We Playing Yet?</a>
+              <label>Back</label>
             </div>
             <div class="play">
               <button class="run big btn" data-test-name="{{name}}">▶</button>
@@ -30,18 +31,18 @@
               <h1>{{description}}</h1>
             </div>
             <div class="submit">
-              <a href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
-              <label>Submit issues, suggestions, etc…</label>
+              <a class="github btn big" href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
+              <label>Contribute</label>
             </div>
           </div>
         </header>
       </div>
       <div class="row">
         <div class="span">
-          <h4 class="section-header">Test source</h4>
+          <h4 class="section-header source">Test source</h4>
           <pre class="prettyprint">{{code}}</pre>
           {{#longdesc}}
-            <h4 class="section-header">Description</h4>
+            <h4 class="section-header description">Description</h4>
             <p class="longdesc">{{longdesc}}</p>
           {{/longdesc}}
           {{#spec}}
@@ -50,7 +51,7 @@
             </p>
           {{/spec}}
           {{#reports}}
-            <h4 class="section-header">Browser issues</h4>
+            <h4 class="section-header browser">Browser issues</h4>
             <ul>
       {{#firefox}}<li>{{#link}}<a href="{{link}}">{{/link}}Firefox:           {{desc}}{{#link}}</a>{{/link}}</li>{{/firefox}}
         {{#opera}}<li>{{#link}}<a href="{{link}}">{{/link}}Opera:             {{desc}}{{#link}}</a>{{/link}}</li>{{/opera}}
@@ -68,7 +69,7 @@
       </div>
       <div id="browserscope" class="row">
         <div class="span">
-          <h4 class="section-header">Compatibility</h4>
+          <h4 class="section-header browser">Compatibility</h4>
           <table class="zebra-striped">
             <thead>
               <tr>

@@ -21,7 +21,7 @@
         <header>
           <div class="page-header">
             <div class="play">
-              <button class="run btn big">▶</button>
+              <button class="run btn big"><span class="icon"><span></button>
               <label>Run All Tests</label>
             </div>
             <div class="display">
@@ -31,22 +31,20 @@
               </a>
             </div>
             <div class="submit">
-              <a href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
-              <label>Submit issues, suggestions, etc…</label>
+              <a class="github btn big" href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
+              <label>Contribute</label>
             </div>
           </div>
-          <table class="header">
-            <thead>
-              <tr>
-                <td>&nbsp;</td>
-                <td class="name">Name</td>
-                <td class="genre">Genre</td>
-              </tr>
-            </thead>
-          </table>
         </header>
       </div>
       <table id="tests" class="zebra-striped">
+        <thead>
+          <tr>
+            <td>&nbsp;</td>
+            <td class="name">Name</td>
+            <td class="genre">Genre</td>
+          </tr>
+        </thead>
         <tbody>
           {{#tests}}
             <tr class="test">

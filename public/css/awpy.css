@@ -1,3 +1,6 @@
+/* @override 
+	http://localhost:3000/css/awpy.css */
+
 /* -----------------------------------------------------------------------------
     authors:  Kasper Lahti, Yves Van Goethem
     summary:  RESET
@@ -40,13 +43,11 @@ ul {
 /* =GENERIC
 ----------------------------------------------------------------------------- */
 .container {
-  width: 760px;
-  margin: 0 auto;
-  position: relative;
+  background: url(../images/roughcloth.png) #CCC;
 }
 
 .content {
-  padding-top: 112px;
+  padding-top: 86px;
   padding-bottom: 50px;
 }
 
@@ -58,16 +59,72 @@ ul {
   width: 100%;
 }
 
-#browserscope table {
-  width: 70%;
-  position: relative;
+/* =BUTTONS
+----------------------------------------------------------------------------- */
+
+.btn {
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-image: url(../images/button.png);
+  width: 64px;
+  height: 64px;
+  border-style: none;
+  color: transparent;
+  cursor: pointer;
+}
+
+a.btn {
+  color: transparent;
+  display: inline-block;
+}
+
+.btn.small {
+  background-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+.btn img {
+  margin-top: 4px;
+  margin-right: 0px;
+  opacity: 0.5;
+}
+
+.btn.small img {
+  margin-top: 4px;
+  margin-right: 1px;
+  width: 62%;
+  height: 62%;
+}
+
+.btn.run {
+  background-image: url(../images/play-button.png);
+}
+
+.btn.run.disabled {
+  background-image: url(../images/frame-button.png);
+}
+
+.btn.run.danger {
+  background-image: url(../images/fail-button.png);
+}
+
+.btn.run.success {
+  background-image: url(../images/win-button.png);
+}
+
+.btn.github {
+  background-image: url(../images/fork-button.png);
+}
+
+.btn.back {
+  background-image: url(../images/back-button.png);
 }
 
 /* =TABLE_HEADERS
 ----------------------------------------------------------------------------- */
-#browserscope thead,
-table.header {
-  position: absolute;
+
+table thead {
   background: #dcdcdc;
   background: -moz-linear-gradient(top, #dcdcdc 0%, #ffffff 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dcdcdc), color-stop(100%,#ffffff));
@@ -77,99 +134,43 @@ table.header {
   background: linear-gradient(top, #dcdcdc 0%,#ffffff 100%);
   border-bottom: 1px solid #aeb1b5;
 }
-#browserscope thead td,
-table.header td {
-  border-left: 2px groove #fff;
-  padding: 7px 10px 5px 10px;
+
+table thead td {
+  border-left: 2px groove;
+  padding: 7px 9px 5px;
   font-weight: bold;
   font-size: 11px;
   text-align: left;
 }
 
-#browserscope thead tr td:first-child,
-table.header tr td:first-child {
+table thead tr td:first-child {
   border-left: 0;
-}
-
-.content table tr td:first-child {
-  width: 20%;
-}
-
-.content table tr td {
-  width: 40%;
-  font-size: 14px;
-  vertical-align: middle;
-}
-
-#browserscope table {
-  font-size: 14px;
-}
-
-#browserscope table thead {
-  position: relative;
-}
-
-#browserscope table thead tr td:first-child {
-  width: auto;
-}
-
-#browserscope table thead tr td, 
-#browserscope table tbody tr td {
-  width: 50%;
 }
 
 /* =TABLE_BODYS
 ----------------------------------------------------------------------------- */
-.zebra-striped tbody {
+
+table tbody {
   background-color: #FFF;
+  font-size: 14px;
 }
 
-.zebra-striped .genre {
-  text-transform: capitalize;
+table tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
-table tbody td:first-child {
-  text-align: center;
-}
-
-.single.content table tbody tr td:first-child {
-  text-align: left;
+table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 table tbody td {
   padding: 10px;
 }
 
-table tbody a {
-  color: #000;
-}
-
-.zebra-striped tbody tr:nth-child(odd) td {
-  background-color: #f5f5f5;
-}
-
-.btn.small {
-  border-radius: 20px;
-  text-indent: 1px;
-  font-size: 16px;
-  padding: 0 !important;
-  margin: 0!important;
-  width: 31px;
-  height: 31px;
-}
-
-.btn.big img {
-  width: 60%;
-  height: 60%;
-  margin-top: 8px;
-  margin-right: 3px;
-}
-
-.btn.small img {
-  width: 75%;
-  height: 75%;
-  margin-top: 4px;
-  margin-right: 2px;
+table tbody td a {
+  color: #333;
+  display: block;
+  padding: 10px 0;
 }
 
 /* =PAGE_HEADER
@@ -177,14 +178,14 @@ table tbody a {
 .wrapper-header {
   position: fixed;
   top: 0;
+  width: 100%;
   background: #eee;
-  padding-top: 20px;
   z-index: 1000;
 }
 header {
   display: block;
-  width: 760px;
-  height: 63px;
+  width: 100%;
+  height: 84px;
   border-top: 1px solid white;
   border-bottom: 1px solid #999999;
   text-align: center;
@@ -194,6 +195,7 @@ header {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.33);
 }
+
 .page-header {
   display: table;
   width: 100%;
@@ -208,20 +210,6 @@ header {
 }
 .page-header > div:first-child {
   border-left: 0;
-}
-
-.page-header .back {
-  float: left;
-  width: 15%;
-  height: 65px;
-}
-
-.page-header .back a {
-  width: 100%;
-  line-height: 64px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 
 .single .page-header .play {
@@ -240,24 +228,7 @@ header {
   width: 60%;
 }
 
-.btn,
-.page-header .submit a {
-  -moz-box-shadow: inset 0 1px 0 #ffffff, 0 1px 1px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: inset 0 1px 0 #ffffff, 0 1px 1px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 1px 0 #ffffff, 0 1px 1px rgba(0, 0, 0, 0.5);
-  background-image: -webkit-gradient(linear, left bottom, left top, from(#e1e1e1), to(#FFF));
-  background-image: -moz-linear-gradient(90deg, #e1e1e1 0%, #FFF 100%);
-  border-style: none;
-  color: #F60;
-  text-shadow: 0 1px 2px #FFF;
-}
 
-.btn:active,
-.page-header .submit a:active {
-  -moz-box-shadow: 0 1px 1px #ffffff, inset 0 1px 0 rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0 1px 1px #ffffff, inset 0 1px 0 rgba(0, 0, 0, 0.5);
-  box-shadow: 0 1px 1px #ffffff, inset 0 1px 0 rgba(0, 0, 0, 0.5);
-}
 
 .score button {
   background: none;
@@ -266,15 +237,6 @@ header {
 
 .score label {
   display: none !important;
-}
-
-.page-header .play .btn.big {
-  border-radius: 25px;
-  font-size: 20px;
-  line-height: 43px;
-  text-indent: 3px;
-  width: 40px;
-  height: 40px;
 }
 
 .page-header label {
@@ -294,13 +256,6 @@ header {
   position: relative;
   overflow: hidden;
   background-size: 24px;
-}
-
-.page-header .back:active {
-  -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.5);
-  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .single .page-header h1 {
@@ -324,50 +279,59 @@ header {
   text-shadow: 0 1px 1px #FFF;
 }
 
-.page-header h1 a {
+.page-header a h1 {
   color: #333;
   text-shadow: 0 1px 1px #FFF;
 }
 
-.page-header .submit a {
-  border-radius: 25px;
-  font-size: 16px;
-  line-height: 43px;
-  padding: 0 20px;
-  width: 50px;
-  height: 40px;
-  display: inline-block;
-}
-
-.page-header a {
-  color: #333;
-  text-shadow: 0 1px 1px #FFF;
-  font-weight: bold;
-}
-
-.page-header a:hover {
-  text-decoration: none;
-}
-
-/* =SINGLE_PAGE
+/* =SECTION_HEADERS
 ----------------------------------------------------------------------------- */
+
+
 .section-header {
-  padding-top: 20px;
+  padding-top: 80px;
   padding-bottom: 20px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   text-shadow: 0 1px 1px #FFF;
-  border-top: 1px solid #CCC;
+  border-top: 2px groove;
+  width: 20%;
+  background: no-repeat 20px 10px transparent;
+  padding-right: 80%;
+  text-align: left;
   text-indent: 20px;
-  width: 100%;
+}
+
+.section-header.source {
+  background-image: url(../images/code-button.png);
+}
+
+.section-header.browser {
+  background-image: url(../images/browser-button.png);
+}
+
+.section-header.description {
+  background-image: url(../images/info-button.png);
 }
 
 .section-header + * {
   margin-left: 20%;
-  margin-top: -34px;
+  margin-top: -100px;
   margin-bottom: 20px;
   font-size: 14px;
+  border-radius: 3px;
+  overflow: hidden;
+  -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
 }
+
+.content.single table {
+  width: 70%;
+}
+
+/* =SINGLE_PAGE
+----------------------------------------------------------------------------- */
 
 pre {
   font-family: monaco, courier, monospace;
@@ -377,6 +341,12 @@ pre {
   border-style: none!important;
   margin: 20px;
   width: 70%;
+}
+
+.longdesc, .single ul {
+  background-color: #FFF;
+  width: 66%;
+  padding: 2%;
 }
 
 /* =BROWSER_ISSUES

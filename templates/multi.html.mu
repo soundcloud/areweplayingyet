@@ -30,10 +30,9 @@
                 <h2>A pragmatic HTML5 Audio browser test suite</h2>
                 <button class="info-small">i</button>
               </a>
-              <p class="info-description">This project was started as an initiative to bring more harmony into HTML5 Audio implementation across different browsers.
-                  We want to build the best HTML5 audio player on the web and we need help from the browser vendors for that.
-                  As the specifications left room to interpretation, some of the features got implemented not as well they could be.
-                  Please join the discussion on <a href="http://twitter.com/areweplayingyet">@areweplayingyet</a>!
+              <p class="info-description">This is an <strong>open and public</strong> initiative to bring more harmony into HTML5 Audio implementations.
+The specifications are missing some features and sometime leaves room for interpretation.
+We want to un-mute the Web and make Audio rock! If you feel the same, you can <strong>report browsers bugs</strong>, <a href="https://github.com/soundcloud/areweplayingyet/">write tests</a>, <a href="https://github.com/soundcloud/areweplayingyet/issues">fill issues</a> and join <a href="http://twitter.com/areweplayingyet">our conversation</a>.
               </p>
             </div>
             <div class="submit">

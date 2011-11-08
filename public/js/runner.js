@@ -9,7 +9,6 @@ AWPY.runner = {
     }[test.result]).unbind();
 
     var tests = AWPY.tests.get();
-
     if (!single) {
       var score = tests.filter(function(test) {
         return test.result === 'WIN';

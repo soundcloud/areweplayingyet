@@ -25,8 +25,8 @@
               <label>Back</label>
             </div>
             <div class="play">
-              <button class="run btn big"><span class="icon"><span><img src="/images/throbber.gif" alt="Running" title="Running"><span class="result"></span></button>
-              <label><span class="waiting">Run test</span><span class="running">Running…</span></label>
+              <button class="run btn big" data-test-name="{{name}}"><span class="icon"><span><img src="/images/throbber.gif" alt="Running" title="Running"><span class="result"></span></button>
+              <label><span class="waiting">Run test</span><span class="running">Running…</span><span class="done">&nbsp;</span></label>
             </div>
             <div class="display">
               <h1>{{description}}</h1>

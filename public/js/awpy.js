@@ -133,20 +133,27 @@ AWPY.logEvents = function(audio){
 
 AWPY.UI = {
   toggleInfo: function() {
-    var info = $(".info-description");
-    $(".info-small").live('click', function(event) {
+    var info = $('.info-description');
+    var setCookie = function() {
+      if (!(/awpy=bubble_expiration/).test(document.cookie)) {
+        var date = new Date();
+        date.setTime( date.getTime() + ( 7*24*60*60*1000 ) ); // expires in 7 days
+        date.toGMTString();
+        document.cookie = 'awpy=bubble_expiration; expires='+ date +'; path=/';
+      }
+    };
+    $('.info-small').live('click', function(event) {
       event.preventDefault();
       event.stopPropagation();
-      info.toggleClass("hide");
+      info.toggleClass('hide');
+      setCookie();
     });
     $('body').live('click', function(){
       info.addClass('hide');
+      setCookie();
     });
-    if (document.cookie.split('awpy=bubble_expiration')[1] !== '') {
-      var date = new Date();
-      date.setTime( date.getTime() + ( 7*24*60*60*1000 ) ); // expires in 7 days
-      date.toGMTString();
-      document.cookie = 'awpy=bubble_expiration; expires='+ date +'; path=/';
+
+    if (!(/awpy=bubble_expiration/).test(document.cookie)) {
       info.removeClass('hide');
     }
   }

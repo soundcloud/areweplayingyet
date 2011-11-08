@@ -148,7 +148,7 @@ a.btn {
 .btn .result {
   display: none;
 }
-.btn.score .result {
+.btn.score.disabled:not(.running) .result {
   display: block;
 }
 

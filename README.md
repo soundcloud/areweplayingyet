@@ -49,12 +49,12 @@ A test consists of this basic JSON structure:
     ({
       name: '', // required (identical to your filename)
       description: '', // required (used as title on the website)
-      spec: '', // optional
-      longdesc: '', // optional
+      spec: 'http://…', // optional
+      longdesc: 'lorem ipsum…', // optional
       reports: { // optional
         chrome: {
-          desc: '',
-          link: ''
+          desc: 'lorem ipsum…',
+          link: 'http://…'
         }
       },
       assert: function(finish) { // required
@@ -63,6 +63,19 @@ A test consists of this basic JSON structure:
     })
 
 We encourage you to document it as much as possible by linking to specifications, describing it precisely & including known browser bugs.
+
+Valid values for reports are:
+
+- firefox
+- opera
+- chrome
+- safari
+- ie
+- firefoxMobile
+- operaMobile
+- android
+- ieMobile
+- safariMobile
 
 ### Terminating tests
 There a 3 ways to terminate a test:

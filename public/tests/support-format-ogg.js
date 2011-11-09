@@ -1,6 +1,6 @@
 ({
   name: 'support-format-ogg',
-  description: 'Supports OGG format',
+  description: 'Supports Ogg format',
   reports: {
     safari: {
       desc: 'Bug 42750 - Live OGG streaming using HTML5 audio or video tag does not work ',

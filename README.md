@@ -1,11 +1,21 @@
 # Are We Playing Yet?
-
 ## A pragmatic HTML5 Audio test suite
 This is an **open and public** initiative to bring more harmony into HTML5 Audio implementations.
 The specifications are missing some features and sometime leaves room for interpretation.
 We want to un-mute the Web and make Audio rock! If you feel the same, you can **report browsers bugs**, [write tests](https://github.com/soundcloud/areweplayingyet/), [fill issues](https://github.com/soundcloud/areweplayingyet/issues) and join our [conversation](http://twitter.com/areweplayingyet).
 
-## Running AWPY
+## ToC
+
+- <a href="#running-awpy">Running AWPY</a>
+- <a href="#write-tests">Write tests</a>
+  - <a href="#write-tests-intro">Intro</a>
+  - <a href="#write-tests-structure">Test structure</a>
+  - <a href="#write-tests-passing">Terminating tests</a>
+- <a href="#submitting-issues">Submitting issues</a>
+  - <a href="#submitting-issues-browsers">To browser vendors</a>
+  - <a href="#submitting-issues-awpy">To AWPY</a>
+
+<h2 id="running-awpy">Running AWPY</h2>
 
 You need nodejs and npm.
 
@@ -20,20 +30,19 @@ To run the http server invoke the following command:
 
     node server.js
 
-Now you should be able to load
-[http://localhost:3000](http://localhost:3000).
+Now you should be able to load <http://localhost:3000>.
 
-## Write tests
+<h2 id="write-tests">Write tests</h2>
 
-### Intro
+<h3 id="write-tests-intro">Intro</h3>
 
 Create a new file in `/public/tests`<br>
-The name should be prefixed by the test type and separated by a hyphen and look like this: type-name<br>
+The name should be prefixed by the test type and separated by a hyphen-minus and look like this: `type-name`<br>
 e.g.: `event-seeking.js`
 
 Miscellaneous tests should be prefixed by "support"
 
-### Test structure
+<h3 id="write-tests-structure">Tests structure</h3>
 
 A test consists of this basic JSON structure:
 
@@ -55,7 +64,8 @@ A test consists of this basic JSON structure:
 
 We encourage you to document it as much as possible by linking to specifications, describing it precisely & including known browser bugs.
 
-### Passing tests
+<h3 id="write-tests-terminating">Terminating tests</h3>
+
 There a 3 ways to terminate a test:
 
 - passing
@@ -69,9 +79,10 @@ To make a test fail call
 
     finish(false);
 
-## Submitting issues
 
-### To browser vendors
+<h2 id="submitting-issues">Submitting issues</h2>
+
+<h3 id="submitting-issues-browsers">To browser vendors</h3>
 We encourage you to submit issues to browser vendors, here is a list of sites where you can do so for different browsers:
 
 - [Firefox & Firefox Mobile](https://bugzilla.mozilla.org/)
@@ -83,7 +94,8 @@ We encourage you to submit issues to browser vendors, here is a list of sites wh
 - WebOS: There a different official threads open on their [forums](http://forums.precentral.net/webos-discussion/)
 - IE & IEMobile: Sadly there is no report form. They sometimes include feedback forms in their developers previews.
 
-### To AWPY
+<h3 id="submitting-issues-awpy">To AWPY</h3>
+
 You're very welcome to make suggestions, [report issues](https://github.com/soundcloud/areweplayingyet/issues) and open pull requests for changes and new tests.
 
 Before opening a new issue take a second to verify if it doesn't already exist.

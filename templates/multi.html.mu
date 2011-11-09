@@ -91,18 +91,16 @@
   </div>
 
   <script src="/js/augment-0.3.1.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script src="/js/jquery-1.7.min.js"></script>
   <script src="/js/prettify.js"></script>
   <script src="/js/awpy.js"></script>
   <script src="/js/runner.js"></script>
   <script src="/js/ga.js"></script>
   <script>
-    $(document).ready(function(){
-      AWPY.tests.init([{{{js}}}]);
-      AWPY.runner.init();
-      AWPY.runner.showResults();
-      AWPY.UI.toggleInfo();
-    });
+    AWPY.tests.init([{{{js}}}]);
+    AWPY.runner.init();
+    AWPY.runner.showResults();
+    AWPY.UI.toggleInfo();
   </script>
 </body>
 </html>

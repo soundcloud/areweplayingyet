@@ -28,7 +28,7 @@ AWPY.runner = {
     }
   },
   showResults: function(test) {
-    var url = 'http://www.browserscope.org/user/tests/table/' + AWPY.config.browserscope.key + '?o=json&v=top-d';
+    var url = 'http://www.browserscope.org/user/tests/table/' + AWPY.config.browserscope.key + '?o=json&v=3';
     url += '&callback=?';
     $('.run.big').removeClass('running').addClass('score');
     $.getJSON(url).done(function(response) {

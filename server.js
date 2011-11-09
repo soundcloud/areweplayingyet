@@ -20,11 +20,6 @@ fs.readdir(__dirname + '/public/tests/', function(err, list) {
 });
 
 var router = function(app) {
-  app.get('/sounds/:sound.:format/redirect', function(req, res, next) {
-    res.statusCode = 303;
-    res.setHeader('Location', '/sounds/' + req.params.sound + '.' + req.params.format);
-    res.end();
-  });
 
   app.get('/sounds/:sound.:format/stall', function(req, res, next) {
     var path = __dirname + '/public/sounds/' + req.params.sound + '.' + req.params.format;

@@ -113,7 +113,7 @@ AWPY.sound = (function() {
 
   Object.keys(sounds).forEach(function(type) {
     sounds[type].stream_url = function(cache) {
-      return '/sounds/' + type + '.' + AWPY.config.codec + (cache ? '' : '?' + (Math.random() * 1e9 | 0));
+      return 'http://soundcloud.com/yvg/' + type + '-' + AWPY.config.codec + '/download' + (cache ? '' : '?' + (Math.random() * 1e9 | 0));
     };
   });
 

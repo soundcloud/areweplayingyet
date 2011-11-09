@@ -27,19 +27,18 @@ Now you should be able to load
 
 ### Intro
 
-Create a new file in /public/tests
-The name should be prefixed by the test type
-  type-name
-e.g.:
-  event-seeking.js
+Create a new file in `/public/tests`<br>
+The name should be prefixed by the test type and separated by a hyphen and look like this: type-name<br>
+e.g.: `event-seeking.js`
 
 Miscellaneous tests should be prefixed by "support"
 
 ### Test structure
 
 A test consists of this basic JSON structure:
+
     ({
-      name: '', // required
+      name: '', // required (identical to your filename)
       description: '', // required (used as title on the website)
       spec: '', // optional
       longdesc: '', // optional
@@ -58,12 +57,16 @@ We encourage you to document it as much as possible by linking to specifications
 
 ### Passing tests
 There a 3 ways to terminate a test:
+
 - passing
 - failing
 - timing out, automatically after 10 seconds
+
 To make a test pass you need to call
+
     finish(true);
 To make a test fail call
+
     finish(false);
 
 ## Submitting issues
@@ -82,9 +85,11 @@ We encourage you to submit issues to browser vendors, here is a list of sites wh
 
 ### To AWPY
 You're very welcome to make suggestions, [report issues](https://github.com/soundcloud/areweplayingyet/issues) and open pull requests for changes and new tests.
+
 Before opening a new issue take a second to verify if it doesn't already exist.
+
 If you open a new one, please label it correctly.
 
 
-Feel free to propose changes to this document.
+Feel free to propose changes to this document.<br>
 Happy audio hacking.

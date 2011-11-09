@@ -116,16 +116,18 @@
   </div>
 
   <script src="/js/augment-0.3.1.min.js"></script>
-  <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
   <script src="/js/prettify.js"></script>
   <script src="/js/awpy.js"></script>
   <script src="/js/runner.js"></script>
   <script src="/js/ga.js"></script>
   <script>
-    AWPY.tests.init([{{{js}}}]);
-    AWPY.runner.init();
-    AWPY.runner.showResults(AWPY.tests.get()[0]);
-    prettyPrint();
+    $(document).ready(function(){
+      AWPY.tests.init([{{{js}}}]);
+      AWPY.runner.init();
+      AWPY.runner.showResults(AWPY.tests.get()[0]);
+      prettyPrint();
+    });
   </script>
 </body>
 </html>

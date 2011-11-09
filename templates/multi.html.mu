@@ -28,7 +28,7 @@
               <div>
                 <a href="/">
                   <h1>Are We Playing Yet?</h1>
-                  <h2>A pragmatic HTML5 Audio browser test suite</h2>
+                  <h2>A pragmatic HTML5 Audio test suite</h2>
                   <button class="info-small">i</button>
                 </a>
                 <p class="info-description hide">This is an <strong>open and public</strong> initiative to bring more harmony into HTML5 Audio implementations.

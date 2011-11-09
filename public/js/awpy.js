@@ -19,8 +19,8 @@ var AWPY = {
       return result;
     }()),
     browserscope: {
-      key: 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjyz7IKDA',
-      sandboxId: 'd0fa70a3a5fc868'
+      key: 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjgyroKDA',
+      sandboxId: 'c051cdb2d530e71'
     }
   }
 };

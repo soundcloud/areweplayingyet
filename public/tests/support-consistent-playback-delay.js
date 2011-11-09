@@ -6,12 +6,12 @@
         playTime;
 
     audio.addEventListener('playing', function() {
-      finish(new Date - playTime < 20);
+      finish(Date.now() - playTime < 20);
     }, false);
 
     audio.addEventListener('canplay', function() {
       audio.volume = 0;
-      playTime = new Date;
+      playTime = Date.now();
       audio.play();
     }, false);
 

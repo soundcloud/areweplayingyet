@@ -75,7 +75,7 @@
             <table class="zebra-striped">
               <thead>
                 <tr>
-                  <td>Browser</td><td>Counts</td><td>Status</td>
+                  <td>Browser</td><td>Status</td>
                 </tr>
               </thead>
               <tbody></tbody>

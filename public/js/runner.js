@@ -46,7 +46,7 @@ AWPY.runner = {
             count = +response.results[browser].count;
             result = count < 10  ? 'N/A' : score + '%';
             ranking = count < 10 ? '' : score < 50 ? 'important' : score < 80 ? 'warning' : 'notice';
-            return '<tr><td>' + browser + '</td><td>' + count + '</td><td><span class="label ' + ranking + '">' + result + '</span></td></tr>';
+            return '<tr><td>' + browser + '</td><td><span class="label ' + ranking + '">' + result + '</span></td></tr>';
           }
         }).join('')
       );

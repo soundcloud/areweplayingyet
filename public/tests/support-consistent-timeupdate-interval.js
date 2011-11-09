@@ -10,7 +10,7 @@
         var now = new Date();
         if ((now - lastTime) < 15 || (now - lastTime) > 250) {
           finish(false);
-        } else if (++count === 50){
+        } else if (++count === 30) {
           finish(true);
         }
       }

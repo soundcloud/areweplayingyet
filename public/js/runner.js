@@ -15,6 +15,7 @@ AWPY.runner = {
 
       if (AWPY.tests.finished().length == tests.length) {
         AWPY.tests.save();
+        this.showResults();
       }
 
     } else {
@@ -28,8 +29,10 @@ AWPY.runner = {
     var url = 'http://www.browserscope.org/user/tests/table/' + AWPY.config.browserscope.key + '?o=json&v=3';
     url += '&callback=?';
     $('.run.big').removeClass('running').addClass('score');
+    var browserscope = $('#browserscope');
+    if (browserscope[0])
     $.getJSON(url).done(function(response) {
-      $('#browserscope').find('tbody').html(
+      browerscope.find('tbody').html(
         Object.keys(response.results).map(function(browser) {
           var score, ranking, count, result;
           if (test) {

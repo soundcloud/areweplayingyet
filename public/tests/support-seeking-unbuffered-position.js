@@ -13,7 +13,7 @@
       }
 
       audio.addEventListener('timeupdate', function() {
-        if (++counter > 50) {
+        if (++counter > 15) {
           finish(result);
         } else if (!audio.paused && audio.currentTime > seekedTime) {
           result = true;

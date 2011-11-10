@@ -18,6 +18,6 @@
       finish(true);
     }, false);
 
-    audio.src = AWPY.sound.long.stream_url();
+    audio.src = AWPY.sound.short.stream_url(true) + '/redirect';
   }
 })

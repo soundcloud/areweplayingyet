@@ -30,27 +30,28 @@ AWPY.runner = {
     url += '&callback=?';
     $('.run.big').removeClass('running').addClass('score');
     var browserscope = $('#browserscope');
-    if (browserscope[0])
-    $.getJSON(url).done(function(response) {
-      browerscope.find('tbody').html(
-        Object.keys(response.results).map(function(browser) {
-          var score, ranking, count, result;
-          if (test) {
-            score = response.results[browser].results[test.name].result;
-            score = score.length ? +score : -1;
-            ranking = score === 1 ? 'success' : score !== -1 ? 'important' : '';
-            result  = score === 1 ? 'WIN' : score !== -1 ? 'FAIL' : 'N/A';
-            return '<tr><td>' + browser + '</td><td><span class="label ' + ranking + '">' + result + '</span></td></tr>';
-          } else {
-            score = +response.results[browser].summary_score;
-            count = +response.results[browser].count;
-            result = count < 10  ? 'N/A' : score + '%';
-            ranking = count < 10 ? '' : score < 50 ? 'important' : score < 80 ? 'warning' : 'notice';
-            return '<tr><td>' + browser + '</td><td><span class="label ' + ranking + '">' + result + '</span></td></tr>';
-          }
-        }).join('')
-      );
-    });
+    if (browserscope[0]) {
+      $.getJSON(url).done(function(response) {
+        browserscope.find('tbody').html(
+          Object.keys(response.results).map(function(browser) {
+            var score, ranking, count, result;
+            if (test) {
+              score = response.results[browser].results[test.name].result;
+              score = score.length ? +score : -1;
+              ranking = score === 1 ? 'success' : score !== -1 ? 'important' : '';
+              result  = score === 1 ? 'WIN' : score !== -1 ? 'FAIL' : 'N/A';
+              return '<tr><td>' + browser + '</td><td><span class="label ' + ranking + '">' + result + '</span></td></tr>';
+            } else {
+              score = +response.results[browser].summary_score;
+              count = +response.results[browser].count;
+              result = count < 10  ? 'N/A' : score + '%';
+              ranking = count < 10 ? '' : score < 50 ? 'important' : score < 80 ? 'warning' : 'notice';
+              return '<tr><td>' + browser + '</td><td><span class="label ' + ranking + '">' + result + '</span></td></tr>';
+            }
+          }).join('')
+        );
+      });
+    }
   },
   init: function() {
     $('.run').one('click', function(ev) {

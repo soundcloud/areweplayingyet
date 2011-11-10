@@ -26,6 +26,7 @@
     }, false);
 
     audio.addEventListener('loadedmetadata', function() {
+      audio.volume = 0;
       audio.currentTime = seekedTime = AWPY.sound.long.duration * 0.8;
     }, false);
 

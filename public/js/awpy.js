@@ -19,7 +19,7 @@ var AWPY = {
       return result;
     }()),
     browserscope: {
-      key: 'agt1YS1wcm9maWxlcnINCxIEVGVzdBjPkLwKDA'
+      key: 'agt1YS1wcm9maWxlcnINCxIEVGVzdBiH_qUKDA'
     }
   }
 };

@@ -59,7 +59,7 @@
                 <button class="btn run small" data-test-name="{{name}}"><span>▶</span><img src="/images/throbber.gif" alt="Running" title="Running"></button>
               </td>
               <td class="name">
-                <a href="/{{name}}">{{description}}</a>
+                <a href="/{{name}}" title="Details for {{description}}">{{description}}</a>
               </td>
               <td class="genre">{{genre}}</td>
             </tr>

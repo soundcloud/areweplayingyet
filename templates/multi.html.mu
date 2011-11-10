@@ -66,23 +66,6 @@
           {{/tests}}
         </tbody>
       </table>
-      <div class="tab">
-        <div id="browserscope" class="row">
-          <div class="col">
-            <h4 class="section-header browser">Compatibility <small>results are NOT shown in real-time</small></h4>
-          </div>
-          <div class="col">
-            <table class="zebra-striped">
-              <thead>
-                <tr>
-                  <td>Browser</td><td>Status</td>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
     </div>
     <footer>
       <div>
@@ -102,7 +85,6 @@
   <script>
     AWPY.tests.init([{{{js}}}]);
     AWPY.runner.init();
-    AWPY.runner.showResults();
     AWPY.UI.toggleInfo();
   </script>
 </body>

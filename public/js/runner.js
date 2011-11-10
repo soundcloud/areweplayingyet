@@ -15,11 +15,8 @@ AWPY.runner = {
 
       if (AWPY.tests.finished().length == tests.length) {
         AWPY.tests.save();
-        this.showResults();
-        $('html, body').animate({
-          scrollTop: parseInt($('#browserscope').offset().top - 100,10)
-        });
       }
+
     } else {
       AWPY.tests.save();
       if (tests.length === 1) {

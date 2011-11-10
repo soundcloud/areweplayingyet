@@ -545,6 +545,12 @@ background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIH
   padding: 90px 0 20px;
 }
 
+.section-header small {
+  display: block;
+  margin: 3px 0 0 0;
+  font-size: 10px;
+}
+
 .section-header.source {
   background-image: url(../images/code-button.png);
 }

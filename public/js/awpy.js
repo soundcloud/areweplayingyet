@@ -115,7 +115,7 @@ AWPY.sound = (function() {
 
   Object.keys(sounds).forEach(function(type) {
     sounds[type].stream_url = function(cache) {
-      return 'http://soundcloud.com/yvg/' + type + '-' + AWPY.config.codec + '/download' + (cache ? '' : '?' + (Math.random() * 1e9 | 0));
+      return 'http://areweplayingyet.herokuapp.com/sounds/' + type + '.' + AWPY.config.codec + (cache ? '' : '?' + (Math.random() * 1e9 | 0));
     };
   });
 

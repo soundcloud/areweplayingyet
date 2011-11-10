@@ -36,7 +36,7 @@ var router = function(app) {
     stream.pipe(res);
     setTimeout(function() {
       stream.resume();
-    }, 3100);
+    }, 3500);
   });
 
   app.get('/:name', function(req, res, name) {

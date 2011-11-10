@@ -9,6 +9,6 @@
       finish(true);
     }, false);
 
-    audio.src = AWPY.sound.long.stream_url(true) + '/stall';
+    audio.src = '/sounds/long.' + AWPY.config.codec + '/stall';
   }
 })

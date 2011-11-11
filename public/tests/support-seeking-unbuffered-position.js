@@ -8,10 +8,11 @@
         result = true;
 
     audio.addEventListener('seeked', function() {
-      if (audio.currentTime < seekedTime) {
+      if (Math.round(audio.currentTime) < seekedTime) {
         finish(false);
       }
 
+      audio.volume = 0;
       audio.play();
 
       audio.addEventListener('timeupdate', function() {
@@ -25,12 +26,11 @@
       }, false);
     }, false);
 
-    audio.addEventListener('loadedmetadata', function() {
-      audio.volume = 0;
-      audio.currentTime = seekedTime = AWPY.sound.long.duration * 0.8;
+    audio.addEventListener('canplay', function() {
+      audio.removeEventListener('canplay', arguments.callee, false);
+      audio.currentTime = seekedTime = AWPY.sound.long.duration * 0.8 | 0;
     }, false);
 
-    audio.preload = 'metadata';
     audio.src = AWPY.sound.long.stream_url();
   }
 })

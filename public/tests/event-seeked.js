@@ -9,7 +9,7 @@
       finish(true);
     }, false);
 
-    audio.addEventListener('loadedmetadata', function() {
+    audio.addEventListener('canplay', function() {
       audio.currentTime = AWPY.sound.long.duration / 8;
     }, false);
 

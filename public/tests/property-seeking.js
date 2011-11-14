@@ -9,7 +9,7 @@
       finish(false);
     }
 
-    audio.addEventListener('canplay', function() {
+    audio.addEventListener('loadedmetadata', function() {
       audio.currentTime = 100;
       finish(audio.seeking);
     }, false);

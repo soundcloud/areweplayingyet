@@ -10,7 +10,7 @@
       audio2.volume = 0;
       audio2.addEventListener('playing', function() {
         finish(true);
-      });
+      }, false);
       audio2.play();
     }, false);
 

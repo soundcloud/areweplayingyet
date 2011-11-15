@@ -37,10 +37,13 @@ AWPY.tests = (function() {
         if (!test.audio) {
           return;
         }
-        test.audio.pause();
-        test.audio.removeAttribute('src');
-        test.audio.load();
-        delete test.audio;
+        test.audio = (test.audio.length > 1) ? test.audio : [test.audio];
+        test.audio.forEach(function(audio){
+          audio.pause();
+          audio.removeAttribute('src');
+          audio.load();
+          delete audio;
+        });
       };
       var tests = list.filter(function(test) {
         return (single ? test.name === testName : true) && !test.finished;

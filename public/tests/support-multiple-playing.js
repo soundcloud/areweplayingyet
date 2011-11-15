@@ -2,8 +2,9 @@
   name: 'support-multiple-playing',
   description: 'Multiple Audio objects playing at the same time',
   assert: function(finish) {
-    var audio  = this.audio = new Audio();
+    var audio  = new Audio();
     var audio2 = new Audio();
+    this.audio = [audio, audio2];
 
     audio.addEventListener('playing', function() {
       audio2.volume = 0;

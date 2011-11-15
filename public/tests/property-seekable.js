@@ -5,7 +5,7 @@
   assert: function(finish) {
     var audio = this.audio = new Audio();
 
-    audio.addEventListener('canplay', function() {
+    audio.addEventListener('loadedmetadata', function() {
       finish(audio.seekable && audio.seekable.length);
     }, false);
 

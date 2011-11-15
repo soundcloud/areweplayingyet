@@ -26,7 +26,14 @@
               <label><span class="waiting">Run test</span><span class="running">Running…</span><span class="done">&nbsp;</span></label>
             </div>
             <div class="display">
-              <h1>{{description}}</h1>
+              <div>
+                <h1>{{description}}</h1>
+                <button class="info-small">i</button>
+                <p class="info-description hide">This is an <strong>open and public</strong> initiative to bring more harmony into HTML5 Audio implementations.
+  The specifications are missing some features and sometime leaves room for interpretation.
+  We want to un-mute the Web and make Audio rock! If you feel the same, you can <strong>report browsers bugs</strong>, <a href="https://github.com/soundcloud/areweplayingyet/">write tests</a>, <a href="https://github.com/soundcloud/areweplayingyet/issues">fill issues</a> and join <a href="http://twitter.com/areweplayingyet">our conversation</a>.
+                </p>
+              </div>
             </div>
             <div class="submit">
               <a class="github btn big" href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
@@ -125,6 +132,7 @@
     AWPY.tests.init([{{{js}}}]);
     AWPY.runner.init();
     AWPY.runner.showResults(AWPY.tests.get()[0]);
+    AWPY.UI.toggleInfo();
     prettyPrint();
   </script>
 </body>

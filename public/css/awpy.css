@@ -375,6 +375,10 @@ header {
   display: block;
 }
 
+.page-header div > h1 {
+  width: 525px;
+}
+
 .page-header .submit {
   width: 20%;
   border-left: 1px solid #EEE;

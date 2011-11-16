@@ -81,18 +81,19 @@ AWPY.tests = (function() {
       });
     },
     save: function() {
-      return;
       var data = {}, newScript, firstScript;
 
-      this.finished().forEach(function(test) {
-        data[test.name] = test.result ? 1 : 0;
-      });
+      if (document.location.host === 'areweplayingyet.org') {
+        this.finished().forEach(function(test) {
+          data[test.name] = test.result ? 1 : 0;
+        });
 
-      window._bTestResults = data;
+        window._bTestResults = data;
 
-      $.getJSON(
-        'http://www.browserscope.org/user/beacon/' + AWPY.config.browserscope.key + '?callback=?'
-      );
+        $.getJSON(
+          'http://www.browserscope.org/user/beacon/' + AWPY.config.browserscope.key + '?callback=?'
+        );
+      }
     },
     finished: function() {
       return list.filter(function(test) {

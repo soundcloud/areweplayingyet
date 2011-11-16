@@ -66,5 +66,14 @@ AWPY.runner = {
         AWPY.runner.display(test, testName);
       });
     });
+
+    // 140bytes courtesy: https://gist.github.com/1188477
+    var konami = function(f,a){document.onkeyup=function(e){/113302022928$/.test(a+=[((e||self.event).keyCode-37)])&&f()}};
+    konami(function() {
+      var audio = new Audio('http://areweplayingyet.herokuapp.com/sounds/acid.' + AWPY.config.codec);
+      audio.addEventListener('canplay', function() {
+        audio.play();
+      }, false);
+    });
   }
 };

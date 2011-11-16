@@ -3,7 +3,7 @@
   description: 'Event "playing"',
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#event-media-playing',
   assert: function(finish) {
-    var audio = this.audio = new Audio();
+    var audio = this.audio;
 
     audio.addEventListener('playing', function() {
       finish(true);

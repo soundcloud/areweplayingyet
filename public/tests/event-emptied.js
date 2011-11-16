@@ -3,7 +3,7 @@
   description: 'Event "emptied"',
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#event-media-emptied',
   assert: function(finish) {
-    var audio = this.audio = new Audio();
+    var audio = this.audio;
 
     audio.addEventListener('emptied', function() {
       finish(true);

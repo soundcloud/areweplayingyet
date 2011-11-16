@@ -3,7 +3,7 @@
   description: 'Property "seeking"',
   spec: 'http://dev.w3.org/html5/spec/the-iframe-element.html#dom-media-seeking',
   assert: function(finish) {
-    var audio = this.audio = new Audio();
+    var audio = this.audio;
 
     if (!('seeking' in audio)) {
       finish(false);

@@ -2,8 +2,7 @@
   name: 'support-consistent-playback-delay',
   description: 'Consistent time between play() and actual playback (< 20ms)',
   assert: function(finish) {
-    var audio = this.audio = new Audio(),
-        playTime;
+    var audio = this.audio, playTime;
 
     audio.addEventListener('playing', function() {
       finish(Date.now() - playTime < 20);

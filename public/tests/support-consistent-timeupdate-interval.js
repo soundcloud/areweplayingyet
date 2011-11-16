@@ -2,7 +2,7 @@
   name: 'support-consistent-timeupdate-interval',
   description: 'Consistent timeupdate interval (15ms - 250ms)',
   assert: function(finish) {
-    var audio = this.audio = new Audio(),
+    var audio = this.audio,
         lastTime, count = 0;
 
     audio.addEventListener('timeupdate', function() {

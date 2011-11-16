@@ -11,7 +11,7 @@
     }
   },
   assert: function(finish) {
-    var audio = this.audio = new Audio();
+    var audio = this.audio;
     finish(/probably|maybe/.test(audio.canPlayType('audio/mpeg; codecs="mp3"')));
   }
 })

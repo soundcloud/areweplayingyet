@@ -34,16 +34,18 @@ AWPY.tests = (function() {
     run: function(testName, callback) {
       var single = !!testName;
       var globalCleanup = function(test) {
-        if (!test.audio) {
-          return;
-        }
-        test.audio = (test.audio.length > 1) ? test.audio : [test.audio];
-        test.audio.forEach(function(audio){
+        [].concat(test.audio || []).forEach(function(audio){
           audio.pause();
           audio.removeAttribute('src');
           audio.load();
           delete audio;
         });
+      };
+      var finishTest = function(test, result) {
+        test.finished = true;
+        globalCleanup(test);
+        test.result = result;
+        callback.call(null, test);
       };
       var tests = list.filter(function(test) {
         return (single ? test.name === testName : true) && !test.finished;
@@ -51,25 +53,21 @@ AWPY.tests = (function() {
 
       (function run(tests, i) {
         var test = tests[i];
-        var failTimeout = setTimeout(function() {
-          test.finished = true;
-          test.result = false;
-          globalCleanup(test);
-          callback.call(null, test);
-          if (tests[i + 1]) {
-            run(tests, i + 1);
-          }
-        }, 15000);
+        test.audio = new Audio();
+        test.audio.addEventListener('loadedmetadata', function() {
+          setTimeout(function() {
+            if (!test.finished) {
+              finishTest(test, false);
+              if (tests[i + 1]) {
+                run(tests, i + 1);
+              }
+            }
+          }, 15000);
+        }, false);
 
         test.assert(function(result) {
-          if (failTimeout) {
-            clearTimeout(failTimeout);
-          }
           if (!test.finished) {
-            test.finished = true;
-            globalCleanup(test);
-            test.result = result;
-            callback.call(null, test);
+            finishTest(test, result);
             if (tests[i + 1]) {
               run(tests, i + 1);
             }
@@ -83,6 +81,7 @@ AWPY.tests = (function() {
       });
     },
     save: function() {
+      return;
       var data = {}, newScript, firstScript;
 
       this.finished().forEach(function(test) {

@@ -2,7 +2,7 @@
   name: 'support-seeking-unbuffered-position',
   description: 'Seeking to unbuffered position with continuous playback after seeking',
   assert: function(finish) {
-    var audio = this.audio = new Audio(),
+    var audio = this.audio,
         seekedTime,
         counter = 0,
         result = true;

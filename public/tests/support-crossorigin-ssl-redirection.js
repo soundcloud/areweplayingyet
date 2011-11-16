@@ -12,7 +12,7 @@
     }
   },
   assert: function(finish) {
-    var audio = this.audio = new Audio();
+    var audio = this.audio;
 
     audio.addEventListener('loadedmetadata', function() {
       finish(true);

@@ -3,7 +3,7 @@
   description: 'Hot swapping audio src',
   longdesc: 'Audio should allow src changes without re-initializing the object.',
   assert: function(finish) {
-    var audio = this.audio = new Audio();
+    var audio = this.audio;
 
     audio.addEventListener('loadedmetadata', function() {
       audio.removeEventListener('loadedmetadata', arguments.callee, false);

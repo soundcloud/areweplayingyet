@@ -9,7 +9,7 @@
     }
   },
   assert: function(finish) {
-    var audio = this.audio = new Audio();
+    var audio = this.audio;
 
     audio.addEventListener('timeupdate', function() {
       if (audio.currentTime > 0) {

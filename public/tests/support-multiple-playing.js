@@ -2,22 +2,23 @@
   name: 'support-multiple-playing',
   description: 'Multiple Audio objects playing at the same time',
   assert: function(finish) {
-    var audio  = new Audio();
+    var audio  = this.audio;
     var audio2 = new Audio();
     this.audio = [audio, audio2];
+    var counter = 0;
 
-    audio.addEventListener('playing', function() {
-      audio2.volume = 0;
-      audio2.addEventListener('playing', function() {
-        finish(true);
+    this.audio.forEach(function(audio) {
+      audio.addEventListener('loadedmetadata', function() {
+        audio.volume = 0;
+        audio.play();
       }, false);
-      audio2.play();
-    }, false);
 
-    audio.addEventListener('loadedmetadata', function() {
-      audio.volume = 0;
-      audio.play();
-    }, false);
+      audio.addEventListener('playing', function() {
+        if (++counter == 2) {
+          finish(true);
+        }
+      }, false);
+    });
 
     audio.src  = AWPY.sound.mini.stream_url();
     audio2.src = AWPY.sound.mini.stream_url();

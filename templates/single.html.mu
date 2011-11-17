@@ -36,8 +36,8 @@
               </div>
             </div>
             <div class="submit">
-              <a class="github btn big" href="https://github.com/soundcloud/areweplayingyet/issues">Github</a>
-              <label>Contribute</label>
+              <a class="github btn big" href="/get-involved">Contribute</a>
+              <label>Get involved!</label>
             </div>
           </div>
         </header>

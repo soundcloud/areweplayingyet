@@ -559,6 +559,10 @@ background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIH
   background-image: url(../images/code-button.png);
 }
 
+.section-header.github {
+  background-image: url(../images/github-button.png);
+}
+
 .section-header.browser {
   background-image: url(../images/browser-button.png);
 }
@@ -588,16 +592,20 @@ pre {
   padding: 20px;
 }
 
+.col p + ol {
+  margin: 0 0 20px 20px;
+}
+
 a.spec,
-ul li a {
+.col a {
   color: #F60;
   text-decoration: underline;
 }
 
 /* =BROWSER_ISSUES
 ----------------------------------------------------------------------------- */
-ul li {
-  margin: 20px;
+.col li {
+  margin: 10px 20px;
 }
 
 #browserscope {

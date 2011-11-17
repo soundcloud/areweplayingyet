@@ -5,7 +5,7 @@ var util     = require('util');
 
 
 mu.root = __dirname + '/templates';
-['single', 'multi', '404'].forEach(function(template) {
+['single', 'multi', '404', 'get-involved'].forEach(function(template) {
   mu.compile(template + '.html.mu', function(err, data) {
     if (err) { throw err; }
   });
@@ -49,6 +49,11 @@ var router = function(app) {
     var extension = (req.params.name.match(/\.(\w+)$/) || [,])[1];
     var testName  = req.params.name.replace(/\.\w+$/, '');
 
+    if (req.params.name === 'get-involved') {
+      mu.render('get-involved.html.mu').pipe(res);
+      return;
+    }
+
     if (!rawTests[testName]) {
       res.statusCode = 404;
       mu.render('404.html.mu').pipe(res);
@@ -80,6 +85,7 @@ var router = function(app) {
     res.statusCode = 200;
     mu.render('multi.html.mu', { tests: tests, js: js }).pipe(res);
   });
+
 };
 
 if (process.env.PORT) {

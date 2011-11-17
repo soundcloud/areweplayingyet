@@ -33,8 +33,13 @@
       </div>
    </div>
     <footer>
-      <p>&copy; SoundCloud 2011</p>
+      <div>
+        <p>Copyright &copy; 2011, SoundCloud Ltd., Tomás Senart, Yves Van Goethem</p>
+        <p>"Are We Playing Yet?" is distributed under the terms of the <a href="https://github.com/soundcloud/areweplayingyet/blob/master/LICENSE">BSD License</a></p>
+        <div class="logo-icon"></div>
+      </div>
     </footer>
   </div>
+  <script src="/js/ga.js"></script>
 </body>
 </html>

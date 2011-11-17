@@ -58,7 +58,7 @@ A test consists of this basic JSON structure:
         }
       },
       assert: function(finish) { // required
-        var audio = this.audio = new Audio();
+        var audio = this.audio;
       }
     })
 
@@ -82,7 +82,7 @@ There a 3 ways to terminate a test:
 
 - passing
 - failing
-- timing out, automatically after 10 seconds
+- failing by timeout, 15 seconds after loadedmetadata event was triggered
 
 To make a test pass you need to call
 

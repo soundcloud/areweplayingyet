@@ -10,9 +10,9 @@
     }, false);
 
     audio.addEventListener('loadedmetadata', function() {
-      audio.currentTime = AWPY.sound.long.duration / 8;
+      audio.currentTime = 2;
     }, false);
 
-    audio.src = AWPY.sound.long.stream_url();
+    audio.src = AWPY.sound.mini.stream_url();
   }
 })

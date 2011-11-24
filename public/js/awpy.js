@@ -54,6 +54,7 @@ AWPY.tests = (function() {
       (function run(tests, i) {
         var test = tests[i];
         test.audio = new Audio();
+        AWPY.logEvents(test.audio);
         test.audio.addEventListener('loadedmetadata', function() {
           setTimeout(function() {
             if (!test.finished) {

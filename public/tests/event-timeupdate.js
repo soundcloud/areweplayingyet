@@ -12,7 +12,7 @@
     audio.addEventListener('loadedmetadata', function() {
       audio.volume = 0;
       audio.play();
-    });
+    }, false);
 
     audio.src = AWPY.sound.mini.stream_url();
   }

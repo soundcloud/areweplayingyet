@@ -12,7 +12,7 @@
     audio.addEventListener('loadstart', function() {
       audio.removeAttribute('src');
       audio.load(); // Should trigger abort soon
-    });
+    }, false);
 
     audio.src = AWPY.sound.short.stream_url();
   }

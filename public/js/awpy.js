@@ -41,40 +41,37 @@ AWPY.tests = (function() {
           delete audio;
         });
       };
-      var finishTest = function(test, result) {
-        test.finished = true;
-        globalCleanup(test);
-        test.result = result;
-        callback.call(null, test);
+      var finishTest = function(test, result, next) {
+        if (!test.finished) {
+          test.finished = true;
+          globalCleanup(test);
+          test.result = result;
+          callback.call(null, test);
+          if (next) { next(); }
+        }
       };
       var tests = list.filter(function(test) {
         return (single ? test.name === testName : true) && !test.finished;
       });
 
-      (function run(tests, i) {
+      (function run(i) {
         var test = tests[i];
-        test.audio = new Audio();
-        AWPY.logEvents(test.audio);
-        test.audio.addEventListener('loadedmetadata', function() {
-          setTimeout(function() {
-            if (!test.finished) {
-              finishTest(test, false);
-              if (tests[i + 1]) {
-                run(tests, i + 1);
-              }
-            }
-          }, 15000);
-        }, false);
+        var timeout = null;
 
-        test.assert(function(result) {
-          if (!test.finished) {
-            finishTest(test, result);
-            if (tests[i + 1]) {
-              run(tests, i + 1);
-            }
-          }
-        });
-      }(tests, 0));
+        if (test) {
+          test.audio = new Audio();
+          test.audio.addEventListener('loadedmetadata', function() {
+            clearTimeout(timeout);
+            timeout = setTimeout(finishTest.bind(null, test, false, run.bind(null, i + 1)), 15000);
+          }, false);
+
+          timeout = setTimeout(finishTest.bind(null, test, false, run.bind(null, i + 1)), 15000);
+
+          test.assert(function(result) {
+            finishTest(test, result, run.bind(null, i + 1));
+          });
+        }
+      }(0));
     },
     get: function(testName) {
       return list.filter(function(item) {

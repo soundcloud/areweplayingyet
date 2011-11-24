@@ -34,8 +34,8 @@ AWPY.tests = (function() {
     run: function(testName, callback) {
       var single = !!testName;
       var globalCleanup = function(test) {
-        [].concat(test.audio || []).forEach(function(audio){
-          if (audio.readyState) {
+        [].concat(test.audio || []).forEach(function(audio) {
+          if (!/*@cc_on!@*/0) {
             audio.pause();
             audio.removeAttribute('src');
             audio.load();

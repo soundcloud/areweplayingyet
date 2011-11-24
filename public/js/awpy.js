@@ -35,9 +35,11 @@ AWPY.tests = (function() {
       var single = !!testName;
       var globalCleanup = function(test) {
         [].concat(test.audio || []).forEach(function(audio){
-          audio.pause();
-          audio.removeAttribute('src');
-          audio.load();
+          if (audio.readyState) {
+            audio.pause();
+            audio.removeAttribute('src');
+            audio.load();
+          }
           delete audio;
         });
       };
@@ -60,6 +62,7 @@ AWPY.tests = (function() {
 
         if (test) {
           test.audio = new Audio();
+          AWPY.logEvents(test.audio);
           test.audio.addEventListener('loadedmetadata', function() {
             clearTimeout(timeout);
             timeout = setTimeout(finishTest.bind(null, test, false, run.bind(null, i + 1)), 15000);

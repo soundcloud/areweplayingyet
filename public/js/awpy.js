@@ -62,7 +62,6 @@ AWPY.tests = (function() {
 
         if (test) {
           test.audio = new Audio();
-          AWPY.logEvents(test.audio);
           test.audio.addEventListener('loadedmetadata', function() {
             clearTimeout(timeout);
             timeout = setTimeout(finishTest.bind(null, test, false, run.bind(null, i + 1)), 15000);

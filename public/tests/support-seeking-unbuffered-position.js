@@ -5,29 +5,33 @@
     var audio = this.audio,
         seekedTime,
         counter = 0,
-        result = true;
+        result = true,
+        timeout = false;
 
     audio.addEventListener('seeked', function() {
       if (audio.currentTime < seekedTime) {
         finish(false);
+      } else {
+        clearTimeout(timeout);
+
+        audio.play();
+
+        audio.addEventListener('timeupdate', function() {
+          if (++counter > 30) {
+            finish(result);
+          } else if (!audio.paused && audio.currentTime > seekedTime) {
+            result = true;
+          } else {
+            result = false;
+          }
+        }, false);
       }
-
-      audio.play();
-
-      audio.addEventListener('timeupdate', function() {
-        if (++counter > 30) {
-          finish(result);
-        } else if (!audio.paused && audio.currentTime > seekedTime) {
-          result = true;
-        } else {
-          result = false;
-        }
-      }, false);
     }, false);
 
     audio.addEventListener('loadedmetadata', function() {
       audio.volume = 0;
-      audio.currentTime = seekedTime = AWPY.sound.long.duration * 0.8;
+      audio.currentTime = seekedTime = AWPY.sound.long.duration * 0.9;
+      timeout = setTimeout(finish.bind(null, false), 3000);
     }, false);
 
     audio.preload = 'metadata';

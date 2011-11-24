@@ -10,7 +10,7 @@
     }, false);
 
     audio.addEventListener('loadstart', function() {
-      audio.removeAttribute('src');
+      audio.src = '';
       audio.load(); // Should trigger abort soon
     }, false);
 

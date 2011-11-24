@@ -10,7 +10,7 @@
     }, false);
 
     audio.addEventListener('play', function() {
-      audio.removeAttribute('src');
+      audio.src = AWPY.sound.short.stream_url();
       audio.load();
     }, false);
 

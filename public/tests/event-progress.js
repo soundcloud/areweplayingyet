@@ -9,6 +9,6 @@
       finish(true);
     }, false);
 
-    audio.src = AWPY.sound.mini.stream_url();
+    audio.src = AWPY.sound.long.stream_url();
   }
 })

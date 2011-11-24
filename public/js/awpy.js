@@ -35,11 +35,9 @@ AWPY.tests = (function() {
       var single = !!testName;
       var globalCleanup = function(test) {
         [].concat(test.audio || []).forEach(function(audio) {
-          if (!/*@cc_on!@*/0) {
-            audio.pause();
-            audio.removeAttribute('src');
-            audio.load();
-          }
+          audio.pause();
+          audio.src = '';
+          audio.load();
           delete audio;
         });
       };

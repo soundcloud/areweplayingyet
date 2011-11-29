@@ -5,20 +5,22 @@
   assert: function(finish) {
     var audio = this.audio;
     var counter = 0;
+
     audio.addEventListener('seeked', function() {
-      if (++counter == 2) {
-        if (audio.loop != true) {
+      if (++counter === 2) {
+        if (audio.loop !== true) {
           finish(false);
         }
         audio.loop = false;
       }
     }, false);
+
     audio.addEventListener('ended', function() {
-      finish(counter == 2);
+      finish(counter === 2);
     }, false);
 
     try {
-      if (audio.loop != false) {
+      if (audio.loop !== false) {
         finish(false);
       }
     } catch (e) {

@@ -21,9 +21,9 @@ fs.readdir(__dirname + '/public/tests/', function(err, list) {
 
 var router = function(app) {
 
-  app.get('/sounds/:sound.:format/redirect', function(req, res, next) {
-    res.statusCode = 303;
-    res.setHeader('Location', 'http://soundcloud.com/yvg/' + req.params.sound + '-' + req.params.format + '/download');
+  app.get('/sounds/:sound/redirect', function(req, res, next) {
+    res.statusCode = 302;
+    res.setHeader('Location', 'https://areweplayingyet.herokuapp.com/sounds/' + req.params.sound);
     res.end();
   });
 

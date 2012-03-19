@@ -2,17 +2,14 @@
   "author": "SoundCloud Ltd.",
   "name": "AreWePlayingYet",
   "description": "Pragmatic HTML5 Audio Benchmarking",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "homepage": "http://areweplayingyet.com",
   "repository": {
     "type": "git",
     "url": "git://github.com/soundcloud/AreWePlayingYet.git"
   },
-  "engines": {
-    "node": "~v0.4.11"
-  },
   "dependencies": {
-    "connect": "=1.7.2",
+    "connect": "=1.8.6",
     "mu": "=0.5.2"
   }
 }

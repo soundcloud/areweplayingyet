@@ -36,7 +36,6 @@
 
     audio.preload = 'metadata';
     //Override default config with specific codec
-    AWPY.config.codec = "mp3";
-    audio.src = AWPY.sound.long.stream_url();
+    audio.src = AWPY.sound.long.stream_url(false, 'mp3');
   }
 })

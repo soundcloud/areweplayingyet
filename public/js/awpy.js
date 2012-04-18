@@ -115,8 +115,8 @@ AWPY.sound = (function() {
   };
 
   Object.keys(sounds).forEach(function(type) {
-    sounds[type].stream_url = function(cache) {
-      return 'http://areweplayingyet.herokuapp.com/sounds/' + type + '.' + AWPY.config.codec + (cache ? '' : '?' + (Math.random() * 1e9 | 0));
+    sounds[type].stream_url = function(cache, codec_type) {
+      return 'http://areweplayingyet.herokuapp.com/sounds/' + type + '.' + (codec_type ? codec_type : AWPY.config.codec) + (cache ? '' : '?' + (Math.random() * 1e9 | 0));
     };
   });
 

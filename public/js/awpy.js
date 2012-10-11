@@ -2,13 +2,14 @@ var AWPY = {
   config: {
     codec: (function() {
       var audio = new Audio(), result;
-      var extensions = ['mp3', 'ogg', 'aac', 'wav'];
+      var extensions = ['mp3', 'ogg', 'aac', 'wav', 'opus'];
 
       [
         'audio/mpeg; codecs="mp3"',
         'audio/ogg; codecs="vorbis"',
-        'audio/mpeg; codecs="mp3"',
-        'audio/wav; codecs="1"'
+        'audio/mp4; codecs="mp4a.40.2"',
+        'audio/wav; codecs="1"',
+        'audio/ogg; codecs="opus"'
       ].forEach(function(codec, i, list) {
         result = extensions[i];
         if (/probably|maybe/.test(audio.canPlayType(codec))) {

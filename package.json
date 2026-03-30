@@ -9,7 +9,7 @@
     "url": "git://github.com/soundcloud/AreWePlayingYet.git"
   },
   "dependencies": {
-    "connect": "=1.8.6",
+    "connect": "=3.7.0",
     "mu": "=0.5.2"
   }
 }
